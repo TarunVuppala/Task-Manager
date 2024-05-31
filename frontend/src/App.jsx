@@ -1,6 +1,6 @@
 import './App.css';
 import Form from './TaskBoard/Form';
-
+import Navbar from './components/Navbar';
 function App() {
   return (
     <div className='flex flex-row justify-between items-center h-screen'>
@@ -14,7 +14,7 @@ function App() {
       <div className='w-[1px] h-screen bg-black'></div>
 
       <div className='w-full flex flex-col justify-between items-center'>
-        Middle
+        <Navbar></Navbar>
       </div>
 
       <div className='w-[1px] h-screen bg-black'></div>
