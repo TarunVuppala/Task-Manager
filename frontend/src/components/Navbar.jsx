@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 
 const Navbar = () => {
-  const [activeTab, setActiveTab] = useState("Notes");
+  const [activeTab, setActiveTab] = useState("Task Board");
   
 
 
