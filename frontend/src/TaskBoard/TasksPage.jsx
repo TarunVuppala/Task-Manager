@@ -1,23 +1,22 @@
 import React from 'react'
 import Form from './Form';
+import TaskCard from './TaskCard';
 
 const TasksPage = ({ formOpen }) => {
     return (
-        <>
-            All TASKS
+        <div className='flex flex-row'>
+            <div className='flex flex-col'>
+                <h1 className='font-black text-5xl'>ToDo</h1>
+                <TaskCard></TaskCard>
+            </div>
 
-            <div className='w-[1px] h-screen bg-black'></div>
             {formOpen &&
-                <>
-                    <div className='w-full h-screen flex flex-row'>
-                        <div className='w-[50%] flex flex-col justify-between items-center'>
-                            <Form />
-                        </div>
-                    </div>
-                </>
+                <div className='absolute right-0 top-0 flex flex-row'>
+                    <div className='bg-black w-[1px] h-screen'></div>
+                    <Form />
+                </div>
             }
-        </>
-
+        </div>
     )
 }
 

@@ -23,24 +23,33 @@ function App() {
 
   return (
     <Router>
-      <div className='flex flex-row justify-between items-center h-screen'>
+      <div className='flex flex-row h-screen'>
 
         <Routes>
           <Route path='/' element={
-            <>
+            <div className='flex flex-row'>
               <Sidebar />
-              <Navbar handleFormOpen={handleFormOpen} />
-              <TasksPage formOpen={formOpen}/>
-            </>
-          } />
+              <div className='p-10'>
+                <Navbar handleFormOpen={handleFormOpen} />
+                <TasksPage formOpen={formOpen} />
+              </div>
+            </div>} 
+          />
+
           <Route path='/notes' element={
-            <>
+            <div className='flex flex-row'>
               <Sidebar />
-              <Navbar handleFormOpen={handleNotesOpen} />
-              {notesOpen?<Form />:<NotesPage/>}
-            </>} />
+              <div className='p-10'>
+                <Navbar handleFormOpen={handleNotesOpen} />
+                {notesOpen ? <Form /> : <NotesPage />}
+              </div>
+            </div>} 
+          />
+
           <Route path='/login' element={<Login />} />
+
           <Route path='/signup' element={<SignUp />} />
+
         </Routes>
       </div>
     </Router>
