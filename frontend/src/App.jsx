@@ -8,13 +8,22 @@ import SignUp from './components/SignUp';
 function App() {
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<SignUp />} />
-        </Routes>
-      </Router>
+      <div className='flex flex-row justify-between items-center h-screen'>
+        <div className='w-[50%] flex flex-col justify-between items-center'>
+          <div>Left Top</div>
+          <div className='w-[90%] h-[1px] bg-black'></div>
+          <div>Left Bottom</div>
+        </div>
+
+        <Router>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<SignUp />} />
+          </Routes>
+        </Router>
+      </div>
+
     </>
 
   );
