@@ -5,7 +5,7 @@ const Navbar = ({ handleFormOpen }) => {
   const [activeTab, setActiveTab] = useState("Task Board");
 
   return (
-    <div className='flex gap-5 w-fit'>
+    <div className='flex gap-5 w-fit h-[50px]'>
 
       <button className='bg-[#F04D23] px-5 py-4 rounded-[20px]' onClick={handleFormOpen}>
         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -13,11 +13,11 @@ const Navbar = ({ handleFormOpen }) => {
         </svg>
       </button>
       
-      <Link to='/' className={`${activeTab === "Task Board" ? "bg-[#F04D23] text-white" : "border border-[#F04D23] text-black"} px-8 py-4 rounded-[20px]`} onClick={() => setActiveTab("Task Board")}>
+      <Link to='/' className={`${activeTab === "Task Board" ? "bg-[#F04D23] text-white" : "border border-[#F04D23] text-black"} w-[140px] h-[50px] rounded-[20px] flex justify-center items-center font-black`} onClick={() => setActiveTab("Task Board")}>
         Task Board
       </Link>
 
-      <Link to='/notes' className={`${activeTab === "Notes" ? "bg-[#F04D23] text-white" : "border border-[#F04D23] text-black"} px-8 py-4 rounded-[20px]`} onClick={() => setActiveTab("Notes")}>
+      <Link to='/notes' className={`${activeTab === "Notes" ? "bg-[#F04D23] text-white" : "border border-[#F04D23] text-black"} w-[140px] h-[50px] rounded-[20px] flex justify-center items-center font-black`} onClick={() => setActiveTab("Notes")}>
         Notes
       </Link>
     </div>
