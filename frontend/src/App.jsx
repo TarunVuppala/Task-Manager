@@ -27,9 +27,9 @@ function App() {
 
         <Routes>
           <Route path='/' element={
-            <div className='flex flex-row'>
+            <div className='flex flex-row w-full'>
               <Sidebar />
-              <div className='p-10'>
+              <div className='p-10 w-full'>
                 <Navbar handleFormOpen={handleFormOpen} />
                 <TasksPage formOpen={formOpen} />
               </div>

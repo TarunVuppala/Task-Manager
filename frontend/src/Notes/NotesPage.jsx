@@ -4,7 +4,7 @@ function NotesPage() {
     return (
         <div className='flex flex-row'>
             <div className='flex flex-col w-full'>
-                <div className='flex flex-row items-center justify-between w-full'>
+                <div className='flex flex-row items-center justify-between'>
                 
                 <h1 className='font-black text-5xl m-8 px-50'>
                     Notes
@@ -37,14 +37,6 @@ function NotesPage() {
                             </div>
                         ))}
                     </div>
-
-
-
-
-
-
-
-
                 </div>
             </div>
         </div>
