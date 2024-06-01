@@ -8,7 +8,7 @@ import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import TasksPage from './TaskBoard/TasksPage';
 import NotesPage from './Notes/NotesPage';
-import Form from './TaskBoard/Form';
+import NoteForm from './Notes/NoteForm';
 function App() {
   const [formOpen, setFormOpen] = useState(false);
   const [notesOpen, setNotesOpen] = useState(false);
@@ -41,7 +41,7 @@ function App() {
               <Sidebar />
               <div className='p-10'>
                 <Navbar handleFormOpen={handleNotesOpen} />
-                {notesOpen ? <Form /> : <NotesPage />}
+                {notesOpen ? <NoteForm /> : <NotesPage />}
               </div>
             </div>} 
           />
