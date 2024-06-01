@@ -5,7 +5,7 @@ import './App.css';
 import Home from './Home';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import NoteForm from './Notes/NoteForm';
+// import NoteForm from './Notes/NoteForm';
 
 function App() {
   return (
@@ -15,7 +15,8 @@ function App() {
           <Route path='/' element={<Home/>} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />
-          <Route path='/note' element={<NoteForm/>}/>
+          {/* <Route path='/note' element={<NoteForm/>}/> */}
+
         </Routes>
       </Router>
     </>
