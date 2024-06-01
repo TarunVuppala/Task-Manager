@@ -2,7 +2,7 @@ import React from 'react'
 
 const Form = () => {
     return (
-        <div className='flex flex-col p-10 h-screen gap-[21px]'>
+        <div className='flex flex-col p-10 h-screen gap-[21px] bg-white border shadow-xl'>
             <input
                 type="text"
                 id="firstName"
