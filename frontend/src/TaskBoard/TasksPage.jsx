@@ -11,8 +11,7 @@ const TasksPage = ({ formOpen }) => {
             </div>
 
             {formOpen &&
-                <div className='absolute right-0 top-0 flex flex-row'>
-                    <div className='bg-black w-[1px] h-screen'></div>
+                <div className='absolute right-0 top-0 flex flex-row justify-center items-center'>
                     <Form />
                 </div>
             }
