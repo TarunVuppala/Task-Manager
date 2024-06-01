@@ -37,9 +37,9 @@ function App() {
           />
 
           <Route path='/notes' element={
-            <div className='flex flex-row'>
+            <div className='flex flex-row w-full'>
               <Sidebar />
-              <div className='p-10'>
+              <div className='p-10 w-full'>
                 <Navbar handleFormOpen={handleNotesOpen} />
                 {notesOpen ? <NoteForm /> : <NotesPage />}
               </div>

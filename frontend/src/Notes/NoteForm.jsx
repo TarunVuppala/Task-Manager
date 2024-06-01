@@ -2,7 +2,7 @@ import React from 'react'
 
 function NoteForm() {
     return (
-        <>
+        <div className='w-full'>
             <div className='flex flex-row'></div>
             <input
                 type="text"
@@ -22,16 +22,16 @@ function NoteForm() {
 
             <div className='flex flex-col justify-between gap-4'>
                 <div className='flex flex-row justify-between items-center w-full gap-[21px]'>
-                    
+
                 </div>
 
                 <div className='flex flex-row justify-start items-center'>
                     <button className='py-3 px-5 ml-4 border rounded-[20px]  bg-[#F04D23] font-black text-white'>Add Note</button>
                     <button className='py-3 px-5 ml-4 border rounded-[20px]  border-[#F04D23] font-black '>Discard</button>
                 </div>
-                
+
             </div>
-        </>
+        </div>
     );
 }
 export default NoteForm;
