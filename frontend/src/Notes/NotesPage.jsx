@@ -22,15 +22,13 @@ function NotesPage() {
                 </div>
 
                 <div>
-                    <div className="p-4 grid grid-cols-4 gap-4">
+                    <div className="grid gap-4 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 ">
                         {Array.from({ length: 6 }).map((_, index) => (
-                            <div key={index} className="shadow-lg p-4 rounded-lg w-[300px] h-[300px] flex justify-center items-center">
+                            <div key={index} className="shadow-lg rounded-lg w-[200px] h-[200px] flex justify-center items-center bg-[#e9e9e9]">
                                 <label htmlFor={`input${index}`} className="block text-xl font-bold text-gray-700 mb-3">
                                     Note {index + 1}
                                 </label>
-                                <div className=" flex flex-row items-end justify-end pt-10">
-                                    <button><i class="fa-solid fa-trash"></i></button>
-                                </div>
+                                <button><i class="fa-solid fa-trash"></i></button>
 
                             </div>
                         ))}
