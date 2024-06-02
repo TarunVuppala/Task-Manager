@@ -15,9 +15,7 @@ app.post("/", async (req, res) => {
     }
     req.session.username = username;
     req.session.userId = user._id;
-    req.session.cookie.userId=req.session.userId
 
-    console.log(req.session);
     res.status(200).json({ user, success: true });
 });
 

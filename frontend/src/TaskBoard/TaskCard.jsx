@@ -3,7 +3,7 @@ import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 
-const TaskCard = () => {
+const TaskCard = ({title, description, tag, date, priority, frequency}) => {
     // State to hold the checked status of the checkbox
     const [isChecked, setIsChecked] = useState(false);
 
@@ -22,14 +22,14 @@ const TaskCard = () => {
           />
 
           <div className=''>
-            <h1>Title</h1>
-            <div className='opacity-30 text-sm'>Yearly @June 22</div>
+            <h1>{title}</h1>
+            <div className='opacity-30 text-sm'>{frequency} @{date.split('-').reverse().join('/')}</div>
           </div>
         </button>
 
         <div className='flex flex-row gap-5'>
-          <div className='px-5 border rounded-md border-[#FF9898] py-2'>Important</div>
-          <div className='px-5 border rounded-md border-[#00FF0A] py-2'>Personal</div>
+          <div className='px-5 border rounded-md border-[#FF9898] py-2'>{priority}</div>
+          <div className='px-5 border rounded-md border-[#00FF0A] py-2'>{tag}</div>
         </div>
 
         <div className='flex flex-row gap-5 justify-center items-center'>

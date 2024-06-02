@@ -4,12 +4,9 @@ const app = express();
 const Tasks = require('../models/taskSchema');
 const Users = require('../models/userSchema');
 
-app.use(express.json());
-
 app.get('/',async (req,res)=>{
-    console.log(req.session);
-    const tasks = await Tasks.find({ userRef: req.session.userId });
-    console.log(tasks);
+    const tasks = await Tasks.find({ userRef: "665c1db2a38f9e570e749c31" });
+    // console.log(tasks);
     res.status(200).json({ tasks, success: true });
 })
 
@@ -38,7 +35,7 @@ app.post('/', async (req, res) => {
         const newTask = await Tasks.create({
             title,
             description,
-            tag,
+            tag:tag?tag:"General",
             date: createdDate,
             reminder:date? ist:null,
             priority,

@@ -4,12 +4,14 @@ import TaskCard from './TaskCard';
 
 const TasksPage = ({ formOpen, handleFormOpen }) => {
     let [taskAdded,setTaskAdded]=useState(0);
+    const [tasks,setTasks]=useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch('http://localhost:5000/task')
-        .then(response=>response.json())
-        .then(data=>console.log(data));
-    },[taskAdded]);
+            .then(response => response.json())
+            .then(data => setTasks(data.tasks))
+            .catch(error => console.error('Error fetching tasks:', error));
+    }, [taskAdded]);
     const handleTaskAdded=()=>{
         setTaskAdded(taskAdded+1);
     }
@@ -41,10 +43,10 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
 
                     <div>
                         <div className="flex flex-col gap-5">
-                            {Array.from({ length: 6 }).map((_, index) => (
-                                <div key={index} className="">
+                            {tasks.map((task, index) => (
+                                <div key={task._id} className="">
                                     
-                                    <TaskCard></TaskCard>
+                                    <TaskCard title={task.title} description={task.description} tag={task.tag} date={task.date.split('T')[0]} priority={task.priority} frequency={task.frequency}/>
 
                                 </div>
                             ))}
