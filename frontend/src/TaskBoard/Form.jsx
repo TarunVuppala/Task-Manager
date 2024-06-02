@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Form = ({handleFormOpen}) => {
+const Form = ({handleFormOpen,handleTaskAdded,taskAdded}) => {
     const [msg, setMsg] = useState('');
     const [formData, setFormData] = useState({
         title: '',
@@ -33,6 +33,7 @@ const Form = ({handleFormOpen}) => {
 
             if (!response.ok) {
                 console.log('Failed to create task');
+                return;
             }
 
             console.log('Form submitted:', formData);
@@ -45,6 +46,8 @@ const Form = ({handleFormOpen}) => {
                 frequency: ''
             });
             handleFormOpen();
+            handleTaskAdded();
+            console.log(taskAdded);
         } catch (error) {
             console.error('Error:', error);
             setMsg(error.message);

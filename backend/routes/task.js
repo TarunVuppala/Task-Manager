@@ -1,12 +1,15 @@
 const express = require('express');
 const app = express();
 
-const Task = require('../models/taskSchema');
+const Tasks = require('../models/taskSchema');
 const Users = require('../models/userSchema');
 
+app.use(express.json());
+
 app.get('/',async (req,res)=>{
-    const user = await Users.findOne({ _id: req.session.userId });
-    const tasks = await Task.find({ userRef: user._id });
+    console.log(req.session);
+    const tasks = await Tasks.find({ userRef: req.session.userId });
+    console.log(tasks);
     res.status(200).json({ tasks, success: true });
 })
 
@@ -27,15 +30,17 @@ app.post('/', async (req, res) => {
                 break;
         }
         const createdDate = new Date(Date.now() + 5.5 * 60 * 60 * 1000);
-        const utc = new Date(date);
-        const ist = new Date(utc.getTime() + (5.5 * 60 * 60 * 1000));
+        if(date){
+            const utc = new Date(date);
+            const ist = new Date(utc.getTime() + (5.5 * 60 * 60 * 1000));
+        }
 
-        const newTask = await Task.create({
+        const newTask = await Tasks.create({
             title,
             description,
             tag,
             date: createdDate,
-            reminder: ist,
+            reminder:date? ist:null,
             priority,
             recurring: frequency,
             userRef: req.session.userId

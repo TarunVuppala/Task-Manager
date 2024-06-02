@@ -1,15 +1,18 @@
-import React , { useEffect } from 'react'
+import React , { useEffect, useState } from 'react'
 import Form from './Form';
 import TaskCard from './TaskCard';
 
 const TasksPage = ({ formOpen, handleFormOpen }) => {
+    let [taskAdded,setTaskAdded]=useState(0);
 
     useEffect(()=>{
-        fetch('http://localhost:5000/tasks')
+        fetch('http://localhost:5000/task')
         .then(response=>response.json())
         .then(data=>console.log(data));
-    },[]);
-
+    },[taskAdded]);
+    const handleTaskAdded=()=>{
+        setTaskAdded(taskAdded+1);
+    }
 
     return (
         <div className='flex flex-row w-full'>
@@ -52,7 +55,7 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
 
             {formOpen &&
                 <div className='right-0 top-0 flex flex-row justify-center items-center absolute'>
-                    <Form handleFormOpen={handleFormOpen}/>
+                    <Form handleFormOpen={handleFormOpen} handleTaskAdded={handleTaskAdded} taskAdded={taskAdded}/>
                 </div>
             }
         </div>
