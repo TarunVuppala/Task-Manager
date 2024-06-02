@@ -5,7 +5,7 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 
 const CalendarCard = () => {
   return (
-    <div className='h-fit w-full flex flex-col justify-center items-center top-0 border-b'>
+    <div className='h-fit w-full flex flex-col justify-center items-center top-0 border-b rounded-[20px]'>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DateCalendar />
         </LocalizationProvider>
