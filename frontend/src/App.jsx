@@ -36,10 +36,15 @@ function App() {
         setAuth(false);
       });
   }, [auth]);
+  console.log(auth+" 47");
 
   const handleLogout = () => {
     setAuth(false);
   };
+
+  const handleLogin=()=>{
+    setAuth(true);
+  }
 
   return (
     <Router>
@@ -50,6 +55,7 @@ function App() {
             element={
               auth ? (
                 <div className='flex flex-row'>
+                  {auth}
                   <Sidebar onLogout={handleLogout} />
                   <div className='p-10'>
                     <Navbar handleFormOpen={handleFormOpen} />
@@ -57,7 +63,10 @@ function App() {
                   </div>
                 </div>
               ) : (
+                <>
+                {auth?1:0}
                 <Navigate to='/login' />
+                </>
               )
             }
           />
@@ -77,7 +86,7 @@ function App() {
               )
             }
           />
-          <Route path='/login' element={<Login />} />
+          <Route path='/login'element={<Login auth={auth} handleLogin={handleLogin}/>} />
           <Route path='/signup' element={<SignUp />} />
         </Routes>
       </div>
