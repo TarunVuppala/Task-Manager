@@ -2,7 +2,7 @@ import React , {useState} from "react";
 function NotesPage() {
     
     return (
-        <div className='flex flex-row'>
+        <div className='flex flex-row w-full'>
             <div className='flex flex-col w-full'>
                 <div className='flex flex-row items-center justify-between'>
                 
