@@ -47,7 +47,7 @@ function App() {
 
   return (
     <Router>
-      <div className='flex flex-row h-screen'>
+      <div className='flex justify-center items-center flex-row h-screen'>
         <Routes>
           <Route
             path='/'
