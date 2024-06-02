@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
-
+import LogoutIcon from '@mui/icons-material/Logout';
+import ContrastIcon from '@mui/icons-material/Contrast';
 
 function ProfileCard({ onLogout }) {
     const navigate = useNavigate();
@@ -27,8 +28,12 @@ function ProfileCard({ onLogout }) {
             </div>
 
             <div className='flex flex-row justify-center gap-2'>
-                <button className='border w-[50px] h-[50px] rounded-full'>T</button>
-                <button onClick={handleLogout} className='border w-[50px] h-[50px] rounded-full'>Logout</button>
+                <button className='border w-[50px] h-[50px] rounded-full'>
+                    <ContrastIcon></ContrastIcon>
+                </button>
+                <button onClick={handleLogout} className='border w-[50px] h-[50px] rounded-full'>
+                    <LogoutIcon></LogoutIcon>
+                </button>
             </div>
         </div>
     );
