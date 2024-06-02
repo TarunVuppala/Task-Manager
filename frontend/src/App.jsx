@@ -14,6 +14,7 @@ function App() {
   const [formOpen, setFormOpen] = useState(false);
   const [notesOpen, setNotesOpen] = useState(false);
   const [auth, setAuth] = useState(false);
+  const [user,setUser]=useState('');
 
   const handleFormOpen = () => {
     setFormOpen(!formOpen);
@@ -30,13 +31,13 @@ function App() {
     })
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         setAuth(data.success);
       })
       .catch(() => {
         setAuth(false);
       });
   }, [auth]);
-  console.log(auth+" 47");
 
   const handleLogout = () => {
     setAuth(false);
@@ -56,7 +57,7 @@ function App() {
               auth ? (
                 <div className='flex flex-row'>
                   {auth}
-                  <Sidebar onLogout={handleLogout} />
+                  <Sidebar onLogout={handleLogout} user={user}/>
                   <div className='p-10'>
                     <Navbar handleFormOpen={handleFormOpen} />
                     <TasksPage formOpen={formOpen} />
@@ -75,7 +76,7 @@ function App() {
             element={
               auth ? (
                 <div className='flex flex-row'>
-                  <Sidebar onLogout={handleLogout} />
+                  <Sidebar onLogout={handleLogout} user={user}/>
                   <div className='p-10'>
                     <Navbar handleFormOpen={handleNotesOpen} />
                     {notesOpen ? <NoteForm /> : <NotesPage />}
@@ -86,7 +87,7 @@ function App() {
               )
             }
           />
-          <Route path='/login'element={<Login auth={auth} handleLogin={handleLogin}/>} />
+          <Route path='/login'element={<Login auth={auth} handleLogin={handleLogin} setUser={setUser}/>} />
           <Route path='/signup' element={<SignUp />} />
         </Routes>
       </div>

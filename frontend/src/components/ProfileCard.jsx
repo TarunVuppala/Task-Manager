@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
 import ContrastIcon from '@mui/icons-material/Contrast';
 
-function ProfileCard({ onLogout }) {
+function ProfileCard({ onLogout,user }) {
     const navigate = useNavigate();
 
     const handleLogout = async () => {
@@ -24,7 +24,7 @@ function ProfileCard({ onLogout }) {
                 <img src="/images/profile.jpg" alt="profile"
                 className='rounded-full w-[50px] h-[50px]'
                 />
-                <div>Hi Madhav!</div>
+                <div>Hi {user}!</div>
             </div>
 
             <div className='flex flex-row justify-center gap-2'>

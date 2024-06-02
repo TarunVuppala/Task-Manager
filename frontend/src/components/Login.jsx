@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function Login({auth,handleLogin}) {
+function Login({auth,handleLogin,setUser}) {
     const [msg, setMsg] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -26,8 +26,10 @@ function Login({auth,handleLogin}) {
         const data = await response.json();
         console.log(data);
         if (data.success) {
-            console.log("Login successful, navigating to /");
+            console.log(`Login successful, navigating to /`);
+            console.log(data);
             handleLogin();
+            setUser(data.user.username);
             navigate("/");
         } else {
             setMsg(data.err);
