@@ -1,8 +1,8 @@
 function auth(req, res, next) {
-    if (req.session && req.session.userId) {
+    if (req.session.userId) {
         next();
     } else {
-        res.sendStatus(401);
+        res.status(401).json({ err: "unauthorized", success: false });
     }
 }
 

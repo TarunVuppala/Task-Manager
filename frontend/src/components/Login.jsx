@@ -7,6 +7,7 @@ function Login() {
     const [password, setPassword] = useState("");
 
     const history = useNavigate();
+
     async function fn(event) {
         event.preventDefault();
 
@@ -15,6 +16,7 @@ function Login() {
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: 'include', 
             body: JSON.stringify({ username, password }),
         });
 
@@ -22,8 +24,9 @@ function Login() {
         console.log(data);
         if (data.success) {
             history("/");
+        } else {
+            setMsg(data.err);
         }
-        setMsg(data.err);
     }
 
     return (
