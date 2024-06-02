@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Form = () => {
+const Form = ({handleFormOpen}) => {
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -43,6 +43,7 @@ const Form = () => {
                 priority: '',
                 frequency: ''
             });
+            handleFormOpen();
         } catch (error) {
             console.error('Error:', error);
         }
