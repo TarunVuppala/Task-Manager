@@ -30,3 +30,9 @@ FrontEnd
     React - Componenets
     
 
+todo
+backend - !!!!!!!check why session is not getting stored properly
+          put and delete req for tasks
+          notes form handle
+          notes data store into db
+          get, delete and put req

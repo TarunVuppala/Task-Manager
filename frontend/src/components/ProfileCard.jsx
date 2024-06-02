@@ -4,7 +4,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ContrastIcon from '@mui/icons-material/Contrast';
 import { useTheme } from '../context/ThemeContext';
 
-function ProfileCard({ onLogout,user }) {
+function ProfileCard({ onLogout,username }) {
     const { theme, toggleTheme } = useTheme();
 
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ function ProfileCard({ onLogout,user }) {
                 <img src="/images/profile.jpg" alt="profile"
                 className='rounded-full w-[50px] h-[50px]'
                 />
-                <div>Hi {user}!</div>
+                <div>Hi {username}!</div>
             </div>
 
             <div className='flex flex-row justify-center gap-2'>

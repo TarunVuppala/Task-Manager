@@ -14,7 +14,7 @@ function App() {
   const [formOpen, setFormOpen] = useState(false);
   const [notesOpen, setNotesOpen] = useState(false);
   const [auth, setAuth] = useState(false);
-  const [user,setUser]=useState('');
+  const [user,setUser]=useState();
 
   const handleFormOpen = () => {
     setFormOpen(!formOpen);
@@ -31,7 +31,6 @@ function App() {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setAuth(data.success);
       })
       .catch(() => {
@@ -40,6 +39,7 @@ function App() {
   }, [auth]);
 
   const handleLogout = () => {
+    setUser(null);
     setAuth(false);
   };
 
@@ -57,10 +57,10 @@ function App() {
               auth ? (
                 <div className='flex flex-row w-full dark:bg-[#0e1b2b] dark:text-[#e1e1e1] duration-1000'>
                   {auth}
-                  <Sidebar onLogout={handleLogout} user={user}/>
+                  <Sidebar onLogout={handleLogout} username={user.username}/>
                   <div className='p-10 w-full'>
                     <Navbar handleFormOpen={handleFormOpen} />
-                    <TasksPage formOpen={formOpen} handleFormOpen={handleFormOpen}/>
+                    <TasksPage user={user} formOpen={formOpen} handleFormOpen={handleFormOpen}/>
                   </div>
                 </div>
               ) : (
@@ -75,7 +75,7 @@ function App() {
             element={
               auth ? (
                 <div className='flex flex-row w-full dark:bg-[#0e1b2b] dark:text-[#e1e1e1] duration-1000'>
-                  <Sidebar onLogout={handleLogout} user={user}/>
+                  <Sidebar onLogout={handleLogout} user={user.username}/>
                   <div className='p-10 w-full'>
                     <Navbar handleFormOpen={handleNotesOpen} />
                     {notesOpen ? <NoteForm /> : <NotesPage />}

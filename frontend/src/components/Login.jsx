@@ -29,7 +29,7 @@ function Login({auth,handleLogin,setUser}) {
             console.log(`Login successful, navigating to /`);
             console.log(data);
             handleLogin();
-            setUser(data.user.username);
+            setUser(data.user);
             navigate("/");
         } else {
             setMsg(data.err);

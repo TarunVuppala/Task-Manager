@@ -4,9 +4,10 @@ const app = express();
 const Tasks = require('../models/taskSchema');
 const Users = require('../models/userSchema');
 
-app.get('/',async (req,res)=>{
-    const tasks = await Tasks.find({ userRef: "665c1db2a38f9e570e749c31" });
-    // console.log(tasks);
+app.get('/:id',async (req,res)=>{
+    const {id}=req.params;
+    const user=await Users.findOne({_id:id});
+    const tasks = await Tasks.find({ userRef: user._id });
     res.status(200).json({ tasks, success: true });
 })
 
@@ -52,5 +53,18 @@ app.post('/', async (req, res) => {
         console.log(error);
     }
 });
+
+// app.delete('/:id', async (req, res) => {
+//     try {
+//         const { id } = req.params;
+//         const deletedTask = await Tasks.findByIdAndDelete(id);
+//         if (!deletedTask) {
+//             return res.status(404).json({ message: 'Task not found' });
+//         }
+//         res.status(200).json({ message: 'Task deleted successfully', success: true });
+//     } catch (error) {
+//         res.status(500).json({ message: 'Failed to delete task', error: error.message });
+//     }
+// });
 
 module.exports = app;

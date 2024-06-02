@@ -2,12 +2,12 @@ import React , { useEffect, useState } from 'react'
 import Form from './Form';
 import TaskCard from './TaskCard';
 
-const TasksPage = ({ formOpen, handleFormOpen }) => {
+const TasksPage = ({ formOpen, handleFormOpen,user }) => {
     let [taskAdded,setTaskAdded]=useState(0);
     const [tasks,setTasks]=useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/task')
+        fetch(`http://localhost:5000/task/${user._id}`)
             .then(response => response.json())
             .then(data => setTasks(data.tasks))
             .catch(error => console.error('Error fetching tasks:', error));
@@ -57,7 +57,7 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
 
             {formOpen &&
                 <div className='right-0 top-0 flex flex-row justify-center items-center absolute'>
-                    <Form handleFormOpen={handleFormOpen} handleTaskAdded={handleTaskAdded} taskAdded={taskAdded}/>
+                    <Form handleFormOpen={handleFormOpen} handleTaskAdded={handleTaskAdded}/>
                 </div>
             }
         </div>

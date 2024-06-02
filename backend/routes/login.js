@@ -13,9 +13,7 @@ app.post("/", async (req, res) => {
         res.status(404).json({ err: "password not matched" });
         return;
     }
-    req.session.username = username;
-    req.session.userId = user._id;
-
+    req.session.userId=user._id;
     res.status(200).json({ user, success: true });
 });
 

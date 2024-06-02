@@ -3,11 +3,9 @@ import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 
-const TaskCard = ({title, description, tag, date, priority, frequency}) => {
-    // State to hold the checked status of the checkbox
+const TaskCard = ({id,title, description, tag, date, priority, frequency}) => {
     const [isChecked, setIsChecked] = useState(false);
 
-    // Handler function to update state on checkbox change
     const handleCheckboxChange = (event) => {
       setIsChecked(event.target.checked);
     };

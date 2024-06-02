@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Form = ({handleFormOpen,handleTaskAdded,taskAdded}) => {
+const Form = ({handleFormOpen,handleTaskAdded}) => {
     const [msg, setMsg] = useState('');
     const [formData, setFormData] = useState({
         title: '',
@@ -47,7 +47,6 @@ const Form = ({handleFormOpen,handleTaskAdded,taskAdded}) => {
             });
             handleFormOpen();
             handleTaskAdded();
-            console.log(taskAdded);
         } catch (error) {
             console.error('Error:', error);
             setMsg(error.message);
