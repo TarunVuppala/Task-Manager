@@ -20,11 +20,9 @@ app.post('/', async (req, res) => {
                 break;
         }
         const createdDate = new Date(Date.now() + 5.5 * 60 * 60 * 1000);
-        console.log(typeof createdDate);
-
         const utc = new Date(date);
         const ist = new Date(utc.getTime() + (5.5 * 60 * 60 * 1000));
-        console.log(typeof ist);
+        
         const newTask = await Task.create({
             title,
             description,
