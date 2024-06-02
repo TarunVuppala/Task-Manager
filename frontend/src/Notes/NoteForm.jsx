@@ -2,21 +2,20 @@ import React from 'react'
 
 function NoteForm() {
     return (
-        <div className='w-full'>
-            <div className='flex flex-row'></div>
+        <form className='w-full'>
             <input
                 type="text"
                 id="firstName"
                 name="firstName"
                 placeholder='Title'
-                className='border rounded-[20px] m-4 mt-8 w-full border-[#1E1E1E] text-[#1E1E1E] px-8 py-2 text-4xl'
+                className='border rounded-[20px] m-4 ml-0 mt-8 w-full border-[#1E1E1E] text-[#1E1E1E] px-8 py-2 text-4xl'
             />
             <textarea
                 type="text"
                 id="firstName"
                 name="firstName"
                 placeholder='Description'
-                className='flex border rounded-[20px] ml-4 w-full border-[#1E1E1E] text-[#1E1E1E] p-8'
+                className='flex border rounded-[20px] ml-0 w-full border-[#1E1E1E] text-[#1E1E1E] p-8'
                 rows={14}
             />
 
@@ -31,7 +30,7 @@ function NoteForm() {
                 </div>
 
             </div>
-        </div>
+        </form>
     );
 }
 export default NoteForm;

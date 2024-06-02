@@ -74,9 +74,9 @@ function App() {
             path='/notes'
             element={
               auth ? (
-                <div className='flex flex-row'>
+                <div className='flex flex-row w-full'>
                   <Sidebar onLogout={handleLogout} user={user}/>
-                  <div className='p-10'>
+                  <div className='p-10 w-full'>
                     <Navbar handleFormOpen={handleNotesOpen} />
                     {notesOpen ? <NoteForm /> : <NotesPage />}
                   </div>
