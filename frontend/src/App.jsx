@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     fetch('http://localhost:5000/', {
       method: 'GET',
-      credentials: 'include', // Ensure credentials are included
+      credentials: 'include',
     })
       .then(res => res.json())
       .then(data => {
@@ -35,7 +35,7 @@ function App() {
       .catch(() => {
         setAuth(false);
       });
-  }, []);
+  }, [auth]);
 
   const handleLogout = () => {
     setAuth(false);
