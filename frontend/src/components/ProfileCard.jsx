@@ -1,9 +1,24 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
 import ContrastIcon from '@mui/icons-material/Contrast';
 
 function ProfileCard({ onLogout,user }) {
+    const [theme, setTheme] = useState(localStorage.theme || 'light');
+    
+    useEffect(() => {
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+        localStorage.setItem('theme', theme);
+      }, [theme]);
+    
+      const toggleTheme = () => {
+        setTheme(theme === 'dark' ? 'light' : 'dark');
+      };
+
     const navigate = useNavigate();
 
     const handleLogout = async () => {
@@ -28,7 +43,7 @@ function ProfileCard({ onLogout,user }) {
             </div>
 
             <div className='flex flex-row justify-center gap-2'>
-                <button className='border w-[50px] h-[50px] rounded-full'>
+                <button className='border w-[50px] h-[50px] rounded-full' onClick={toggleTheme}>
                     <ContrastIcon></ContrastIcon>
                 </button>
                 <button onClick={handleLogout} className='border w-[50px] h-[50px] rounded-full'>
