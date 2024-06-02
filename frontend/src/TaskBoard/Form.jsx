@@ -1,20 +1,57 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 const Form = () => {
+    const [formData, setFormData] = useState({
+        title: '',
+        description: '',
+        tag: '',
+        date: '',
+        priority: '',
+        frequency: ''
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+
+        console.log('Form submitted:', formData);
+    };
+
+    const handleDiscard = () => {
+        setFormData({
+            title: '',
+            description: '',
+            tag: '',
+            date: '',
+            priority: '',
+            frequency: ''
+        });
+    };
+
     return (
-        <div className='flex flex-col p-10 h-screen gap-[21px] bg-white shadow-xl'>
+        <form onSubmit={handleSubmit} className='flex flex-col p-10 h-screen gap-[21px] bg-white shadow-xl'>
             <input
                 type="text"
-                id="firstName"
-                name="firstName"
+                id="title"
+                name="title"
                 placeholder='Title'
+                value={formData.title}
+                onChange={handleChange}
                 className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] px-8 py-2 text-4xl'
             />
             <textarea
-                type="text"
-                id="firstName"
-                name="firstName"
+                id="description"
+                name="description"
                 placeholder='Description'
+                value={formData.description}
+                onChange={handleChange}
                 className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] p-8'
                 rows={14}
             />
@@ -22,60 +59,66 @@ const Form = () => {
             <div className='flex flex-col justify-between gap-4'>
                 <div className='flex flex-row justify-between items-center w-full gap-[21px]'>
                     <select
-                        id="category"
-                        name="category"
+                        id="tag"
+                        name="tag"
+                        value={formData.tag}
+                        onChange={handleChange}
                         className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] py-4 flex justify-center items-center bg-transparent text-center font-black'
                     >
-                        <option value="select tag">select tag</option>
+                        <option value="">Select Tag</option>
                         <option value="personal">Personal</option>
                         <option value="work">Work</option>
                         <option value="home">Home</option>
                     </select>
 
-                    <select
-                        id="category"
-                        name="category"
+                    <input
+                        type="datetime-local"
+                        id="date"
+                        name="date"
+                        value={formData.date}
+                        onChange={handleChange}
                         className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] py-4 flex justify-center items-center bg-transparent text-center font-black'
-                    >
-                        <option value="select tag">date & time</option>
-                        <option value="personal">Personal</option>
-                        <option value="work">Work</option>
-                        <option value="home">Home</option>
-                    </select>
+                    />
                 </div>
 
                 <div className='flex flex-row justify-between items-center w-full gap-[21px]'>
                     <select
-                        id="category"
-                        name="category"
+                        id="priority"
+                        name="priority"
+                        value={formData.priority}
+                        onChange={handleChange}
                         className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] py-4 flex justify-center items-center bg-transparent text-center font-black'
                     >
-                        <option value="select tag">select priority</option>
-                        <option value="personal">Now</option>
-                        <option value="work">Soon</option>
-                        <option value="home">Later</option>
+                        <option value="">Select Priority</option>
+                        <option value="now">Now</option>
+                        <option value="soon">Soon</option>
+                        <option value="later">Later</option>
                     </select>
 
                     <select
-                        id="category"
-                        name="category"
+                        id="frequency"
+                        name="frequency"
+                        value={formData.frequency}
+                        onChange={handleChange}
                         className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] py-4 flex justify-center items-center bg-transparent text-center font-black'
                     >
-                        <option value="select tag">repeat frequency</option>
-                        <option value="personal">Daily</option>
-                        <option value="work">Weekly</option>
-                        <option value="home">Monthly</option>
-                        <option value="home">Yearly</option>
+                        <option value="">Repeat Frequency</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
                     </select>
                 </div>
 
-                <button className='py-4 border rounded-[20px] w-full bg-[#F04D23] font-black text-white'>SAVE CHANGES</button>
-                <button className='py-4 border rounded-[20px] w-full border-[#F04D23] font-black '>DISCARD</button>
-
+                <button type="submit" className='py-4 border rounded-[20px] w-full bg-[#F04D23] font-black text-white'>
+                    SAVE CHANGES
+                </button>
+                <button type="button" onClick={handleDiscard} className='py-4 border rounded-[20px] w-full border-[#F04D23] font-black'>
+                    DISCARD
+                </button>
             </div>
-
-        </div>
-    )
+        </form>
+    );
 }
 
-export default Form
+export default Form;
