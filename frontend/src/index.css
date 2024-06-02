@@ -16,6 +16,10 @@
   font-family: "avenir";
 }
 
+*{
+  font-family: "avenir";
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
