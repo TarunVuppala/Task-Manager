@@ -65,7 +65,6 @@ function App() {
                 </div>
               ) : (
                 <>
-                {auth?1:0}
                 <Navigate to='/login' />
                 </>
               )
