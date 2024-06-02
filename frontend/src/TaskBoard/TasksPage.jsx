@@ -2,7 +2,7 @@ import React from 'react'
 import Form from './Form';
 import TaskCard from './TaskCard';
 
-const TasksPage = ({ formOpen }) => {
+const TasksPage = ({ formOpen, handleFormOpen }) => {
     return (
         <div className='flex flex-row w-full'>
             <div className='flex flex-row w-full'>
@@ -44,7 +44,7 @@ const TasksPage = ({ formOpen }) => {
 
             {formOpen &&
                 <div className='absolute right-0 top-0 flex flex-row justify-center items-center'>
-                    <Form />
+                    <Form handleFormOpen={handleFormOpen}/>
                 </div>
             }
         </div>

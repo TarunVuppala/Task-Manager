@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-const Form = () => {
+const Form = ({handleFormOpen}) => {
+    const [msg, setMsg] = useState('');
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -43,8 +44,10 @@ const Form = () => {
                 priority: '',
                 frequency: ''
             });
+            handleFormOpen();
         } catch (error) {
             console.error('Error:', error);
+            setMsg(error.message);
         }
     };
 
@@ -61,6 +64,7 @@ const Form = () => {
 
     return (
         <form onSubmit={handleSubmit} method='POST' className='flex flex-col p-10 h-screen gap-[21px] bg-white shadow-xl'>
+            <p className='text-[#F04D23]'>{msg}</p>
             <input
                 type="text"
                 id="title"
