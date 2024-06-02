@@ -86,8 +86,16 @@ function App() {
               )
             }
           />
-          <Route path='/login'element={<Login auth={auth} handleLogin={handleLogin} setUser={setUser}/>} />
-          <Route path='/signup' element={<SignUp />} />
+          <Route path='/login'element={
+            <div className='flex justify-center items-center w-full'>
+              <Login auth={auth} handleLogin={handleLogin} setUser={setUser}/>
+            </div>
+          } />
+          <Route path='/signup' element={
+            <div className='flex justify-center items-center w-full'>
+              <SignUp />
+          </div>
+          } />
         </Routes>
       </div>
     </Router>
