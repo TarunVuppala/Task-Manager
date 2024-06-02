@@ -18,16 +18,18 @@ function ProfileCard({ onLogout }) {
     };
 
     return (
-        <div className=' w-full h-[200px] flex flex-col justify-center items-center border'>
-            ProfileCard
-            {/* <div className='flex flex-col justify-between items-center h-full p-6'>
-                <button 
-                    className="bg-[#F04D23] text-white py-2 px-12 font-bold rounded-[20px]"
-                    onClick={handleLogout}
-                >
-                    LOGOUT
-                </button>
-            </div> */}
+        <div className=' w-full h-fit flex flex-row items-center rounded-full p-3 justify-between'>
+            <div className='flex flex-row justify-center items-center gap-3'>
+                <img src="/images/profile.jpg" alt="profile"
+                className='rounded-full w-[50px] h-[50px]'
+                />
+                <div>Hi Madhav!</div>
+            </div>
+
+            <div className='flex flex-row justify-center gap-2'>
+                <button className='border w-[50px] h-[50px] rounded-full'>T</button>
+                <button onClick={handleLogout} className='border w-[50px] h-[50px] rounded-full'>L</button>
+            </div>
         </div>
     );
 };
