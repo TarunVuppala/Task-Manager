@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({auth,handleLogin}) {
     const [msg, setMsg] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
+    if(auth){
+        navigate("/");
+    }
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -24,6 +27,7 @@ function Login() {
         console.log(data);
         if (data.success) {
             console.log("Login successful, navigating to /");
+            handleLogin();
             navigate("/");
         } else {
             setMsg(data.err);
