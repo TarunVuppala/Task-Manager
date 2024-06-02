@@ -85,7 +85,7 @@ const taskSchema = new mongoose.Schema({
     reminder: {
         type: Date,
         default: function() {
-            return new Date(Date.now() + reminderTime.apply(this) * 60 * 60 * 1000);
+            return new Date(Date.now()+5.5 * 60 * 60 * 1000 + reminderTime.apply(this) * 60 * 60 * 1000);
         }
     },
     recurring: {
