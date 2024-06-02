@@ -16,13 +16,14 @@ function Login() {
             headers: {
                 "Content-Type": "application/json",
             },
-            credentials: 'include', // Include credentials in the request
+            credentials: 'include',
             body: JSON.stringify({ username, password }),
         });
 
         const data = await response.json();
         console.log(data);
         if (data.success) {
+            console.log("Login successful, navigating to /");
             navigate("/");
         } else {
             setMsg(data.err);

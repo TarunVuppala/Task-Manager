@@ -1,15 +1,14 @@
 const express = require("express");
 const app = express();
 
-app.post("/", (req, res) => {
+app.get("/", (req, res) => {
     req.session.destroy((err) => {
         if (err) {
             console.log(err);
-            res.status(400).json({ success: false, err: "Failed to logout" });
-        } else {
-            res.clearCookie("connect.sid");
-            res.status(200).json({ success: true });
+            return res.status(500).json({ success: false, message: "Failed to logout" });
         }
+        res.clearCookie("connect.sid");
+        res.status(200).json({ success: true, message: "Logged out" });
     });
 });
 

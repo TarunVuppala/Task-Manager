@@ -23,31 +23,27 @@ function App() {
     setNotesOpen(!notesOpen);
   };
 
-  const handleLogout = () => {
-    setAuth(false);
-  };
-
   useEffect(() => {
     fetch('http://localhost:5000/', {
       method: 'GET',
-      credentials: 'include',
+      credentials: 'include', // Ensure credentials are included
     })
       .then(res => res.json())
       .then(data => {
-        if (data.success) {
-          setAuth(true);
-        } else {
-          setAuth(false);
-        }
+        setAuth(data.success);
       })
       .catch(() => {
         setAuth(false);
       });
   }, []);
 
+  const handleLogout = () => {
+    setAuth(false);
+  };
+
   return (
     <Router>
-      <div className='flex justify-center items-center flex-row h-screen'>
+      <div className='flex flex-row h-screen'>
         <Routes>
           <Route
             path='/'

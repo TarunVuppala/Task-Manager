@@ -9,16 +9,13 @@ function Sidebar({ onLogout }) {
 
     const handleLogout = async () => {
         const response = await fetch("http://localhost:5000/logout", {
-            method: "POST",
-            credentials: "include",
+            method: "GET",
+            credentials: "include"
         });
-
         const data = await response.json();
         if (data.success) {
             onLogout();
             navigate("/login");
-        } else {
-            console.log("Logout failed");
         }
     };
 
@@ -30,13 +27,16 @@ function Sidebar({ onLogout }) {
                 </LocalizationProvider>
 
                 <div className='flex w-full h-[1px] bg-black'></div>
-
-                <button className="bg-[#F04D23] text-white py-2 px-12 font-bold rounded-[20px]" onClick={handleLogout}>
+                
+                <button 
+                    className="bg-[#F04D23] text-white py-2 px-12 font-bold rounded-[20px]"
+                    onClick={handleLogout}
+                >
                     LOGOUT
                 </button>
             </div>
         </div>
     );
-}
+};
 
 export default Sidebar;
