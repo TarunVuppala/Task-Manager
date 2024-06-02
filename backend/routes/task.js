@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const Task = require('../models/taskSchema');
-const Users=require('../models/userSchema');
+const Users = require('../models/userSchema');
 app.post('/', async (req, res) => {
     try {
         const { title, description, tag, date, priority: rawPriority, frequency } = req.body;
@@ -19,23 +19,30 @@ app.post('/', async (req, res) => {
                 priority = "Low";
                 break;
         }
+        const createdDate = new Date(Date.now() + 5.5 * 60 * 60 * 1000);
+        console.log(typeof createdDate);
 
+        const utc = new Date(date);
+        const ist = new Date(utc.getTime() + (5.5 * 60 * 60 * 1000));
+        console.log(typeof ist);
         const newTask = await Task.create({
             title,
             description,
             tag,
-            date,
+            date: createdDate,
+            reminder: ist,
             priority,
             recurring: frequency,
-            userRef:req.session.userId
+            userRef: req.session.userId
         });
-        const user=await Users.findOne({_id:req.session.userId});
+        const user = await Users.findOne({ _id: req.session.userId });
         user.tasksRef.push(newTask._id);
         await user.save();
 
         res.status(201).json({ message: 'Task created successfully', task: newTask });
     } catch (error) {
         res.status(500).json({ message: 'Failed to create task', error: error.message });
+        console.log(error);
     }
 });
 
