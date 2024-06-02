@@ -5,7 +5,7 @@ import StatsCard from "./StatsCard";
 
 function Sidebar({ onLogout }) {
     return (
-        <div className='h-screen w-[400px] border-r flex flex-col justify-center items-center p-6'>
+        <div className='h-screen w-[400px] border-r flex flex-col justify-between items-center p-6'>
             <CalendarCard></CalendarCard>
             <StatsCard></StatsCard>
             <ProfileCard onLogout={onLogout}></ProfileCard>
