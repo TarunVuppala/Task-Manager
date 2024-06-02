@@ -1,8 +1,16 @@
-import React from 'react'
+import React , { useEffect } from 'react'
 import Form from './Form';
 import TaskCard from './TaskCard';
 
 const TasksPage = ({ formOpen, handleFormOpen }) => {
+
+    useEffect(()=>{
+        fetch('http://localhost:5000/tasks')
+        .then(response=>response.json())
+        .then(data=>console.log(data));
+    },[]);
+
+
     return (
         <div className='flex flex-row w-full'>
             <div className='flex flex-row w-full'>
@@ -43,7 +51,7 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
             </div>
 
             {formOpen &&
-                <div className='right-0 top-0 flex flex-row justify-center items-center sticky'>
+                <div className='absolute right-0 top-0 flex flex-row justify-center items-center'>
                     <Form handleFormOpen={handleFormOpen}/>
                 </div>
             }
