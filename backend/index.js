@@ -6,6 +6,7 @@ const cors = require("cors");
 const login = require('./routes/login');
 const signup = require('./routes/signup');
 const logout=require('./routes/logout');
+const task = require('./routes/task');
 const auth = require('./middleware/auth');
 
 const app = express();
@@ -36,6 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/login', login);
 app.use('/signup', signup);
 app.use('/logout',logout);
+app.use('/task', task);
 
 app.get("/", auth, (req, res) => {
     res.json({ message: "hello", success: true });

@@ -18,10 +18,34 @@ const Form = () => {
         });
     };
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:5000/task', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData),
+                credentials: 'include'
+            });
 
-        console.log('Form submitted:', formData);
+            if (!response.ok) {
+                console.log('Failed to create task');
+            }
+
+            console.log('Form submitted:', formData);
+            setFormData({
+                title: '',
+                description: '',
+                tag: '',
+                date: '',
+                priority: '',
+                frequency: ''
+            });
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
     const handleDiscard = () => {
@@ -36,7 +60,7 @@ const Form = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className='flex flex-col p-10 h-screen gap-[21px] bg-white shadow-xl'>
+        <form onSubmit={handleSubmit} method='POST' className='flex flex-col p-10 h-screen gap-[21px] bg-white shadow-xl'>
             <input
                 type="text"
                 id="title"
