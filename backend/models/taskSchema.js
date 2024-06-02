@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-// Define a function to calculate the reminder time based on priority
-const reminderTime = function() {
+const reminderTime = function () {
     const priority = this.priority || "Medium";
     let addedTime;
 
@@ -19,35 +18,34 @@ const reminderTime = function() {
     return addedTime;
 };
 
-// Define a function to get frequency dates
-const getFrequencyDates = function(recurring) {
+const getFrequencyDates = function (recurring) {
     const dates = [];
     const currentDate = new Date();
 
     switch (recurring.toLowerCase()) {
         case 'daily':
-            for (let i = 0; i < 30; i++) { // 30 days in a month
+            for (let i = 0; i < 30; i++) { 
                 const newDate = new Date(currentDate);
                 newDate.setDate(currentDate.getDate() + i);
                 dates.push(newDate);
             }
             break;
         case 'weekly':
-            for (let i = 0; i < 4; i++) { // 4 weeks in a month
+            for (let i = 0; i < 4; i++) { 
                 const newDate = new Date(currentDate);
                 newDate.setDate(currentDate.getDate() + (i * 7));
                 dates.push(newDate);
             }
             break;
         case 'monthly':
-            for (let i = 0; i < 5; i++) { // 5 months
+            for (let i = 0; i < 5; i++) { 
                 const newDate = new Date(currentDate);
                 newDate.setMonth(currentDate.getMonth() + i);
                 dates.push(newDate);
             }
             break;
         case 'yearly':
-            for (let i = 0; i < 5; i++) { // 5 years
+            for (let i = 0; i < 5; i++) { 
                 const newDate = new Date(currentDate);
                 newDate.setFullYear(currentDate.getFullYear() + i);
                 dates.push(newDate);
@@ -60,7 +58,6 @@ const getFrequencyDates = function(recurring) {
     return dates;
 };
 
-// Define the Task schema
 const taskSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -84,8 +81,8 @@ const taskSchema = new mongoose.Schema({
     },
     reminder: {
         type: Date,
-        default: function() {
-            return new Date(Date.now()+5.5 * 60 * 60 * 1000 + reminderTime.apply(this) * 60 * 60 * 1000);
+        default: function () {
+            return new Date(Date.now() + 5.5 * 60 * 60 * 1000 + reminderTime.apply(this) * 60 * 60 * 1000);
         }
     },
     recurring: {
@@ -94,7 +91,7 @@ const taskSchema = new mongoose.Schema({
     },
     recurringDates: {
         type: [Date],
-        default: function() {
+        default: function () {
             return this.recurring === "None" ? [] : getFrequencyDates(this.recurring);
         }
     },
