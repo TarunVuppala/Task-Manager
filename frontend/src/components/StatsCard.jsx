@@ -5,7 +5,7 @@ import { LineChart } from '@mui/x-charts/LineChart';
 
 const StatsCard = () => {
     return (
-        <div>
+        <div className='flex flex-col scale-75 border h-full'>
             <PieChart
                 series={[
                     {
@@ -28,6 +28,7 @@ const StatsCard = () => {
                 height={200}
             />
 
+            
             <LineChart
                 xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
                 series={[
