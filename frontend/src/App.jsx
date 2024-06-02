@@ -55,10 +55,10 @@ function App() {
             path='/'
             element={
               auth ? (
-                <div className='flex flex-row'>
+                <div className='flex flex-row w-full'>
                   {auth}
                   <Sidebar onLogout={handleLogout} user={user}/>
-                  <div className='p-10'>
+                  <div className='p-10 w-full'>
                     <Navbar handleFormOpen={handleFormOpen} />
                     <TasksPage formOpen={formOpen} />
                   </div>
