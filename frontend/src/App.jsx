@@ -48,14 +48,14 @@ function App() {
   }
 
   return (
-    <Router>
+    <Router className="dark">
       <div className='flex flex-row h-screen'>
         <Routes>
           <Route
             path='/'
             element={
               auth ? (
-                <div className='flex flex-row w-full'>
+                <div className='flex flex-row w-full dark:bg-[#1e1e1e] dark:text-white'>
                   {auth}
                   <Sidebar onLogout={handleLogout} user={user}/>
                   <div className='p-10 w-full'>

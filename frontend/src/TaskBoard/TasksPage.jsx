@@ -4,7 +4,7 @@ import TaskCard from './TaskCard';
 
 const TasksPage = ({ formOpen, handleFormOpen }) => {
     return (
-        <div className='flex flex-row w-full'>
+        <div className='flex flex-row w-full dark:text-white'>
             <div className='flex flex-row w-full'>
                 <div className='flex flex-col w-full'>
                     <div className='flex flex-row items-center justify-between w-full'>
