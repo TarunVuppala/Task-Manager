@@ -43,7 +43,7 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
             </div>
 
             {formOpen &&
-                <div className='absolute right-0 top-0 flex flex-row justify-center items-center'>
+                <div className='right-0 top-0 flex flex-row justify-center items-center sticky'>
                     <Form handleFormOpen={handleFormOpen}/>
                 </div>
             }
