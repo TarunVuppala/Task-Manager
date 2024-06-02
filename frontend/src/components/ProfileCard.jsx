@@ -28,7 +28,7 @@ function ProfileCard({ onLogout }) {
 
             <div className='flex flex-row justify-center gap-2'>
                 <button className='border w-[50px] h-[50px] rounded-full'>T</button>
-                <button onClick={handleLogout} className='border w-[50px] h-[50px] rounded-full'>L</button>
+                <button onClick={handleLogout} className='border w-[50px] h-[50px] rounded-full'>Logout</button>
             </div>
         </div>
     );

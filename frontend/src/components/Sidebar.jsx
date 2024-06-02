@@ -8,7 +8,7 @@ function Sidebar({ onLogout }) {
         <div className='h-screen w-[400px] border-r flex flex-col justify-center items-center p-6'>
             <CalendarCard></CalendarCard>
             <StatsCard></StatsCard>
-            <ProfileCard></ProfileCard>
+            <ProfileCard onLogout={onLogout}></ProfileCard>
         </div>
     );
 };
