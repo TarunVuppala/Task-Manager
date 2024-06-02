@@ -50,39 +50,27 @@ function App() {
 
   return (
     <Router>
-      <div className='flex flex-row h-screen'>
+      <div className='flex justify-center items-center h-screen'>
+
         <Routes>
-          <Route
-            path='/'
-            element={
-              auth ? (
-                <div className='flex flex-row'>
-                  <Sidebar />
-                  <div className='p-10'>
-                    <Navbar handleFormOpen={handleFormOpen} />
-                    <TasksPage formOpen={formOpen} />
-                  </div>
-                </div>
-              ) : (
-                <Navigate to='/login' />
-              )
-            }
+          <Route path='/' element={
+            <div className='flex flex-row w-full'>
+              <Sidebar />
+              <div className='p-10 w-full'>
+                <Navbar handleFormOpen={handleFormOpen} />
+                <TasksPage formOpen={formOpen} />
+              </div>
+            </div>} 
           />
-          <Route
-            path='/notes'
-            element={
-              auth ? (
-                <div className='flex flex-row'>
-                  <Sidebar />
-                  <div className='p-10'>
-                    <Navbar handleFormOpen={handleNotesOpen} />
-                    {notesOpen ? <NoteForm /> : <NotesPage />}
-                  </div>
-                </div>
-              ) : (
-                <Navigate to='/login' />
-              )
-            }
+
+          <Route path='/notes' element={
+            <div className='flex flex-row w-full'>
+              <Sidebar />
+              <div className='p-10 w-full'>
+                <Navbar handleFormOpen={handleNotesOpen} />
+                {notesOpen ? <NoteForm /> : <NotesPage />}
+              </div>
+            </div>} 
           />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />
