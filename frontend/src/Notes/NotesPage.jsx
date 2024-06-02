@@ -28,7 +28,7 @@ function NotesPage() {
                 <div>
                     <div className="grid gap-4 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 ">
                         {Array.from({ length: 6 }).map((_, index) => (
-                            <div key={index} className="rounded-[20px] w-[250px] h-[250px] flex justify-center items-center bg-[#e9e9e9] hover:shadow-lg transition-all hover:scale-105">
+                            <div key={index} className="rounded-[20px] w-[250px] h-[250px] flex justify-center items-center bg-[#e9e9e9] dark:bg-[#212c50] hover:shadow-lg transition-all hover:scale-105">
                                 <label htmlFor={`input${index}`} className="block text-2xl font-bold text-gray-700">
                                     Note {index + 1}
                                 </label>

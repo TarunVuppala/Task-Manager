@@ -74,7 +74,7 @@ function App() {
             path='/notes'
             element={
               auth ? (
-                <div className='flex flex-row w-full dark:bg-[#001631]'>
+                <div className='flex flex-row w-full dark:bg-[#0e1b2b] dark:text-[#e1e1e1] duration-1000'>
                   <Sidebar onLogout={handleLogout} user={user}/>
                   <div className='p-10 w-full'>
                     <Navbar handleFormOpen={handleNotesOpen} />
