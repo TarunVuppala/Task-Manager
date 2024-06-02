@@ -1,15 +1,16 @@
 const express = require("express");
-const app=express();
+const app = express();
 
-app.get("/", function(req, res) {
+app.post("/", (req, res) => {
     req.session.destroy((err) => {
         if (err) {
             console.log(err);
-            res.sendStatus(400);
+            res.status(400).json({ success: false, err: "Failed to logout" });
+        } else {
+            res.clearCookie("connect.sid");
+            res.status(200).json({ success: true });
         }
-        res.clearCookie("connect.sid");
-        res.redirect("/login");
     });
 });
 
-module.exports=app;
+module.exports = app;

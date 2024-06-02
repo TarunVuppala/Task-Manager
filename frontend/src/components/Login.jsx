@@ -6,9 +6,9 @@ function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const history = useNavigate();
+    const navigate = useNavigate();
 
-    async function fn(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
 
         const response = await fetch("http://localhost:5000/login", {
@@ -16,14 +16,14 @@ function Login() {
             headers: {
                 "Content-Type": "application/json",
             },
-            credentials: 'include', 
+            credentials: 'include', // Include credentials in the request
             body: JSON.stringify({ username, password }),
         });
 
         const data = await response.json();
         console.log(data);
         if (data.success) {
-            history("/");
+            navigate("/");
         } else {
             setMsg(data.err);
         }
@@ -45,7 +45,7 @@ function Login() {
                     </div>
                     <h1 className="flex font-bold items-center justify-center text-4xl m-4">LOGIN</h1>
                     {msg && <p className="text-center text-red-500">{msg}</p>}
-                    <form method="POST" onSubmit={fn} className="flex-col">
+                    <form method="POST" onSubmit={handleSubmit} className="flex-col">
                         <input
                             type="text"
                             name="username"

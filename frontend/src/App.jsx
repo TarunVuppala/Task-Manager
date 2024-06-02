@@ -14,7 +14,6 @@ function App() {
   const [formOpen, setFormOpen] = useState(false);
   const [notesOpen, setNotesOpen] = useState(false);
   const [auth, setAuth] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   const handleFormOpen = () => {
     setFormOpen(!formOpen);
@@ -22,6 +21,10 @@ function App() {
 
   const handleNotesOpen = () => {
     setNotesOpen(!notesOpen);
+  };
+
+  const handleLogout = () => {
+    setAuth(false);
   };
 
   useEffect(() => {
@@ -36,41 +39,47 @@ function App() {
         } else {
           setAuth(false);
         }
-        setLoading(false);
       })
       .catch(() => {
         setAuth(false);
-        setLoading(false);
       });
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <Router>
-      <div className='flex justify-center items-center h-screen'>
-
+      <div className='flex flex-row h-screen'>
         <Routes>
-          <Route path='/' element={
-            <div className='flex flex-row w-full'>
-              <Sidebar />
-              <div className='p-10 w-full'>
-                <Navbar handleFormOpen={handleFormOpen} />
-                <TasksPage formOpen={formOpen} />
-              </div>
-            </div>} 
+          <Route
+            path='/'
+            element={
+              auth ? (
+                <div className='flex flex-row'>
+                  <Sidebar onLogout={handleLogout} />
+                  <div className='p-10'>
+                    <Navbar handleFormOpen={handleFormOpen} />
+                    <TasksPage formOpen={formOpen} />
+                  </div>
+                </div>
+              ) : (
+                <Navigate to='/login' />
+              )
+            }
           />
-
-          <Route path='/notes' element={
-            <div className='flex flex-row w-full'>
-              <Sidebar />
-              <div className='p-10 w-full'>
-                <Navbar handleFormOpen={handleNotesOpen} />
-                {notesOpen ? <NoteForm /> : <NotesPage />}
-              </div>
-            </div>} 
+          <Route
+            path='/notes'
+            element={
+              auth ? (
+                <div className='flex flex-row'>
+                  <Sidebar onLogout={handleLogout} />
+                  <div className='p-10'>
+                    <Navbar handleFormOpen={handleNotesOpen} />
+                    {notesOpen ? <NoteForm /> : <NotesPage />}
+                  </div>
+                </div>
+              ) : (
+                <Navigate to='/login' />
+              )
+            }
           />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />

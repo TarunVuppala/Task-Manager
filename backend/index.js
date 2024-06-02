@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const login = require('./routes/login');
 const signup = require('./routes/signup');
+const logout=require('./routes/logout');
 const auth = require('./middleware/auth');
 
 const app = express();
@@ -21,17 +22,20 @@ app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true
 }));
+
 app.use(session({
     secret: 'secret',
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false }
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/login', login);
 app.use('/signup', signup);
+app.use('/logout',logout);
 
 app.get("/", auth, (req, res) => {
     res.json({ message: "hello", success: true });

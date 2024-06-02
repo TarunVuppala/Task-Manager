@@ -11,14 +11,10 @@ function SignUp() {
 
     async function handleSubmit(event) {
         event.preventDefault(); 
-
-        
         if (password !== confirmPassword) {
             setMsg("Passwords do not match");
             return;
         }
-
-        
         const response = await fetch("http://localhost:5000/signup", {
             method: "POST",
             headers: {
@@ -26,8 +22,6 @@ function SignUp() {
             },
             body: JSON.stringify({ username, email, password }), 
         });
-
-        
         const data = await response.json();
         if(data.success){
             history("/login");
