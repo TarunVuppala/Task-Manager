@@ -9,8 +9,20 @@ function ProfileCard({ onLogout }) {
   const { user, setUser } = useUser();
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
-//   setUser(JSON.parse(localStorage.user));
+  const fetchUser = async () => {
+    const response = await fetch('http://localhost:5000/login');
+    const data = await response.json();
+    if (data.success) {
+      setUser(data.user);
+    } else {
+      setUser(null);
+    }
+  };
 
+  if (!user) {
+    fetchUser();
+  }
+  
   const handleLogout = async () => {
     const response = await fetch("http://localhost:5000/logout", {
       method: "GET",

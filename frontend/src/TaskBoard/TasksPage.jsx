@@ -8,19 +8,32 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
     const [taskAdded, setTaskAdded] = useState(0);
     const [tasks, setTasks] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
+    const [toggle, setToggle] = useState(false);
 
     useEffect(() => {
-        if (user) {
-            fetch(`http://localhost:5000/task/${user._id}`)
-                .then(response => response.json())
-                .then(data => setTasks(data.tasks))
-                .catch(error => console.error('Error fetching tasks:', error));
-        }
-    }, [taskAdded, user]);
+        fetch(`http://localhost:5000/task/${user._id}`)
+            .then(response => response.json())
+            .then(data => setTasks(data.tasks))
+            .catch(error => console.error('Error fetching tasks:', error));
+    }, [taskAdded, user, toggle]);
 
     const handleTaskAddDel = (a) => {
         setTaskAdded(taskAdded + a);
     };
+
+    const fetchUser = async () => {
+        const response = await fetch('http://localhost:5000/login');
+        const data = await response.json();
+        if (data.success) {
+            setUser(data.user);
+        } else {
+            setUser(null);
+        }
+    };
+
+    if (!user) {
+        fetchUser();
+    }
 
     const handleDelete = (id) => {
         fetch(`http://localhost:5000/task/${id}`, {
@@ -40,7 +53,7 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
                 'Content-Type': 'application/json'
             }
         }).then(() => {
-            handleTaskAddDel(0);
+            setToggle(!toggle);
         }).catch(error => console.error('Error toggling task:', error));
     };
 
