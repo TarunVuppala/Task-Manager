@@ -15,7 +15,7 @@ function App() {
   const [formOpen, setFormOpen] = useState(false);
   const [notesOpen, setNotesOpen] = useState(false);
   const { user, setUser } = useUser();
-  const [auth, setAuth] = useState(!!user);
+  const [auth, setAuth] = useState(false); // Initialize auth state to false
 
   const handleFormOpen = () => {
     setFormOpen(!formOpen);
@@ -32,9 +32,11 @@ function App() {
     })
       .then(res => res.json())
       .then(data => {
-        setAuth(data.success);
         if (data.success) {
           setUser(data.user);
+          setAuth(true); // Set auth to true if user is authenticated
+        } else {
+          setAuth(false);
         }
       })
       .catch(() => {
@@ -60,14 +62,8 @@ function App() {
             path='/'
             element={
               auth ? (
-<<<<<<< Updated upstream
-                <div className='flex flex-row w-full dark:bg-[#0e1b2b] dark:text-[#e1e1e1] duration-1000'>
-                  <Sidebar onLogout={handleLogout} />
-=======
                 <div className='flex flex-row w-full dark:bg-[#0b0c0e] dark:text-[#e1e1e1] duration-1000'>
-                  {auth}
-                  <Sidebar onLogout={handleLogout} username={user.username}/>
->>>>>>> Stashed changes
+                  <Sidebar onLogout={handleLogout} username={user.username} />
                   <div className='p-10 w-full'>
                     <Navbar handleOpen={handleFormOpen} />
                     <TasksPage formOpen={formOpen} handleFormOpen={handleFormOpen} />
@@ -82,14 +78,8 @@ function App() {
             path='/notes'
             element={
               auth ? (
-<<<<<<< Updated upstream
-                <div className='flex flex-row w-full dark:bg-[#0e1b2b] dark:text-[#e1e1e1] duration-1000'>
-                  <Sidebar onLogout={handleLogout} />
-=======
                 <div className='flex flex-row w-full dark:bg-[#0b0c0e] dark:text-[#e1e1e1] duration-1000'>
-
-                  <Sidebar onLogout={handleLogout} user={user.username}/>
->>>>>>> Stashed changes
+                  <Sidebar onLogout={handleLogout} user={user.username} />
                   <div className='p-10 w-full'>
                     <Navbar handleOpen={handleNotesOpen} />
                     {notesOpen ? <NoteForm userId={user._id} handleNotesOpen={handleNotesOpen} /> : <NotesPage />}
