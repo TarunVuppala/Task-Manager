@@ -66,17 +66,8 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
     return (
         <div className='flex flex-row w-full gap-4'>
             <div className='flex flex-col w-full gap-5'>
-                <div className='text-3xl font-semibold w-full'>Your Tasks</div>
                 <div className='flex flex-col w-full'>
-
-                    <div className='flex flex-row gap-3 items-center'>
-                        <div>Category:</div>
-                        <select onChange={handleCategoryChange} className='p-2 border rounded-md'>
-                            <option value=''>All</option>
-                            <option value='personal'>Personal</option>
-                            <option value='work'>Work</option>
-                            <option value='home'>Home</option>
-                        </select>
+                    <div className='flex flex-col gap-3 items-center'>
                         <div className='flex flex-row items-center justify-between w-full'>
 
                             <h1 className='font-black text-5xl m-8 px-50 w-full'>
@@ -95,26 +86,26 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
                                 <option value="home" className='text-black'>Home</option>
                             </select>
                         </div>
-                        <div>
-                            <div className='flex flex-col gap-5'>
-                                {filteredTasks.length === 0 ? "Add a Task" : filteredTasks.map((task) => (
-                                    <div key={task._id} className=''>
-                                        <TaskCard
-                                            handleToggle={handleToggle}
-                                            id={task._id}
-                                            handleDelete={handleDelete}
-                                            title={task.title}
-                                            description={task.description}
-                                            tag={task.tag}
-                                            date={task.date.split('T')[0]}
-                                            priority={task.priority}
-                                            frequency={task.recurring}
-                                            completed={task.completed}
-                                        />
-                                    </div>
-                                ))}
-                            </div>
+                        
+                        <div className='flex flex-col gap-5 w-full'>
+                            {filteredTasks.length === 0 ? "Add a Task" : filteredTasks.map((task) => (
+                                <div key={task._id} className=''>
+                                    <TaskCard
+                                        handleToggle={handleToggle}
+                                        id={task._id}
+                                        handleDelete={handleDelete}
+                                        title={task.title}
+                                        description={task.description}
+                                        tag={task.tag}
+                                        date={task.date.split('T')[0]}
+                                        priority={task.priority}
+                                        frequency={task.recurring}
+                                        completed={task.completed}
+                                    />
+                                </div>
+                            ))}
                         </div>
+                        
                     </div>
                 </div>
                 {formOpen && (
