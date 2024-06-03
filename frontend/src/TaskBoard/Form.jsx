@@ -68,7 +68,7 @@ const Form = ({handleFormOpen, handleTaskAddDel}) => {
 
     return (
         <form onSubmit={handleSubmit} method='POST' className='flex flex-col p-10 h-screen gap-[21px] bg-white shadow-xl dark:bg-[#161616] dark:text-white'>
-            <button className="flex border rounded-full w-fit border-black" onClick={handleDiscard}><CloseIcon></CloseIcon></button>
+            <button className="flex border rounded-full w-fit border-[#0b0c0e] dark:border-[#1E1E1E]" onClick={handleDiscard}><CloseIcon></CloseIcon></button>
             <p className='text-[#F04D23]'>{msg}</p>
             <input
                 type="text"

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
-import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 
 const TaskCard = ({ id, title, description, tag, date, priority, frequency, handleDelete,completed,handleToggle }) => {
@@ -21,14 +20,14 @@ const TaskCard = ({ id, title, description, tag, date, priority, frequency, hand
         />
 
         <div className=''>
-          <h1 className={`${completed ? 'line-through' : ''}  `}>{title}</h1>
-          <div className='opacity-30 text-sm'>{frequency} @{date.split('-').reverse().join('/')}</div>
+          <h1 className={`${completed ? 'line-through' : ''} font-black capitalize`}>{title}</h1>
+          <div className='opacity-50 text-sm'>{frequency} @{date.split('-').reverse().join('/')}</div>
         </div>
       </button>
 
       <div className='flex flex-row gap-5 max-md:hidden'>
-        <div className='px-5 border rounded-md border-[#FF9898] py-2 dark:border-[#9e1616]'>{priority}</div>
-        <div className='px-5 border rounded-md border-[#00FF0A] py-2'>{tag}</div>
+        <div className='w-fit h-fit px-5 border rounded-md border-[#FF9898] py-2 dark:border-[#9e1616]'>{priority}</div>
+        <div className='px-5 border rounded-md border-[#00FF0A] dark:border-[#2e9232] py-2'>{tag}</div>
       </div>
 
       <div className='flex flex-row gap-5 justify-center items-center'>
