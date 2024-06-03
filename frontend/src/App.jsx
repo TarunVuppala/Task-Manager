@@ -11,6 +11,7 @@ import NotesPage from './Notes/NotesPage';
 import NoteForm from './Notes/NoteForm';
 
 function App() {
+  
   const [formOpen, setFormOpen] = useState(false);
   const [notesOpen, setNotesOpen] = useState(false);
   const [auth, setAuth] = useState(false);
