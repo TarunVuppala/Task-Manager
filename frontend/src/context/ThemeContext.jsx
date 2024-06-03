@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const ThemeContext = createContext();
 
-export const MainContext = ({ children }) => {
+export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(localStorage.theme || 'light');
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export const MainContext = ({ children }) => {
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (context === undefined) {
-    throw new Error('useTheme must be used within a MainContext');
+    throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;
 };
