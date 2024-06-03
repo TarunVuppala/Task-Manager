@@ -3,11 +3,12 @@ import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 
-const TaskCard = ({ id, title, description, tag, date, priority, frequency, handleDelete }) => {
+const TaskCard = ({ id, title, description, tag, date, priority, frequency, handleDelete,completed,handleToggle }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
+    handleToggle(id);
   };
   return (
     <div className='border rounded-[20px] w-full h-fit flex flex-row items-center p-2 px-5 justify-between'>
@@ -20,7 +21,7 @@ const TaskCard = ({ id, title, description, tag, date, priority, frequency, hand
         />
 
         <div className=''>
-          <h1>{title}</h1>
+          <h1 className={`${completed ? 'line-through' : ''}  `}>{title}</h1>
           <div className='opacity-30 text-sm'>{frequency} @{date.split('-').reverse().join('/')}</div>
         </div>
       </button>
@@ -32,7 +33,7 @@ const TaskCard = ({ id, title, description, tag, date, priority, frequency, hand
 
       <div className='flex flex-row gap-5 justify-center items-center'>
         <button><NotificationAddIcon className='text-[#F04D23]'></NotificationAddIcon></button>
-        <button><DoneIcon className='text-[#F04D23]'></DoneIcon></button>
+        {/* <button><DoneIcon className='text-[#F04D23]'></DoneIcon></button> */}
         <button onClick={() => {
           handleDelete(id)
         }}><CloseIcon className='text-[#F04D23]'></CloseIcon></button>

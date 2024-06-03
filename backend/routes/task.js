@@ -68,4 +68,12 @@ app.delete('/:id', async (req, res) => {
     res.status(200).json({ message: 'Task deleted successfully', success: true });
 });
 
+app.put('/:id',async (req,res)=>{
+    const id=req.params.id;
+    const task=await Tasks.findById(id);
+    task.completed=!task.completed;
+    await task.save();
+    res.status(200).json({message:'Task updated successfully',success:true});
+})
+
 module.exports = app;
