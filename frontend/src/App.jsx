@@ -9,7 +9,6 @@ import Navbar from './components/Navbar';
 import TasksPage from './TaskBoard/TasksPage';
 import NotesPage from './Notes/NotesPage';
 import NoteForm from './Notes/NoteForm';
-import ThemeToggle from './components/ThemeToggle'; 
 
 function App() {
   const [formOpen, setFormOpen] = useState(false);
@@ -51,7 +50,6 @@ function App() {
   return (
     <Router>
       <div className='flex flex-row h-screen'>
-      <ThemeToggle />
         <Routes>
           <Route
             path='/'
