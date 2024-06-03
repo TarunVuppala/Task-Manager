@@ -40,6 +40,7 @@ app.post('/', async (req, res) => {
             date: createdDate,
             reminder:date? ist:null,
             priority,
+            completed: false,
             recurring: frequency,
             userRef: req.session.userId
         });
