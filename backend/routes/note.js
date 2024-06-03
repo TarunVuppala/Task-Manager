@@ -28,4 +28,16 @@ app.post('/:id', async (req, res) => {
     res.status(200).json({ newNote, success: true });
 });
 
+app.delete('/:id',async (req,res)=>{
+    const id=req.params.id;
+    const deletedNote=await Notes.findByIdAndDelete(id);
+    if (!deletedNote) {
+        return res.status(404).json({ message: 'Note not found' });
+    }
+    const user = await Users.findOne({_id:deletedNote.userRef});
+    user.notesRef.pull(id);
+    await user.save();
+    res.status(200).json({ message: 'Note deleted successfully', success: true });
+})
+
 module.exports = app;

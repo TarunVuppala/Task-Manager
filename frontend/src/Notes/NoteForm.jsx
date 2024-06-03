@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useUser } from '../context/UserContext';
 
 
-function NoteForm({ handleNotesOpen}) {
+function NoteForm({ handleNotesOpen,noteAddDel, setNoteAddDel}) {
     const { user, setUser } = useUser();
     const [heading, setHeading] = useState('');
     const [description, setDescription] = useState('');
@@ -23,6 +23,7 @@ function NoteForm({ handleNotesOpen}) {
             const data = await response.json();
             if (data.success) {
                 console.log('Form Data Submitted:', formData);
+                setNoteAddDel(noteAddDel + 1);
                 setHeading('');
                 setDescription('');
                 handleNotesOpen(); // Assuming this function refreshes the list or navigates
