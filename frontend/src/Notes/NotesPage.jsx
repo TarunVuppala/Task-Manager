@@ -47,11 +47,9 @@ function NotesPage({ noteAddDel, setNoteAddDel }) {
                 <select
                     id="category"
                     name="category"
-                    className="border rounded-[20px] text-[#1E1E1E] py-1 px-4 bg-transparent font-black"
+                    className='border rounded dark:border-[#303030]  dark:text-[#D1CDC5] py-1 flex bg-transparent font-black'
                 >
-                    <option value="select tag">
-                        <div></div>
-                    </option>
+                    <option value="">All</option>
                     <option value="personal">Personal</option>
                     <option value="work">Work</option>
                     <option value="home">Home</option>
