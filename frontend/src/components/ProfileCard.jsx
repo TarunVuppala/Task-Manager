@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react'
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ContrastIcon from '@mui/icons-material/Contrast';
 import { useTheme } from '../context/ThemeContext';
+import { useUser } from '../context/UserContext';
 
-
-function ProfileCard({ onLogout,username }) {
+function ProfileCard({ onLogout }) {
+    const { user } = useUser();
     const { theme, toggleTheme } = useTheme();
-
     const navigate = useNavigate();
 
     const handleLogout = async () => {
@@ -25,22 +25,24 @@ function ProfileCard({ onLogout,username }) {
     return (
         <div className='w-full h-fit flex flex-row items-center rounded-full p-3 justify-between '>
             <div className='flex flex-row justify-center items-center gap-3'>
-                <img src="/images/profile.jpg" alt="profile"
-                className='rounded-full w-[50px] h-[50px]'
+                <img
+                    src="/images/profile.jpg"
+                    alt="profile"
+                    className='rounded-full w-[50px] h-[50px]'
                 />
-                <div>Hi {username}!</div>
+                <div>Hi {user?.username}!</div>
             </div>
 
             <div className='flex flex-row justify-center gap-2'>
                 <button className='border w-[50px] h-[50px] rounded-full' onClick={toggleTheme}>
-                    <ContrastIcon></ContrastIcon>
+                    <ContrastIcon />
                 </button>
                 <button onClick={handleLogout} className='border w-[50px] h-[50px] rounded-full'>
-                    <LogoutIcon></LogoutIcon>
+                    <LogoutIcon />
                 </button>
             </div>
         </div>
     );
 };
 
-export default ProfileCard
+export default ProfileCard;
