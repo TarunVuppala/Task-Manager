@@ -2,6 +2,11 @@ const express = require("express");
 const app = express();
 const User = require('../models/userSchema');
 
+app.get('/',async(req,res)=>{
+    const user=await User.findOne({_id:req.session.userId});
+    res.json({user});
+})
+
 app.post("/", async (req, res) => {
     const { username, password } = req.body;
     const user = await User.findOne({ username: username });
