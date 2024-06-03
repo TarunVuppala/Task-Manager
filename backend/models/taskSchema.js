@@ -95,6 +95,10 @@ const taskSchema = new mongoose.Schema({
             return this.recurring === "None" ? [] : getFrequencyDates(this.recurring);
         }
     },
+    completed:{
+        type: Boolean,
+        default: false
+    },
     userRef: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users'

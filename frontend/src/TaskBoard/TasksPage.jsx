@@ -11,9 +11,21 @@ const TasksPage = ({ formOpen, handleFormOpen,user }) => {
             .then(response => response.json())
             .then(data => setTasks(data.tasks))
             .catch(error => console.error('Error fetching tasks:', error));
-    }, [taskAdded]);
-    const handleTaskAdded=()=>{
-        setTaskAdded(taskAdded+1);
+    }, [taskAdded,user._id]);
+    const handleTaskAddDel=(a)=>{
+        setTaskAdded(taskAdded+a);
+    }
+
+    const handleDelete=(id)=>{
+        fetch(`http://localhost:5000/task/${id}`,{
+            method:'DELETE',
+            headers:{
+                'Content-Type':'application/json'
+            }
+        }).then(()=>{
+            handleTaskAddDel(-1);
+        })
+        .catch(error => console.error('Error deleting task:', error));
     }
 
     return (
@@ -43,10 +55,9 @@ const TasksPage = ({ formOpen, handleFormOpen,user }) => {
 
                     <div>
                         <div className="flex flex-col gap-5">
-                            {tasks.map((task, index) => (
+                            {tasks.length===0?"Add a Task":tasks.map((task, index) => (
                                 <div key={task._id} className="">
-                                    
-                                    <TaskCard title={task.title} description={task.description} tag={task.tag} date={task.date.split('T')[0]} priority={task.priority} frequency={task.frequency}/>
+                                    <TaskCard id={task._id} handleDelete={handleDelete} title={task.title} description={task.description} tag={task.tag} date={task.date.split('T')[0]} priority={task.priority} frequency={task.frequency}/>
 
                                 </div>
                             ))}
@@ -57,7 +68,7 @@ const TasksPage = ({ formOpen, handleFormOpen,user }) => {
 
             {formOpen &&
                 <div className='right-0 top-0 flex flex-row justify-center items-center absolute'>
-                    <Form handleFormOpen={handleFormOpen} handleTaskAdded={handleTaskAdded}/>
+                    <Form handleFormOpen={handleFormOpen} handleTaskAddDel={handleTaskAddDel}/>
                 </div>
             }
         </div>

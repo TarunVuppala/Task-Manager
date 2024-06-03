@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Form = ({handleFormOpen,handleTaskAdded}) => {
+const Form = ({handleFormOpen, handleTaskAddDel}) => {
     const [msg, setMsg] = useState('');
     const [formData, setFormData] = useState({
         title: '',
@@ -46,7 +46,7 @@ const Form = ({handleFormOpen,handleTaskAdded}) => {
                 frequency: ''
             });
             handleFormOpen();
-            handleTaskAdded();
+            handleTaskAddDel(1);
         } catch (error) {
             console.error('Error:', error);
             setMsg(error.message);
