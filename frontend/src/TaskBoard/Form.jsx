@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Form = ({handleFormOpen, handleTaskAddDel}) => {
     const [msg, setMsg] = useState('');
@@ -67,7 +68,7 @@ const Form = ({handleFormOpen, handleTaskAddDel}) => {
 
     return (
         <form onSubmit={handleSubmit} method='POST' className='flex flex-col p-10 h-screen gap-[21px] bg-white shadow-xl'>
-            <button className="" onClick={handleDiscard}>X</button>
+            <button className="flex border rounded-full w-fit border-black" onClick={handleDiscard}><CloseIcon></CloseIcon></button>
             <p className='text-[#F04D23]'>{msg}</p>
             <input
                 type="text"

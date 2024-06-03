@@ -60,8 +60,14 @@ function App() {
             path='/'
             element={
               auth ? (
+<<<<<<< Updated upstream
                 <div className='flex flex-row w-full dark:bg-[#0e1b2b] dark:text-[#e1e1e1] duration-1000'>
                   <Sidebar onLogout={handleLogout} />
+=======
+                <div className='flex flex-row w-full dark:bg-[#0b0c0e] dark:text-[#e1e1e1] duration-1000'>
+                  {auth}
+                  <Sidebar onLogout={handleLogout} username={user.username}/>
+>>>>>>> Stashed changes
                   <div className='p-10 w-full'>
                     <Navbar handleOpen={handleFormOpen} />
                     <TasksPage formOpen={formOpen} handleFormOpen={handleFormOpen} />
@@ -76,8 +82,14 @@ function App() {
             path='/notes'
             element={
               auth ? (
+<<<<<<< Updated upstream
                 <div className='flex flex-row w-full dark:bg-[#0e1b2b] dark:text-[#e1e1e1] duration-1000'>
                   <Sidebar onLogout={handleLogout} />
+=======
+                <div className='flex flex-row w-full dark:bg-[#0b0c0e] dark:text-[#e1e1e1] duration-1000'>
+
+                  <Sidebar onLogout={handleLogout} user={user.username}/>
+>>>>>>> Stashed changes
                   <div className='p-10 w-full'>
                     <Navbar handleOpen={handleNotesOpen} />
                     {notesOpen ? <NoteForm userId={user._id} handleNotesOpen={handleNotesOpen} /> : <NotesPage />}

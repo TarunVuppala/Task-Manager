@@ -68,6 +68,7 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
             <div className='flex flex-col w-full gap-5'>
                 <div className='text-3xl font-semibold w-full'>Your Tasks</div>
                 <div className='flex flex-col w-full'>
+<<<<<<< Updated upstream
                     <div className='flex flex-row gap-3 items-center'>
                         <div>Category:</div>
                         <select onChange={handleCategoryChange} className='p-2 border rounded-md'>
@@ -75,6 +76,24 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
                             <option value='personal'>Personal</option>
                             <option value='work'>Work</option>
                             <option value='home'>Home</option>
+=======
+                    <div className='flex flex-row items-center justify-between w-full'>
+
+                        <h1 className='font-black text-5xl m-8 px-50 w-full'>
+                            ToDo
+                        </h1>
+                        <select
+                            id="category"
+                            name="category"
+                            className='border rounded dark:border-[#303030]  dark:text-[#D1CDC5] py-1 flex bg-transparent font-black'
+                            value={selectedCategory}
+                            onChange={handleCategoryChange}
+                        >
+                            <option value="">All</option>
+                            <option value="personal" className='text-black'>Personal</option>
+                            <option value="work" className='text-black'>Work</option>
+                            <option value="home" className='text-black'>Home</option>
+>>>>>>> Stashed changes
                         </select>
                     </div>
                     <div>
