@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
 import ContrastIcon from '@mui/icons-material/Contrast';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../context/MainContext';
 
 function ProfileCard({ onLogout,username }) {
     const { theme, toggleTheme } = useTheme();
