@@ -67,7 +67,7 @@ const Form = ({handleFormOpen, handleTaskAddDel}) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} method='POST' className='flex flex-col p-10 h-screen gap-[21px] bg-white shadow-xl'>
+        <form onSubmit={handleSubmit} method='POST' className='flex flex-col p-10 h-screen gap-[21px] bg-white shadow-xl dark:bg-[#161616] dark:text-white'>
             <button className="flex border rounded-full w-fit border-black" onClick={handleDiscard}><CloseIcon></CloseIcon></button>
             <p className='text-[#F04D23]'>{msg}</p>
             <input
@@ -77,7 +77,7 @@ const Form = ({handleFormOpen, handleTaskAddDel}) => {
                 placeholder='Title'
                 value={formData.title}
                 onChange={handleChange}
-                className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] px-8 py-2 text-4xl'
+                className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] px-8 py-2 text-4xl dark:bg-[#161616] dark:text-white dark:border-[#383838]'
             />
             <textarea
                 id="description"
@@ -85,7 +85,7 @@ const Form = ({handleFormOpen, handleTaskAddDel}) => {
                 placeholder='Description'
                 value={formData.description}
                 onChange={handleChange}
-                className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] p-8'
+                className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] p-8 dark:bg-[#161616] dark:text-white dark:border-[#383838]'
                 rows={14}
             />
 
@@ -96,7 +96,7 @@ const Form = ({handleFormOpen, handleTaskAddDel}) => {
                         name="tag"
                         value={formData.tag}
                         onChange={handleChange}
-                        className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] py-4 flex justify-center items-center bg-transparent text-center font-black'
+                        className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] py-4 flex justify-center items-center bg-transparent text-center font-black dark:bg-[#161616] dark:text-white dark:border-[#383838]'
                     >
                         <option value="">Select Tag</option>
                         <option value="personal">Personal</option>
@@ -110,7 +110,7 @@ const Form = ({handleFormOpen, handleTaskAddDel}) => {
                         name="date"
                         value={formData.date}
                         onChange={handleChange}
-                        className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] py-4 flex justify-center items-center bg-transparent text-center font-black'
+                        className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] py-4 flex justify-center items-center bg-transparent text-center font-black dark:bg-[#161616] dark:text-white dark:border-[#383838]'
                     />
                 </div>
 
@@ -120,7 +120,7 @@ const Form = ({handleFormOpen, handleTaskAddDel}) => {
                         name="priority"
                         value={formData.priority}
                         onChange={handleChange}
-                        className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] py-4 flex justify-center items-center bg-transparent text-center font-black'
+                        className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] py-4 flex justify-center items-center bg-transparent text-center font-black dark:bg-[#161616] dark:text-white dark:border-[#383838]'
                     >
                         <option value="">Select Priority</option>
                         <option value="now">Now</option>
@@ -133,7 +133,7 @@ const Form = ({handleFormOpen, handleTaskAddDel}) => {
                         name="frequency"
                         value={formData.frequency}
                         onChange={handleChange}
-                        className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] py-4 flex justify-center items-center bg-transparent text-center font-black'
+                        className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] py-4 flex justify-center items-center bg-transparent text-center font-black dark:bg-[#161616] dark:text-white dark:border-[#383838]'
                     >
                         <option value="">Repeat Frequency</option>
                         <option value="daily">Daily</option>
@@ -143,7 +143,7 @@ const Form = ({handleFormOpen, handleTaskAddDel}) => {
                     </select>
                 </div>
 
-                <button type="submit" className='py-4 border rounded-[20px] w-full bg-[#F04D23] font-black text-white'>
+                <button type="submit" className='py-4 rounded-[20px] w-full bg-[#F04D23] font-black text-white'>
                     SAVE CHANGES
                 </button>
                 <button type="button" className='py-4 border rounded-[20px] w-full border-[#F04D23] font-black'>

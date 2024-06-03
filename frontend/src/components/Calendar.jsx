@@ -89,7 +89,7 @@ const Calendar = () => {
             className="border rounded w-24 text-center mr-2"
           >
             {monthNames.map((month, index) => (
-              <option key={month} value={index}>
+              <option key={month} value={index} className='dark:bg-black'>
                 {month}
               </option>
             ))}
