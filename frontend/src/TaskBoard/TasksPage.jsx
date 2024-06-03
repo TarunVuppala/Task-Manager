@@ -9,6 +9,11 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
     const [tasks, setTasks] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [toggle, setToggle] = useState(false);
+    const [quote, setQuote] = useState('');
+
+    useEffect(() => {
+        generateQuote();
+    }, []);
 
     useEffect(() => {
         fetch(`http://localhost:5000/task/${user._id}`)
@@ -61,14 +66,21 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
         setSelectedCategory(event.target.value);
     };
 
+    const generateQuote = async () => {
+        const response = await fetch('https://api.quotable.io/random');
+        const data = await response.json();
+        setQuote(data.content);
+    }
+
     const filteredTasks = selectedCategory === '' ? tasks : tasks.filter(task => task.tag === selectedCategory);
 
     return (
-        <div className='flex flex-row w-full gap-4 transition-all duration-1000'>
+        <div className='flex flex-row w-full gap-4'>
             <div className='flex flex-col w-full gap-5'>
                 <div className='flex flex-col w-full'>
                     <div className='flex flex-col gap-3 items-center'>
                         <div className='flex flex-row items-center justify-between w-full'>
+
                             <h1 className='font-black text-5xl m-8 px-50 w-full'>
                                 ToDo
                             </h1>
@@ -85,7 +97,8 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
                                 <option value="home" className='text-black'>Home</option>
                             </select>
                         </div>
-                        
+                        <blockquote>{quote}</blockquote>
+
                         <div className='flex flex-col gap-5 w-full'>
                             {filteredTasks.length === 0 ? "Add a Task" : filteredTasks.map((task) => (
                                 <div key={task._id} className=''>
@@ -104,7 +117,7 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
                                 </div>
                             ))}
                         </div>
-                        
+
                     </div>
                 </div>
                 {formOpen && (
