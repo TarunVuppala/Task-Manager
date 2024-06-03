@@ -66,6 +66,7 @@ const Form = ({handleFormOpen,handleTaskAdded}) => {
 
     return (
         <form onSubmit={handleSubmit} method='POST' className='flex flex-col p-10 h-screen gap-[21px] bg-white shadow-xl'>
+            <button className="">X</button>
             <p className='text-[#F04D23]'>{msg}</p>
             <input
                 type="text"
