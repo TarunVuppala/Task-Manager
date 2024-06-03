@@ -41,17 +41,17 @@ function Login({auth,handleLogin,setUser}) {
             <div className="flex flex-col items-center justify-center bg-transparent w-fit h-fit border rounded-[20px] px-52 py-10 shadow-lg">
                     <div className="flex flex-row items-center justify-center gap-[21px] w-full">
                         <Link to="/signup" className="w-full">
-                            <button className="border border-[#F04D23] rounded-[20px] font-bold w-full py-5">SIGN UP</button>
+                            <button className="bg-[#F04D23] text-white rounded-[20px] font-bold w-full py-3">SIGN UP</button>
                         </Link>
                         
                         <Link to="/login" className="w-full">
-                            <button className="bg-[#F04D23] text-white w-full py-5 font-bold rounded-[20px]">
+                            <button className="border border-[#F04D23] w-full py-3 font-bold rounded-[20px]">
                                 LOGIN
                             </button>
                         </Link>
                     </div>
 
-                    <h1 className="flex font-bold items-center justify-center text-4xl m-4">LOGIN</h1>
+                    <h1 className="flex font-bold items-center justify-center text-4xl m-4 mt-8">LOGIN</h1>
 
                     {msg && <p className="text-center text-red-500">{msg}</p>}
 
@@ -62,7 +62,7 @@ function Login({auth,handleLogin,setUser}) {
                             placeholder="username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            className="border border-black rounded-[20px] p-5"
+                            className="border size-full border-black rounded-[20px] px-5 py-3"
                             spellCheck={false}
                         />
                         <input
@@ -71,12 +71,13 @@ function Login({auth,handleLogin,setUser}) {
                             placeholder="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="border size-full mb-4 border-black rounded-[20px] p-5"
+                            className="border size-full border-black rounded-[20px] px-5 py-3"
                         />
-                        <button type="submit" className="flex bg-[#F04D23] text-white font-bold rounded-[20px] p-5 w-full">
-                            LOGIN
-                        </button>
+                        
                     </form>
+                    <button type="submit" className=" bg-[#F04D23] mt-10 text-white font-bold rounded-[20px] py-3 px-10">
+                            LOGIN
+                    </button>
             </div>
         </>
     );

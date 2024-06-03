@@ -34,28 +34,28 @@ function SignUp() {
             <div className="flex flex-col items-center justify-center bg-transparent w-fit h-fit border rounded-[20px] px-52 py-10 shadow-lg">
                 <div className="flex flex-row items-center justify-center gap-[21px] w-full">
                     <Link to="/signup" className="w-full">
-                        <button className="border border-[#F04D23] rounded-[20px] font-bold w-full py-5">SIGN UP</button>
+                        <button className="border border-[#F04D23] rounded-[20px] font-bold w-full py-3">SIGN UP</button>
                     </Link>
 
                     <Link to="/login" className="w-full">
-                        <button className="bg-[#F04D23] text-white w-full py-5 font-bold rounded-[20px]">
+                        <button className="bg-[#F04D23] text-white w-full py-3 font-bold rounded-[20px]">
                             LOGIN
                         </button>
                     </Link>
                 </div>
 
-                <h1 className="flex font-bold items-center justify-center text-4xl">SIGN UP</h1>
+                <h1 className="flex font-bold items-center justify-center text-4xl mt-10">SIGN UP</h1>
 
                 {msg && <p className="text-center text-red-500">{msg}</p>}
                 
-                <form method="POST" onSubmit={handleSubmit} className="flex flex-col gap-5 w-full justify-center">
+                <form method="POST" onSubmit={handleSubmit} className="flex flex-col w-full justify-center">
                     <input
                         type="text"
                         name="username"
                         placeholder="username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
-                        className="border mt-5 mb-4 size-full border-black rounded-[20px] py-2 px-9"
+                        className="border mt-5 mb-4 size-full border-black rounded-[20px] py-3 px-5"
                     />
                     <input
                         type="email"
@@ -63,7 +63,7 @@ function SignUp() {
                         placeholder="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="border mb-4 size-full border-black rounded-[20px] py-2 px-9"
+                        className="border mb-4 size-full border-black rounded-[20px] py-3 px-5"
                     />
                     <input
                         type="password"
@@ -71,7 +71,7 @@ function SignUp() {
                         placeholder="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="border size-full mb-4 border-black rounded-[20px] py-2 px-9"
+                        className="border size-full mb-4 border-black rounded-[20px] py-3 px-5"
                     />
                     <input
                         type="password"
@@ -79,12 +79,12 @@ function SignUp() {
                         placeholder="confirm password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        className="border size-full mb-4 border-black rounded-[20px] py-2 px-9"
+                        className="border size-full mb-4 border-black rounded-[20px] py-3 px-5"
                     />
-                    <button type="submit" className="flex justify-center bg-[#F04D23] text-white font-bold mb-4 rounded-[20px] py-2 px-9">
-                        SIGN UP
-                    </button>
                 </form>
+                <button type="submit" className="flex justify-center bg-[#F04D23] text-white font-bold mt-5 rounded-[20px] py-3 px-10">
+                        SIGN UP
+                </button>
             </div>
         </>
     );
