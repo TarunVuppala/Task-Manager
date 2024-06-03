@@ -73,7 +73,7 @@ const TasksPage = ({ formOpen, handleFormOpen, user }) => {
                         <div className="flex flex-col gap-5">
                             {filteredTasks.length === 0 ? "Add a Task" : filteredTasks.map((task, index) => (
                                 <div key={task._id} className="">
-                                    <TaskCard handleToggle={handleToggle} id={task._id} handleDelete={handleDelete} title={task.title} description={task.description} tag={task.tag} date={task.date.split('T')[0]} priority={task.priority} frequency={task.frequency} completed={task.completed} />
+                                    <TaskCard handleToggle={handleToggle} id={task._id} handleDelete={handleDelete} title={task.title} description={task.description} tag={task.tag} date={task.date.split('T')[0]} priority={task.priority} frequency={task.recurring} completed={task.completed} />
 
                                 </div>
                             ))}

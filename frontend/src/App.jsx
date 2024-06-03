@@ -60,7 +60,7 @@ function App() {
                   {auth}
                   <Sidebar onLogout={handleLogout} username={user.username}/>
                   <div className='p-10 w-full'>
-                    <Navbar handleFormOpen={handleFormOpen} />
+                    <Navbar handleOpen={handleFormOpen} />
                     <TasksPage user={user} formOpen={formOpen} handleFormOpen={handleFormOpen}/>
                   </div>
                 </div>
@@ -78,8 +78,8 @@ function App() {
                 <div className='flex flex-row w-full dark:bg-[#0e1b2b] dark:text-[#e1e1e1] duration-1000'>
                   <Sidebar onLogout={handleLogout} user={user.username}/>
                   <div className='p-10 w-full'>
-                    <Navbar handleFormOpen={handleNotesOpen} />
-                    {notesOpen ? <NoteForm /> : <NotesPage />}
+                    <Navbar handleOpen={handleNotesOpen} />
+                    {notesOpen ? <NoteForm userId={user._id} handleNotesOpen={handleNotesOpen}/> : <NotesPage />}
                   </div>
                 </div>
               ) : (

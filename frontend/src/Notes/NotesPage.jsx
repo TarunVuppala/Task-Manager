@@ -1,14 +1,14 @@
-import React , {useState} from "react";
+import React, { useState } from "react";
 function NotesPage() {
-    
+
     return (
         <div className='flex flex-row w-full'>
             <div className='flex flex-col w-full'>
                 <div className='flex flex-row items-center justify-between'>
-                
-                <h1 className='font-black text-5xl m-8 px-50'>
-                    Notes
-                </h1>
+
+                    <h1 className='font-black text-5xl m-8 px-50'>
+                        Notes
+                    </h1>
                     <select
                         id="category"
                         name="category"
@@ -16,7 +16,7 @@ function NotesPage() {
                     >
                         <option value="select tag">
                             <div>
-                                
+
                             </div>
                         </option>
                         <option value="personal">Personal</option>
@@ -41,7 +41,7 @@ function NotesPage() {
             </div>
         </div>
     );
-    
+
 }
 
 

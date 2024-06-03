@@ -8,6 +8,7 @@ const login = require('./routes/login');
 const signup = require('./routes/signup');
 const logout = require('./routes/logout');
 const task = require('./routes/task');
+const note=require('./routes/note');
 const auth = require('./middleware/auth');
 
 const app = express();
@@ -38,6 +39,7 @@ app.use('/login', login);
 app.use('/signup', signup);
 app.use('/logout', logout);
 app.use('/task', task);
+app.use('/note',note);
 
 app.get("/", auth, (req, res) => {
     res.json({ message: "hello", success: true });
