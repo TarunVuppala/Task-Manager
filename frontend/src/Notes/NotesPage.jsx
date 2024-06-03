@@ -1,5 +1,9 @@
-import React from "react";
-function NotesPage() {
+import React, { useState, useEffect } from "react";
+import { useUser } from '../context/UserContext';
+
+function NotesPage({ noteAddDel, setNoteAddDel }) {
+    const { user } = useUser();
+    const [notes, setNotes] = useState([]);
     const truncateText = (text, maxLength) => {
         if (text.length > maxLength) {
             return text.slice(0, maxLength) + "...";
@@ -7,23 +11,47 @@ function NotesPage() {
         return text;
     };
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/note/${user._id}`)
+            .then(response => response.json())
+            .then(data => setNotes(Array.isArray(data) ? data : []))
+            .catch(error => console.error('Error fetching notes:', error));
+    }, [noteAddDel, user]);
+
+    const handleNoteDelete = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:5000/note/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            });
+            const data = await response.json();
+            if (data.success) {
+                setNoteAddDel(noteAddDel - 1);
+            } else {
+                console.log(data.error);
+            }
+        } catch (error) {
+            console.error('Error deleting note:', error);
+        }
+    };
+
     return (
         <div className='flex flex-row w-full'>
             <div className='flex flex-col w-full'>
                 <div className='flex flex-row items-center justify-between'>
-
                     <h1 className='font-black text-5xl m-8 px-50'>
                         Notes
                     </h1>
                     <select
                         id="category"
                         name="category"
-                        className='border rounded-[20px]  text-[#1E1E1E] py-1 flex  bg-transparent  font-black'
+                        className='border rounded-[20px] text-[#1E1E1E] py-1 flex bg-transparent font-black'
                     >
                         <option value="select tag">
-                            <div>
-
-                            </div>
+                            <div></div>
                         </option>
                         <option value="personal">Personal</option>
                         <option value="work">Work</option>
@@ -33,15 +61,15 @@ function NotesPage() {
 
                 <div>
                     <div className="grid gap-4 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 ">
-                        {Array.from({ length: 6 }).map((_, index) => (
-                            <div key={index} className="rounded-[20px] w-[250px] h-[250px]  bg-[#ececec] dark:bg-[#ececec] hover:shadow-lg transition-all hover:scale-105">
-                                <label htmlFor={`input${index}`} className="p-10 flex flex-row justify-start item-center block text-2xl font-bold  text-3xl text-gray-700">
-                                    Note {index + 1}
+                        {notes.length === 0 ? "Add" : notes.map((note, index) => (
+                            <div key={index} className="rounded-[20px] w-[250px] h-[250px] bg-[#ececec] dark:bg-[#ececec] hover:shadow-lg transition-all hover:scale-105">
+                                <label htmlFor={`input${index}`} className="p-10 flex flex-row justify-start item-center block text-2xl font-bold text-3xl text-gray-700">
+                                    {note.heading}
                                 </label>
-                                <p className="pb-1 pl-10 pr-7 text-xl">{truncateText("Hello this the notes with lines Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi tempore excepturi optio minus quae voluptates, libero velit suscipit ea earum expedita odio consequuntur inventore qui autem explicabo quibusdam, exercitationem nihil. ", 30)}</p>
-                                
-                                <button><i className="flex flex-row justify-end items-center mt-8 ml-[200px] fa-solid fa-trash"></i></button>
-                                
+                                <p className="pb-1 pl-10 pr-7 text-xl">{truncateText(note.note, 30)}</p>
+                                <button id={note._id} onClick={() => handleNoteDelete(note._id)}>
+                                    <i className="flex flex-row justify-end items-center mt-8 ml-[200px] fa-solid fa-trash"></i>
+                                </button>
                             </div>
                         ))}
                     </div>
@@ -49,9 +77,6 @@ function NotesPage() {
             </div>
         </div>
     );
-
 }
-
-
 
 export default NotesPage;
