@@ -34,11 +34,11 @@ function SignUp() {
             <div className="flex flex-col items-center justify-center bg-transparent w-fit h-fit border rounded-[20px] px-52 py-10 shadow-lg">
                 <div className="flex flex-row items-center justify-center gap-[21px] w-full">
                     <Link to="/signup" className="w-full">
-                        <button className="border border-[#F04D23] rounded-[20px] font-bold w-full py-3">SIGN UP</button>
+                        <button className="bg-[#F04D23] text-white rounded-[20px] font-bold w-full py-3">SIGN UP</button>
                     </Link>
 
                     <Link to="/login" className="w-full">
-                        <button className="bg-[#F04D23] text-white w-full py-3 font-bold rounded-[20px]">
+                        <button className="border border-[#F04D23]  w-full py-3 font-bold rounded-[20px]">
                             LOGIN
                         </button>
                     </Link>
