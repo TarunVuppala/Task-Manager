@@ -64,8 +64,8 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
 
     return (
         <div className='flex flex-col'>
-            <div className='text-3xl font-semibold'>Your Tasks</div>
             <div className='flex flex-row items-center'>
+            <div className='text-3xl font-semibold'>Your Tasks</div>
                 <div>Category:</div>
                 <select onChange={handleCategoryChange} className='p-2 border rounded-md'>
                     <option value=''>All</option>
