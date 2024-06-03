@@ -54,6 +54,7 @@ const Form = ({handleFormOpen,handleTaskAdded}) => {
     };
 
     const handleDiscard = () => {
+        handleFormOpen();
         setFormData({
             title: '',
             description: '',
@@ -66,7 +67,7 @@ const Form = ({handleFormOpen,handleTaskAdded}) => {
 
     return (
         <form onSubmit={handleSubmit} method='POST' className='flex flex-col p-10 h-screen gap-[21px] bg-white shadow-xl'>
-            <button className="">X</button>
+            <button className="" onClick={handleDiscard}>X</button>
             <p className='text-[#F04D23]'>{msg}</p>
             <input
                 type="text"
@@ -144,7 +145,7 @@ const Form = ({handleFormOpen,handleTaskAdded}) => {
                 <button type="submit" className='py-4 border rounded-[20px] w-full bg-[#F04D23] font-black text-white'>
                     SAVE CHANGES
                 </button>
-                <button type="button" onClick={handleDiscard} className='py-4 border rounded-[20px] w-full border-[#F04D23] font-black'>
+                <button type="button" className='py-4 border rounded-[20px] w-full border-[#F04D23] font-black'>
                     DISCARD
                 </button>
             </div>
