@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { useUser } from './context/UserContext';
 
 import './App.css';
 import Login from './components/Login';
@@ -11,11 +12,10 @@ import NotesPage from './Notes/NotesPage';
 import NoteForm from './Notes/NoteForm';
 
 function App() {
-  
   const [formOpen, setFormOpen] = useState(false);
   const [notesOpen, setNotesOpen] = useState(false);
-  const [auth, setAuth] = useState(false);
-  const [user,setUser]=useState();
+  const { user, setUser } = useUser();
+  const [auth, setAuth] = useState(!!user);
 
   const handleFormOpen = () => {
     setFormOpen(!formOpen);
@@ -33,20 +33,24 @@ function App() {
       .then(res => res.json())
       .then(data => {
         setAuth(data.success);
+        if (data.success) {
+          setUser(data.user);
+        }
       })
       .catch(() => {
         setAuth(false);
       });
-  }, [auth]);
+  }, [setUser]);
 
   const handleLogout = () => {
     setUser(null);
     setAuth(false);
+    localStorage.removeItem('user');
   };
 
-  const handleLogin=()=>{
+  const handleLogin = () => {
     setAuth(true);
-  }
+  };
 
   return (
     <Router>
@@ -57,17 +61,14 @@ function App() {
             element={
               auth ? (
                 <div className='flex flex-row w-full dark:bg-[#0e1b2b] dark:text-[#e1e1e1] duration-1000'>
-                  {auth}
-                  <Sidebar onLogout={handleLogout} username={user.username}/>
+                  <Sidebar onLogout={handleLogout} />
                   <div className='p-10 w-full'>
                     <Navbar handleOpen={handleFormOpen} />
-                    <TasksPage user={user} formOpen={formOpen} handleFormOpen={handleFormOpen}/>
+                    <TasksPage formOpen={formOpen} handleFormOpen={handleFormOpen} />
                   </div>
                 </div>
               ) : (
-                <>
                 <Navigate to='/login' />
-                </>
               )
             }
           />
@@ -76,10 +77,10 @@ function App() {
             element={
               auth ? (
                 <div className='flex flex-row w-full dark:bg-[#0e1b2b] dark:text-[#e1e1e1] duration-1000'>
-                  <Sidebar onLogout={handleLogout} username={user.username}/>
+                  <Sidebar onLogout={handleLogout} />
                   <div className='p-10 w-full'>
                     <Navbar handleOpen={handleNotesOpen} />
-                    {notesOpen ? <NoteForm userId={user._id} handleNotesOpen={handleNotesOpen}/> : <NotesPage />}
+                    {notesOpen ? <NoteForm userId={user._id} handleNotesOpen={handleNotesOpen} /> : <NotesPage />}
                   </div>
                 </div>
               ) : (
@@ -87,16 +88,22 @@ function App() {
               )
             }
           />
-          <Route path='/login'element={
-            <div className='flex justify-center items-center w-full'>
-              <Login auth={auth} handleLogin={handleLogin} setUser={setUser}/>
-            </div>
-          } />
-          <Route path='/signup' element={
-            <div className='flex justify-center items-center w-full'>
-              <SignUp />
-          </div>
-          } />
+          <Route
+            path='/login'
+            element={
+              <div className='flex justify-center items-center w-full'>
+                <Login auth={auth} handleLogin={handleLogin} />
+              </div>
+            }
+          />
+          <Route
+            path='/signup'
+            element={
+              <div className='flex justify-center items-center w-full'>
+                <SignUp />
+              </div>
+            }
+          />
         </Routes>
       </div>
     </Router>

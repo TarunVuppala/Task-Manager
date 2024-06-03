@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useUser } from '../context/UserContext';
 
-function NoteForm({ handleNotesOpen, userId }) {
+
+function NoteForm({ handleNotesOpen}) {
+    const { user, setUser } = useUser();
     const [heading, setHeading] = useState('');
     const [description, setDescription] = useState('');
 
@@ -9,7 +12,7 @@ function NoteForm({ handleNotesOpen, userId }) {
         const formData = { heading, description };
         
         try {
-            const response = await fetch(`http://localhost:5000/note/${userId}`, {
+            const response = await fetch(`http://localhost:5000/note/${user._id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
