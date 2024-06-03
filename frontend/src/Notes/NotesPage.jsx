@@ -14,7 +14,7 @@ function NotesPage({ noteAddDel, setNoteAddDel }) {
     useEffect(() => {
         fetch(`http://localhost:5000/note/${user._id}`)
             .then(response => response.json())
-            .then(data => setNotes(Array.isArray(data) ? data : []))
+            .then(data => setNotes(data.notes))
             .catch(error => console.error('Error fetching notes:', error));
     }, [noteAddDel, user]);
 
