@@ -64,12 +64,11 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
     const filteredTasks = selectedCategory === '' ? tasks : tasks.filter(task => task.tag === selectedCategory);
 
     return (
-        <div className='flex flex-row w-full gap-4'>
+        <div className='flex flex-row w-full gap-4 transition-all duration-1000'>
             <div className='flex flex-col w-full gap-5'>
                 <div className='flex flex-col w-full'>
                     <div className='flex flex-col gap-3 items-center'>
                         <div className='flex flex-row items-center justify-between w-full'>
-
                             <h1 className='font-black text-5xl m-8 px-50 w-full'>
                                 ToDo
                             </h1>
