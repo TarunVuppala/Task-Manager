@@ -73,11 +73,10 @@ function Login({auth,handleLogin,setUser}) {
                             onChange={(e) => setPassword(e.target.value)}
                             className="border size-full border-black rounded-[20px] px-5 py-3"
                         />
-                        
+                        <button type="submit" className=" bg-[#F04D23] mt-10 text-white font-bold rounded-[20px] py-3 px-10">
+                                LOGIN
+                        </button>
                     </form>
-                    <button type="submit" className=" bg-[#F04D23] mt-10 text-white font-bold rounded-[20px] py-3 px-10">
-                            LOGIN
-                    </button>
             </div>
         </>
     );

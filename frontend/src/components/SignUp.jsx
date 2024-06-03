@@ -81,10 +81,10 @@ function SignUp() {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         className="border size-full mb-4 border-black rounded-[20px] py-3 px-5"
                     />
+                    <button type="submit" className="flex justify-center bg-[#F04D23] text-white font-bold mt-5 rounded-[20px] py-3 px-10">
+                            SIGN UP
+                    </button>
                 </form>
-                <button type="submit" className="flex justify-center bg-[#F04D23] text-white font-bold mt-5 rounded-[20px] py-3 px-10">
-                        SIGN UP
-                </button>
             </div>
         </>
     );
