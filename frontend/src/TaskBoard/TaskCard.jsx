@@ -11,7 +11,7 @@ const TaskCard = ({ id, title, description, tag, date, priority, frequency, hand
     handleToggle(id);
   };
   return (
-    <div className='border rounded-[20px] w-full h-fit flex flex-row items-center p-2 px-5 justify-between'>
+    <div className='border rounded-[20px] w-full h-fit flex flex-row items-center p-2 px-5 justify-between max-md:w-full border-[#32383a] dark:text-[#D9D5D0]'>
       <button className='flex flex-row justify-center items-center gap-5'>
         <input
           type="checkbox"
@@ -26,14 +26,13 @@ const TaskCard = ({ id, title, description, tag, date, priority, frequency, hand
         </div>
       </button>
 
-      <div className='flex flex-row gap-5'>
-        <div className='px-5 border rounded-md border-[#FF9898] py-2'>{priority}</div>
+      <div className='flex flex-row gap-5 max-md:hidden'>
+        <div className='px-5 border rounded-md border-[#FF9898] py-2 dark:border-[#9e1616]'>{priority}</div>
         <div className='px-5 border rounded-md border-[#00FF0A] py-2'>{tag}</div>
       </div>
 
       <div className='flex flex-row gap-5 justify-center items-center'>
         <button><NotificationAddIcon className='text-[#F04D23]'></NotificationAddIcon></button>
-        {/* <button><DoneIcon className='text-[#F04D23]'></DoneIcon></button> */}
         <button onClick={() => {
           handleDelete(id)
         }}><CloseIcon className='text-[#F04D23]'></CloseIcon></button>

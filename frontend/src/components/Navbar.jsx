@@ -13,11 +13,11 @@ const Navbar = ({ handleOpen }) => {
         </svg>
       </button>
       
-      <Link to='/' className={`${activeTab === "Task Board" ? "bg-[#F04D23] text-white" : "border border-[#F04D23] text-black"} w-[140px] h-[50px] rounded-[20px] flex justify-center items-center font-black`} onClick={() => setActiveTab("Task Board")}>
+      <Link to='/' className={`${activeTab === "Task Board" ? "bg-[#F04D23] text-white " : "border border-[#F04D23] text-black dark:text-white"} w-[140px] h-[50px] rounded-[20px] flex justify-center items-center font-black`} onClick={() => setActiveTab("Task Board")}>
         Task Board
       </Link>
 
-      <Link to='/notes' className={`${activeTab === "Notes" ? "bg-[#F04D23] text-white" : "border border-[#F04D23] text-black"} w-[140px] h-[50px] rounded-[20px] flex justify-center items-center font-black`} onClick={() => setActiveTab("Notes")}>
+      <Link to='/notes' className={`${activeTab === "Notes" ? "bg-[#F04D23] text-white" : "border border-[#F04D23] text-black dark:text-white"} w-[140px] h-[50px] rounded-[20px] flex justify-center items-center font-black`} onClick={() => setActiveTab("Notes")}>
         Notes
       </Link>
     </div>

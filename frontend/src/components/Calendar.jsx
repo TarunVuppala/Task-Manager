@@ -115,4 +115,8 @@ const Calendar = () => {
   );
 };
 
+<<<<<<< Updated upstream
 export default Calendar;
+=======
+export default Calendar;
+>>>>>>> Stashed changes
