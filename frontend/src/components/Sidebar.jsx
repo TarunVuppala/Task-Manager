@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileCard from "./ProfileCard";
-import Calendar from "./Calendar"; // Only import once
+import Calendar from "./Calendar";
 import StatsCard from "./StatsCard";
 
 function Sidebar({ onLogout }) {
