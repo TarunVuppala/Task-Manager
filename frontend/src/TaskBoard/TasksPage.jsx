@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import Form from './Form';
 import TaskCard from './TaskCard';
 
 const TasksPage = ({ formOpen, handleFormOpen, user }) => {
     let [taskAdded, setTaskAdded] = useState(0);
     const [tasks, setTasks] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
 
     useEffect(() => {
         fetch(`http://localhost:5000/task/${user._id}`)
@@ -40,6 +41,10 @@ const TasksPage = ({ formOpen, handleFormOpen, user }) => {
         })
         .catch(error => console.error('Error deleting task:', error));
     }
+    const handleCategoryChange = (event) => {
+        setSelectedCategory(event.target.value);
+    };
+    const filteredTasks = selectedCategory === '' ? tasks : tasks.filter(task => task.tag === selectedCategory);
 
     return (
         <div className='flex flex-row w-full'>
@@ -54,12 +59,10 @@ const TasksPage = ({ formOpen, handleFormOpen, user }) => {
                             id="category"
                             name="category"
                             className='border rounded-[20px]  text-[#1E1E1E] py-1 flex  bg-transparent  font-black'
+                            value={selectedCategory}
+                            onChange={handleCategoryChange}
                         >
-                            <option value="select tag">
-                                <div>
-
-                                </div>
-                            </option>
+                            <option value="">All</option>
                             <option value="personal">Personal</option>
                             <option value="work">Work</option>
                             <option value="home">Home</option>
@@ -68,7 +71,7 @@ const TasksPage = ({ formOpen, handleFormOpen, user }) => {
 
                     <div>
                         <div className="flex flex-col gap-5">
-                            {tasks.length === 0 ? "Add a Task" : tasks.map((task, index) => (
+                            {filteredTasks.length === 0 ? "Add a Task" : filteredTasks.map((task, index) => (
                                 <div key={task._id} className="">
                                     <TaskCard handleToggle={handleToggle} id={task._id} handleDelete={handleDelete} title={task.title} description={task.description} tag={task.tag} date={task.date.split('T')[0]} priority={task.priority} frequency={task.frequency} completed={task.completed} />
 
