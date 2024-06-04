@@ -11,7 +11,7 @@ const TaskCard = ({ id, title, description, tag, date, priority, frequency, hand
   };
   return (
     <div className={`${completed ? "opacity-40" : ""} border rounded-[20px] w-full h-fit flex flex-row items-center p-2 px-5 justify-between max-md:w-full border-[#32383a] dark:text-[#D9D5D0]`}>
-      <button className='flex flex-row justify-center items-center gap-5' onClick={handleOpen}>
+      <button className='flex flex-row justify-center items-center gap-5'>
         <input
           type="checkbox"
           checked={isChecked}
@@ -20,7 +20,7 @@ const TaskCard = ({ id, title, description, tag, date, priority, frequency, hand
         />
 
         <div className=''>
-          <h1 className={`${completed ? 'line-through' : ''} font-black capitalize`}>{title}</h1>
+          <h1  onClick={handleOpen} className={`${completed ? 'line-through' : ''} font-black capitalize`}>{title}</h1>
           <div className='opacity-50 text-sm'>{frequency} @{date.split('-').reverse().join('/')}</div>
         </div>
       </button>
