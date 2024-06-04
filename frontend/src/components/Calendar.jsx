@@ -27,6 +27,8 @@ const Calendar = () => {
   const handleDateClick = (date) => {
     if (date.isBefore(today, 'day')) return;
     if (selectedDate && date.isSame(selectedDate, 'day')) {
+      setFormVisible(!formVisible);
+
       return;
     } else {
       setSelectedDate(date);
