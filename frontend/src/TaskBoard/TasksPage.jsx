@@ -10,19 +10,7 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
     const [tasks, setTasks] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [toggle, setToggle] = useState(false);
-    const [quote, setQuote] = useState('');
-    const firstrender = useRef(true);
 
-    useEffect(() => {
-        if (firstrender.current) {
-            fetch('https://api.quotable.io/random')
-                .then((res) => res.json())
-                .then((data) => setQuote(data.content));
-
-            firstrender.current = false;
-        }
-    }
-        , []);
     
     useEffect(() => {
         fetch(`http://localhost:5000/task/${user._id}`)
@@ -100,8 +88,6 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
                                 <option value="home" className='text-black'>Home</option>
                             </select>
                         </div>
-                        <blockquote>{quote}</blockquote>
-
                         <div className='flex flex-col gap-5 w-full'>
                             {filteredTasks.length === 0 ? "Add a Task" : filteredTasks.map((task) => (
                                 <div key={task._id} className=''>

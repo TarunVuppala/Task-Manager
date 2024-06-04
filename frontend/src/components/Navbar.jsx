@@ -1,8 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useRef,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = ({ handleOpen }) => {
   const [activeTab, setActiveTab] = useState("Task Board");
+  const [quote, setQuote] = useState('');
+  const firstrender = useRef(true);
+
+  useEffect(() => {
+    if (firstrender.current) {
+      fetch('https://api.quotable.io/random')
+        .then((res) => res.json())
+        .then((data) => setQuote(data.content));
+
+      firstrender.current = false;
+    }
+  }
+    , []);
 
   return (
     <div className='flex gap-5 w-fit h-[50px]'>
@@ -12,7 +25,7 @@ const Navbar = ({ handleOpen }) => {
           <path d="M16.136 9.864H10.056V16.344H6.472V9.864H0.424V6.648H6.472V0.184H10.056V6.648H16.136V9.864Z" fill="white" />
         </svg>
       </button>
-      
+
       <Link to='/' className={`${activeTab === "Task Board" ? "bg-[#F04D23] text-white " : "border border-[#F04D23] text-black dark:text-white"} w-[140px] h-[50px] rounded-[20px] flex justify-center items-center font-black`} onClick={() => setActiveTab("Task Board")}>
         Task Board
       </Link>
@@ -20,6 +33,8 @@ const Navbar = ({ handleOpen }) => {
       <Link to='/notes' className={`${activeTab === "Notes" ? "bg-[#F04D23] text-white" : "border border-[#F04D23] text-black dark:text-white"} w-[140px] h-[50px] rounded-[20px] flex justify-center items-center font-black`} onClick={() => setActiveTab("Notes")}>
         Notes
       </Link>
+      <blockquote>{quote}</blockquote>
+
     </div>
   );
 }
