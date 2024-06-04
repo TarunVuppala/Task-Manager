@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from '../context/UserContext';
 
-function NotesPage({ noteAddDel, setNoteAddDel }) {
+function NotesPage({ handleOpen, noteAddDel, setNoteAddDel }) {
     const { user } = useUser();
     const [notes, setNotes] = useState([]);
     const truncateText = (text, maxLength) => {
@@ -59,7 +59,7 @@ function NotesPage({ noteAddDel, setNoteAddDel }) {
                 <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 overflow-y-scroll w-full h-full">
                     {notes.length === 0 ? "Add" : notes.map((note, index) => (
                         <div key={index} className="rounded-[20px] w-full bg-[#ececec] hover:shadow-lg transition-all hover:scale-105 p-6 dark:bg-transparent dark:border dark:border-[#464646]">
-                            <label htmlFor={`input${index}`} className="block text-2xl font-bold text-gray-700 mb-4">
+                            <label htmlFor={`input${index}`} className="block text-2xl font-bold text-gray-700 mb-4" onClick={handleOpen}>
                                 {note.heading}
                             </label>
                             <p className="text-xl mb-4">{truncateText(note.note, 30)}</p>

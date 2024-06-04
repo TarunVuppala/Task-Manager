@@ -84,7 +84,7 @@ function App() {
                   <Sidebar onLogout={handleLogout} user={user.username} />
                   <div className='p-10 w-full h-full'>
                     <Navbar handleOpen={handleNotesOpen} />
-                    {notesOpen ? <NoteForm userId={user._id} handleNotesOpen={handleNotesOpen} noteAddDel={noteAddDel} setNoteAddDel={setNoteAddDel} /> : <NotesPage noteAddDel={noteAddDel} setNoteAddDel={setNoteAddDel} />}
+                    {notesOpen ? <NoteForm userId={user._id} handleNotesOpen={handleNotesOpen} noteAddDel={noteAddDel} setNoteAddDel={setNoteAddDel} /> : <NotesPage noteAddDel={noteAddDel} setNoteAddDel={setNoteAddDel} handleOpen={handleNotesOpen} />}
                   </div>
                 </div>
               ) : (
