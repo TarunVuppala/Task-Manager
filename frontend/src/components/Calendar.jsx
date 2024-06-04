@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import CloseIcon from '@mui/icons-material/Close';
+import {useUser} from '../context/UserContext';
+
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(dayjs());
   const [selectedDate, setSelectedDate] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
   const [title, setTitle] = useState('');
+  const {user}=useUser();
 
   const today = dayjs();
 
@@ -60,11 +63,9 @@ const Calendar = () => {
       days.push(
         <div
           key={i}
-          className={`flex items-center justify-center h-10 w-10 cursor-pointer ${
-            isToday ? 'bg-orange-500 text-black rounded-full' : ''
-          } ${
-            isSelected ? ' text-black border border-black rounded-full dark:text-white dark:border-white' : ''
-          } ${isPast ? 'text-gray-400' : ''}`}
+          className={`flex items-center justify-center h-10 w-10 cursor-pointer ${isToday ? 'bg-orange-500 text-black rounded-full' : ''
+            } ${isSelected ? ' text-black border border-black rounded-full dark:text-white dark:border-white' : ''
+            } ${isPast ? 'text-gray-400' : ''}`}
           onClick={() => handleDateClick(date)}
         >
           {i}
@@ -85,6 +86,31 @@ const Calendar = () => {
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
+  const handleSave = (e) => {
+    e.preventDefault();
+    const formData = {
+      title,
+      date: selectedDate
+    };
+    fetch(`http://localhost:5000/calender/${user._id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setFormVisible(false);
+          setSelectedDate(null);
+          setTitle('');
+        } else {
+          console.error('Error:', data.message);
+        }
+      })
+
+  }
   return (
     <div className="w-64 mx-auto mt-10">
       <div className="flex items-center justify-between mb-4">
@@ -127,16 +153,18 @@ const Calendar = () => {
             <CloseIcon></CloseIcon>
           </button>
           <h2 className="mb-2">{selectedDate.format('MMMM D, YYYY')}</h2>
-          <label className="block mb-2">
-            Title:
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="border dark:border-[#353535] rounded w-full p-2 dark:bg-[#0b0c0e]"
-            />
-          </label>
-          <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+          <form method='POST' onSubmit={handleSave}>
+            <label className="block mb-2">
+              Event:
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="border dark:border-[#353535] rounded w-full p-2 dark:bg-[#0b0c0e]"
+              />
+            </label>
+            <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+          </form>
         </div>
       )}
     </div>

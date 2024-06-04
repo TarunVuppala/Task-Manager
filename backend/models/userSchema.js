@@ -22,6 +22,10 @@ const userSchema=new mongoose.Schema({
     notesRef:{
         type:[mongoose.Schema.Types.ObjectId],
         ref:'Notes'
+    },
+    eventsRef:{
+        type:[mongoose.Schema.Types.ObjectId],
+        ref:'Events'
     }
 });
 

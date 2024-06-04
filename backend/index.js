@@ -9,6 +9,7 @@ import logout from'./routes/logout.js';
 import task from'./routes/task.js';
 import note from'./routes/note.js';
 import email from'.//routes/email.js';
+import calender from './routes/calender.js';
 import auth from'./middleware/auth.js';
 
 const app = express();
@@ -41,6 +42,7 @@ app.use('/logout', logout);
 app.use('/task', task);
 app.use('/note', note);
 app.use('/email', email);
+app.use('/calender', calender);
 
 app.get("/", auth, (req, res) => {
     res.json({ message: "hello", success: true });

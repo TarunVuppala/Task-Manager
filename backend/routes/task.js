@@ -1,6 +1,5 @@
 import express from 'express';
 const app = express();
-
 import Tasks from '../models/taskSchema.js';
 import Users from '../models/userSchema.js';
 
