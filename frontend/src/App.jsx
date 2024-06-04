@@ -95,7 +95,7 @@ function App() {
           <Route
             path='/login'
             element={
-              <div className='flex justify-center items-center w-full'>
+              <div className='flex justify-center items-center w-full h-screen'>
                 <Login auth={auth} handleLogin={handleLogin} />
               </div>
             }
@@ -103,7 +103,7 @@ function App() {
           <Route
             path='/signup'
             element={
-              <div className='flex justify-center items-center w-full'>
+              <div className='flex justify-center items-center w-full h-screen'>
                 <SignUp />
               </div>
             }
