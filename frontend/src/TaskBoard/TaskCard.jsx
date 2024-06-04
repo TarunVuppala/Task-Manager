@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
 import CloseIcon from '@mui/icons-material/Close';
 
-const TaskCard = ({ id, title, description, tag, date, priority, frequency, handleDelete,completed,handleToggle }) => {
+const TaskCard = ({ id, title, description, tag, date, priority, frequency, handleDelete,completed,handleToggle,handleOpen}) => {
   const [isChecked, setIsChecked] = useState(completed);
 
   const handleCheckboxChange = (event) => {
@@ -11,7 +11,7 @@ const TaskCard = ({ id, title, description, tag, date, priority, frequency, hand
   };
   return (
     <div className={`${completed ? "opacity-40" : ""} border rounded-[20px] w-full h-fit flex flex-row items-center p-2 px-5 justify-between max-md:w-full border-[#32383a] dark:text-[#D9D5D0]`}>
-      <button className='flex flex-row justify-center items-center gap-5'>
+      <button className='flex flex-row justify-center items-center gap-5' onClick={handleOpen}>
         <input
           type="checkbox"
           checked={isChecked}

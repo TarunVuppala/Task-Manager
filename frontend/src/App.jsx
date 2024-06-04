@@ -68,7 +68,7 @@ function App() {
                   <Sidebar onLogout={handleLogout} username={user.username} />
                   <div className='p-10 w-full'>
                     <Navbar handleOpen={handleFormOpen} />
-                    <TasksPage formOpen={formOpen} handleFormOpen={handleFormOpen} />
+                    <TasksPage formOpen={formOpen} handleFormOpen={handleFormOpen} handleOpen={handleFormOpen} />
                   </div>
                 </div>
               ) : (
