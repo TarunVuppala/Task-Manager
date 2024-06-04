@@ -21,13 +21,15 @@ const Charts = () => {
   });
 
   return (
-    // Option 2: Accessing Properties Directly
-    <Chart
+    
+    <div className='h-fit justify-between flex flex-col w-fit scale-[80%] p-10'>
+      <Chart
       options={chart.options}
       series={chart.series}
       type="bar"
       width="500"
     />
+    </div>
   );
 }
 

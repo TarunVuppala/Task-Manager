@@ -46,3 +46,6 @@ body {
   border-radius: 6px;
 }
 
+.customtspan tspan{
+  color: white;
+}
