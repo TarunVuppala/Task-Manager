@@ -61,7 +61,7 @@ const Calendar = () => {
           className={`flex items-center justify-center h-10 w-10 cursor-pointer ${
             isToday ? 'bg-orange-500 text-black rounded-full' : ''
           } ${
-            isSelected ? ' text-black border border-black rounded-full' : ''
+            isSelected ? ' text-black border border-black rounded-full dark:text-white dark:border-white' : ''
           } ${isPast ? 'text-gray-400' : ''}`}
           onClick={() => handleDateClick(date)}
         >
@@ -117,7 +117,7 @@ const Calendar = () => {
         {renderDays()}
       </div>
       {formVisible && (
-        <div className="mt-9 p-4 border rounded absolute z-10 bg-white dark:bg-[#0b0c0e] dark:border-[#3a3a3a]">
+        <div className="mt-9 p-4 border rounded absolute z-10 bg-white dark:bg-[#0b0c0e] dark:border-[#3a3a3a] transition-all duration-1000">
           <button
             className="absolute top-0 right-0 mt-2 mr-2 text-gray-500 hover:text-gray-800"
             onClick={() => setFormVisible(false)}
@@ -131,7 +131,7 @@ const Calendar = () => {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="border rounded w-full p-2"
+              className="border dark:border-[#353535] rounded w-full p-2 dark:bg-[#0b0c0e]"
             />
           </label>
           <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Save</button>
