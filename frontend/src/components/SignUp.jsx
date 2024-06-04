@@ -31,7 +31,7 @@ function SignUp() {
 
     return (
         <>
-            <div className="flex flex-col items-center justify-center bg-transparent w-fit h-fit border rounded-[20px] px-52 py-10 shadow-lg">
+            <div className="flex flex-col items-center justify-center bg-transparent w-fit h-fit dark:text-white">
                 <div className="flex flex-row items-center justify-center gap-[21px] w-full">
                     <Link to="/signup" className="w-full">
                         <button className="bg-[#F04D23] text-white rounded-[20px] font-bold w-full py-3">SIGN UP</button>

@@ -36,7 +36,7 @@ function Login({ auth, handleLogin }) {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center bg-transparent w-fit h-fit px-52 py-10  ">
+    <div className="flex flex-col items-center justify-center bg-transparent dark:text-white">
       <div className="flex flex-row items-center justify-center gap-[21px] w-full">
         <Link to="/signup" className="w-full">
           <button className="border border-[#F04D23] rounded-[20px] font-bold w-full py-3">SIGN UP</button>
@@ -45,7 +45,7 @@ function Login({ auth, handleLogin }) {
           <button className="bg-[#F04D23] text-white w-full py-3 font-bold rounded-[20px]">LOGIN</button>
         </Link>
       </div>
-      <h1 className="flex font-bold items-center justify-center text-4xl m-4 mt-8">LOGIN</h1>
+      <h1 className="flex font-bold items-center justify-center text-4xl m-4 mt-8 dark:text-white">LOGIN</h1>
       {msg && <p className="text-center text-red-500">{msg}</p>}
       <form method="POST" onSubmit={handleSubmit} className="flex flex-col gap-5 w-full justify-center">
         <input

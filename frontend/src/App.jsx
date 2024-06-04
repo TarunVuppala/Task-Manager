@@ -58,7 +58,7 @@ function App() {
 
   return (
     <Router>
-      <div className='flex flex-row h-screen'>
+      <div className='flex flex-row h-screen dark:bg-[#0b0c0e]'>
         <Routes>
           <Route
             path='/'
@@ -82,7 +82,7 @@ function App() {
               auth ? (
                 <div className='flex flex-row w-full dark:bg-[#0b0c0e] dark:text-[#e1e1e1] duration-1000'>
                   <Sidebar onLogout={handleLogout} user={user.username} />
-                  <div className='p-10 w-full'>
+                  <div className='p-10 w-full h-full'>
                     <Navbar handleOpen={handleNotesOpen} />
                     {notesOpen ? <NoteForm userId={user._id} handleNotesOpen={handleNotesOpen} noteAddDel={noteAddDel} setNoteAddDel={setNoteAddDel} /> : <NotesPage noteAddDel={noteAddDel} setNoteAddDel={setNoteAddDel} />}
                   </div>
