@@ -5,6 +5,9 @@ import 'dayjs/locale/en';
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(dayjs());
   const [selectedDate, setSelectedDate] = useState(null);
+  const [formVisible, setFormVisible] = useState(false);
+  const [title, setTitle] = useState('');
+
   const today = dayjs();
 
   const startOfMonth = currentDate.startOf('month');
@@ -23,9 +26,10 @@ const Calendar = () => {
   const handleDateClick = (date) => {
     if (date.isBefore(today, 'day')) return;
     if (selectedDate && date.isSame(selectedDate, 'day')) {
-      setSelectedDate(null);
+      return;
     } else {
       setSelectedDate(date);
+      setFormVisible(true);
     }
   };
 
@@ -111,6 +115,27 @@ const Calendar = () => {
         ))}
         {renderDays()}
       </div>
+      {formVisible && (
+        <div className="mt-9 p-4 border rounded relative">
+          <button
+            className="absolute top-0 right-0 mt-2 mr-2 text-gray-500 hover:text-gray-800"
+            onClick={() => setFormVisible(false)}
+          >
+            X
+          </button>
+          <h2 className="mb-2">{selectedDate.format('MMMM D, YYYY')}</h2>
+          <label className="block mb-2">
+            Title:
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="border rounded w-full p-2"
+            />
+          </label>
+          <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+        </div>
+      )}
     </div>
   );
 };
