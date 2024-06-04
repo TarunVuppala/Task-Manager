@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(dayjs());
@@ -60,7 +61,7 @@ const Calendar = () => {
           className={`flex items-center justify-center h-10 w-10 cursor-pointer ${
             isToday ? 'bg-orange-500 text-black rounded-full' : ''
           } ${
-            isSelected ? 'bg-white text-black border border-black rounded-full' : ''
+            isSelected ? ' text-black border border-black rounded-full' : ''
           } ${isPast ? 'text-gray-400' : ''}`}
           onClick={() => handleDateClick(date)}
         >
@@ -116,12 +117,12 @@ const Calendar = () => {
         {renderDays()}
       </div>
       {formVisible && (
-        <div className="mt-9 p-4 border rounded relative">
+        <div className="mt-9 p-4 border rounded absolute z-10 bg-white dark:bg-[#0b0c0e] dark:border-[#3a3a3a]">
           <button
             className="absolute top-0 right-0 mt-2 mr-2 text-gray-500 hover:text-gray-800"
             onClick={() => setFormVisible(false)}
           >
-            X
+            <CloseIcon></CloseIcon>
           </button>
           <h2 className="mb-2">{selectedDate.format('MMMM D, YYYY')}</h2>
           <label className="block mb-2">
