@@ -13,13 +13,14 @@ app.get('/:id', async (req, res) => {
 app.post('/:id', async (req, res) => {
     const id = req.params.id;
     
-    const { heading, description } = req.body;
+    const { heading, description,tag } = req.body;
     console.log(req.body);
     const user = await Users.findById(id);
     console.log(user);
     const newNote = await Notes.create({
         heading,
         note:description,
+        tag,
         userRef: user._id
     });
     user.notesRef.push(newNote._id);

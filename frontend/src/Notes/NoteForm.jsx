@@ -3,13 +3,18 @@ import { useUser } from '../context/UserContext';
 
 
 function NoteForm({ handleNotesOpen,noteAddDel, setNoteAddDel}) {
-    const { user, setUser } = useUser();
+    const { user } = useUser();
     const [heading, setHeading] = useState('');
     const [description, setDescription] = useState('');
+    const [tag, setTag] = useState('');
+
+  const handleTagChange = (event) => {
+    setTag(event.target.value);
+  };
 
     const handleNotesForm = async (e) => {
         e.preventDefault();
-        const formData = { heading, description };
+        const formData = { heading, description,tag };
         
         try {
             const response = await fetch(`http://localhost:5000/note/${user._id}`, {
@@ -26,7 +31,7 @@ function NoteForm({ handleNotesOpen,noteAddDel, setNoteAddDel}) {
                 setNoteAddDel(noteAddDel + 1);
                 setHeading('');
                 setDescription('');
-                handleNotesOpen(); // Assuming this function refreshes the list or navigates
+                handleNotesOpen();
             } else {
                 console.log(data.error);
             }
@@ -46,6 +51,18 @@ function NoteForm({ handleNotesOpen,noteAddDel, setNoteAddDel}) {
                 value={heading}
                 onChange={(e) => setHeading(e.target.value)}
             />
+            <select
+                        id="tag"
+                        name="tag"
+                        value={tag}
+                        onChange={handleTagChange}
+                        className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] py-4 flex justify-center items-center bg-transparent text-center font-black dark:bg-[#161616] dark:text-white dark:border-[#383838]'
+                    >
+                        <option value="">Select Tag</option>
+                        <option value="personal">Personal</option>
+                        <option value="work">Work</option>
+                        <option value="home">Home</option>
+                    </select>
             <textarea
                 id="description"
                 name="description"

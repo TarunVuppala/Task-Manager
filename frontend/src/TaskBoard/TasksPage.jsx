@@ -1,7 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import Form from './Form';
 import TaskCard from './TaskCard';
-import Email from'../components/Email';
 import { useUser } from '../context/UserContext';
 
 const TasksPage = ({ formOpen, handleFormOpen, handleOpen}) => {
@@ -107,7 +106,6 @@ const TasksPage = ({ formOpen, handleFormOpen, handleOpen}) => {
                                 </div>
                             ))}
                         </div>
-                        <Email/>
                     </div>
                 </div>
                 {formOpen && (
