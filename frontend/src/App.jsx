@@ -58,7 +58,7 @@ function App() {
 
   return (
     <Router>
-      <div className='flex flex-row h-screen dark:bg-[#0b0c0e]'>
+      <div className='flex flex-row h-full dark:bg-[#0b0c0e]'>
         <Routes>
           <Route
             path='/'
@@ -80,7 +80,7 @@ function App() {
             path='/notes'
             element={
               auth ? (
-                <div className='flex flex-row w-full dark:bg-[#0b0c0e] dark:text-[#e1e1e1] duration-1000'>
+                <div className='flex flex-row w-full dark:bg-[#0b0c0e] dark:text-[#e1e1e1] duration-1000 overflow-hidden'>
                   <Sidebar onLogout={handleLogout} user={user.username} />
                   <div className='p-10 w-full h-full'>
                     <Navbar handleOpen={handleNotesOpen} />

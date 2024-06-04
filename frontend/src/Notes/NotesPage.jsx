@@ -56,7 +56,7 @@ function NotesPage({ noteAddDel, setNoteAddDel }) {
                 </select>
             </div>
             <div className=" h-screen w-full">
-                <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 overflow-y-scroll w-full">
+                <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 overflow-y-scroll w-full h-full">
                     {notes.length === 0 ? "Add" : notes.map((note, index) => (
                         <div key={index} className="rounded-[20px] w-full bg-[#ececec] hover:shadow-lg transition-all hover:scale-105 p-6 dark:bg-transparent dark:border dark:border-[#464646]">
                             <label htmlFor={`input${index}`} className="block text-2xl font-bold text-gray-700 mb-4">
