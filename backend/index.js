@@ -37,7 +37,6 @@ app.use(session({
 
 app.use('/login', login);
 app.use('/signup', signup);
-// app.use(auth)
 app.use('/logout', logout);
 app.use('/task', task);
 app.use('/note', note);
