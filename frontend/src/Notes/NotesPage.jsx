@@ -4,6 +4,7 @@ import { useUser } from '../context/UserContext';
 function NotesPage({ handleOpen, noteAddDel, setNoteAddDel }) {
     const { user } = useUser();
     const [notes, setNotes] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
     const truncateText = (text, maxLength) => {
         if (text.length > maxLength) {
             return text.slice(0, maxLength) + "...";
@@ -38,6 +39,11 @@ function NotesPage({ handleOpen, noteAddDel, setNoteAddDel }) {
         }
     };
 
+    const handleCategoryChange = (event) => {
+        setSelectedCategory(event.target.value);
+    };
+    const filteredNotes = selectedCategory === '' ? notes : notes.filter(note => note.tag === selectedCategory);
+
     return (
         <div className="flex flex-col w-full p-8 h-screen">
             <div className="flex flex-row items-center justify-between mb-8">
@@ -47,6 +53,8 @@ function NotesPage({ handleOpen, noteAddDel, setNoteAddDel }) {
                 <select
                     id="category"
                     name="category"
+                    value={selectedCategory}
+                    onChange={handleCategoryChange}
                     className='border rounded dark:border-[#303030]  dark:text-[#D1CDC5] py-1 flex bg-transparent font-black'
                 >
                     <option value="">All</option>
@@ -57,7 +65,7 @@ function NotesPage({ handleOpen, noteAddDel, setNoteAddDel }) {
             </div>
             <div className=" w-full">
                 <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 overflow-y-scroll w-full h-fit">
-                    {notes.length === 0 ? "Add" : notes.map((note, index) => (
+                {filteredNotes.length === 0 ? "Add" : filteredNotes.map((note, index) => (
                         <div key={index} className="rounded-[20px] w-full bg-[#ececec] hover:shadow-lg transition-all hover:scale-105 p-6 dark:bg-transparent dark:border dark:border-[#464646] h-[200px]">
                             <label htmlFor={`input${index}`} className="block text-2xl font-bold text-gray-700 mb-4" onClick={handleOpen}>
                                 {note.heading}
