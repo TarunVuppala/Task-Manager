@@ -4,6 +4,7 @@ import Chart from "react-apexcharts";
 const Charts = () => {
   const [chart, setChart] = useState({
     options: {
+      colors:["#f04d23"],
       chart: {
         id: "basic-bar"
       },
@@ -20,20 +21,13 @@ const Charts = () => {
   });
 
   return (
-    <Chart
-      // Option 1: Destructuring
-      {...chart} // spread the chart object
-      type="bar"
-      width="500"
-    />
-
     // Option 2: Accessing Properties Directly
-    /* <Chart
+    <Chart
       options={chart.options}
       series={chart.series}
       type="bar"
       width="500"
-    /> */
+    />
   );
 }
 
