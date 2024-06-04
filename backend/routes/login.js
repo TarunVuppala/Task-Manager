@@ -1,6 +1,6 @@
-const express = require("express");
+import express from 'express';
+import User from '../models/userSchema.js';
 const app = express();
-const User = require('../models/userSchema');
 
 app.get('/',async(req,res)=>{
     const user=await User.findOne({_id:req.session.userId});
@@ -22,4 +22,4 @@ app.post("/", async (req, res) => {
     res.status(200).json({ user, success: true });
 });
 
-module.exports = app;
+export default app;

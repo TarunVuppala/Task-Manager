@@ -1,15 +1,15 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const session = require('express-session');
-const cors = require("cors");
+import express from 'express';
+import mongoose from 'mongoose';
+import session from 'express-session';
+import cors from 'cors';
 
-
-const login = require('./routes/login');
-const signup = require('./routes/signup');
-const logout = require('./routes/logout');
-const task = require('./routes/task');
-const note=require('./routes/note');
-const auth = require('./middleware/auth');
+import login from'./routes/login.js';
+import signup from'./routes/signup.js';
+import logout from'./routes/logout.js';
+import task from'./routes/task.js';
+import note from'./routes/note.js';
+import email from'.//routes/email.js';
+import auth from'./middleware/auth.js';
 
 const app = express();
 
@@ -39,7 +39,8 @@ app.use('/login', login);
 app.use('/signup', signup);
 app.use('/logout', logout);
 app.use('/task', task);
-app.use('/note',note);
+app.use('/note', note);
+app.use('/email', email);
 
 app.get("/", auth, (req, res) => {
     res.json({ message: "hello", success: true });

@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const app = express();
-const Notes = require('../models/noteSchema');
-const Users = require('../models/userSchema');
+import Notes from'../models/noteSchema.js';
+import Users from'../models/userSchema.js';
 
 app.get('/:id', async (req, res) => {
     const id = req.params.id;
@@ -39,4 +39,4 @@ app.delete('/:id',async (req,res)=>{
     res.status(200).json({ message: 'Note deleted successfully', success: true });
 })
 
-module.exports = app;
+export default app;

@@ -1,7 +1,6 @@
-const express=require('express');
+import express from 'express';
+import User from '../models/userSchema.js';
 const app=express();
-
-const User=require('../models/userSchema');
 
 app.post('/',async(req,res)=>{
     const {username,email,password}=req.body;
@@ -19,4 +18,4 @@ app.post('/',async(req,res)=>{
     res.status(200).json({newUser,success:true})
 });
 
-module.exports=app
+export default app;

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const reminderTime = function () {
     const priority = this.priority || "Medium";
@@ -105,4 +105,4 @@ const taskSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Tasks', taskSchema);
+export default mongoose.model('Tasks', taskSchema);

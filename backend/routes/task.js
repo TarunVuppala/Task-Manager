@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const app = express();
 
-const Tasks = require('../models/taskSchema');
-const Users = require('../models/userSchema');
+import Tasks from '../models/taskSchema.js';
+import Users from '../models/userSchema.js';
 
 app.get('/:id',async (req,res)=>{
     const {id}=req.params;
@@ -78,4 +78,4 @@ app.put('/:id',async (req,res)=>{
     res.status(200).json({message:'Task updated successfully',success:true});
 })
 
-module.exports = app;
+export default app;
