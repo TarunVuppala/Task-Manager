@@ -1,17 +1,22 @@
-import React from "react";
-import ProfileCard from "./ProfileCard";
-import Calendar from "./Calendar";
-import ApexCharts from "./Charts";
-import Charts from "./Charts";
+import React, { useState } from 'react';
+import ProfileCard from './ProfileCard';
+import Calendar from './Calendar';
+import DoughnutChart from './DoughnutChart';
+import LineChart from './LineChart1';
 
 function Sidebar({ onLogout }) {
-    return (
-        <div className='h-screen w-fit border-r flex flex-col justify-between items-center p-6 overflow-y-scroll overflow-x-hidden max-md:hidden border-[#000] dark:border-[#292929]'>
-            <Calendar />
-            <Charts/>
-            <ProfileCard onLogout={onLogout} />
-        </div>
-    );
+  const [selectedDate, setSelectedDate] = useState(null);
+  
+  return (
+    <div className="h-screen w-fit border-r flex flex-col justify-between items-center p-6 overflow-y-scroll overflow-x-hidden max-md:hidden border-[#000] dark:border-[#292929]">
+      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+      <div className="w-full mt-4">
+        <DoughnutChart selectedDate={selectedDate} />
+        <LineChart selectedDate={selectedDate} />
+      </div>
+      <ProfileCard onLogout={onLogout} />
+    </div>
+  );
 }
 
 export default Sidebar;
