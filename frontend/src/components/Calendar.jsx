@@ -91,7 +91,7 @@ const Calendar = () => {
           <select
             value={currentDate.month()}
             onChange={handleMonthChange}
-            className="border rounded w-24 text-center mr-2"
+            className="rounded w-fit text-center bg-transparent "
           >
             {monthNames.map((month, index) => (
               <option key={month} value={index} className='dark:bg-black'>
@@ -103,7 +103,7 @@ const Calendar = () => {
             type="number"
             value={currentDate.year()}
             onChange={handleYearChange}
-            className="border rounded w-16 text-center"
+            className="rounded w-fit text-center bg-transparent "
           />
         </div>
         <button onClick={handleNextMonth}>&gt;</button>

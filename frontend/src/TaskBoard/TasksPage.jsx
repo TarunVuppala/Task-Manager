@@ -1,17 +1,17 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState} from 'react';
 import Form from './Form';
 import TaskCard from './TaskCard';
 import Email from'../components/Email';
 import { useUser } from '../context/UserContext';
 
-const TasksPage = ({ formOpen, handleFormOpen }) => {
+const TasksPage = ({ formOpen, handleFormOpen, handleOpen}) => {
     const { user, setUser } = useUser();
     const [taskAdded, setTaskAdded] = useState(0);
     const [tasks, setTasks] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [toggle, setToggle] = useState(false);
 
-    
+
     useEffect(() => {
         fetch(`http://localhost:5000/task/${user._id}`)
             .then(response => response.json())
@@ -92,6 +92,7 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
                             {filteredTasks.length === 0 ? "Add a Task" : filteredTasks.map((task) => (
                                 <div key={task._id} className=''>
                                     <TaskCard
+                                        handleOpen={handleFormOpen}
                                         handleToggle={handleToggle}
                                         id={task._id}
                                         handleDelete={handleDelete}

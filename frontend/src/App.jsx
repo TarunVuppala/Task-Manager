@@ -68,7 +68,7 @@ function App() {
                   <Sidebar onLogout={handleLogout} username={user.username} />
                   <div className='p-10 w-full'>
                     <Navbar handleOpen={handleFormOpen} />
-                    <TasksPage formOpen={formOpen} handleFormOpen={handleFormOpen} />
+                    <TasksPage formOpen={formOpen} handleFormOpen={handleFormOpen} handleOpen={handleFormOpen} />
                   </div>
                 </div>
               ) : (
@@ -95,7 +95,7 @@ function App() {
           <Route
             path='/login'
             element={
-              <div className='flex justify-center items-center w-full'>
+              <div className='flex justify-center items-center w-full h-screen'>
                 <Login auth={auth} handleLogin={handleLogin} />
               </div>
             }
@@ -103,7 +103,7 @@ function App() {
           <Route
             path='/signup'
             element={
-              <div className='flex justify-center items-center w-full'>
+              <div className='flex justify-center items-center w-full h-screen'>
                 <SignUp />
               </div>
             }
