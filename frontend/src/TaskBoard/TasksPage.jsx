@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Form from './Form';
 import TaskCard from './TaskCard';
+import Email from'../components/Email';
 import { useUser } from '../context/UserContext';
 
 const TasksPage = ({ formOpen, handleFormOpen }) => {
@@ -10,11 +11,19 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [toggle, setToggle] = useState(false);
     const [quote, setQuote] = useState('');
+    const firstrender = useRef(true);
 
     useEffect(() => {
-        generateQuote();
-    }, []);
+        if (firstrender.current) {
+            fetch('https://api.quotable.io/random')
+                .then((res) => res.json())
+                .then((data) => setQuote(data.content));
 
+            firstrender.current = false;
+        }
+    }
+        , []);
+    
     useEffect(() => {
         fetch(`http://localhost:5000/task/${user._id}`)
             .then(response => response.json())
@@ -66,12 +75,6 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
         setSelectedCategory(event.target.value);
     };
 
-    const generateQuote = async () => {
-        const response = await fetch('https://api.quotable.io/random');
-        const data = await response.json();
-        setQuote(data.content);
-    }
-
     const filteredTasks = selectedCategory === '' ? tasks : tasks.filter(task => task.tag === selectedCategory);
 
     return (
@@ -117,7 +120,7 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
                                 </div>
                             ))}
                         </div>
-
+                        <Email/>
                     </div>
                 </div>
                 {formOpen && (

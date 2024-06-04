@@ -7,7 +7,6 @@ app.get('/:id', async (req, res) => {
     const id = req.params.id;
     const user = await Users.findById(id);
     const notes = await Notes.find({ userRef: user._id });
-    console.log(notes);
     res.status(200).json({ notes, success: true });
 });
 
