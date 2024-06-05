@@ -15,15 +15,15 @@ const transporter = nodemailer.createTransport({
 })
 app.post('/:id', async (req, res) => {
     const user = await Users.findById(req.params.id);
-
+    const task=req.body.task;
     const mailOptions = {
         from: {
             name: 'ListIt',
             address: 'tarun.jgs@gmail.com',
         },
         to: user.email,
-        subject: 'Hi Hello Shiv!',
-        text: 'Ela uav'
+        subject: `Hi ${user.username}`,
+        text: `This task is pending ${task.name} at ${task.reminder.split('T')[0].split('-').reverse().join('/')}`,
     };
     await transporter.sendMail(mailOptions);
     console.log('sent');
