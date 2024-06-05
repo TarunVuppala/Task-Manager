@@ -28,11 +28,13 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
   const handleDateClick = (date) => {
     if (date.isBefore(today, 'day')) return;
     if (selectedDate && date.isSame(selectedDate, 'day')) {
-      setFormVisible(!formVisible);
+      // Comment out the line below to prevent the form from opening
+      // setFormVisible(!formVisible);
       return;
     } else {
       setSelectedDate(date);
-      setFormVisible(true);
+      // Comment out the line below to prevent the form from opening
+      // setFormVisible(true);
     }
   };
 
@@ -140,7 +142,8 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
         ))}
         {renderDays()}
       </div>
-      {formVisible && selectedDate && (
+      {/* Comment out the form rendering */}
+      {/* {formVisible && selectedDate && (
         <div className="mt-9 p-4 border rounded absolute z-10 bg-white dark:bg-[#0b0c0e] dark:border-[#3a3a3a] transition-all duration-1000">
           <button
             className="absolute top-0 right-0 mt-2 mr-2 text-gray-500 hover:text-gray-800"
@@ -162,7 +165,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
             <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Save</button>
           </form>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
