@@ -93,15 +93,8 @@ const TasksPage = ({ formOpen, handleFormOpen, handleOpen}) => {
                                     <TaskCard
                                         handleOpen={handleFormOpen}
                                         handleToggle={handleToggle}
-                                        id={task._id}
                                         handleDelete={handleDelete}
-                                        title={task.title}
-                                        description={task.description}
-                                        tag={task.tag}
-                                        date={task.date.split('T')[0]}
-                                        priority={task.priority}
-                                        frequency={task.recurring}
-                                        completed={task.completed}
+                                        task={task}
                                     />
                                 </div>
                             ))}

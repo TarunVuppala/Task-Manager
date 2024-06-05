@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import moment from 'moment-timezone';
+
 
 const reminderTime = function () {
     const priority = this.priority || "Medium";
@@ -77,12 +79,12 @@ const taskSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        default: Date.now
+        default:moment().tz('Asia/Kolkata')
     },
     reminder: {
         type: Date,
         default: function () {
-            return new Date(Date.now() + 5.5 * 60 * 60 * 1000 + reminderTime.apply(this) * 60 * 60 * 1000);
+            return moment().tz('Asia/Kolkata').add(reminderTime.apply(this), 'hours');;
         }
     },
     recurring: {
