@@ -70,10 +70,4 @@ app.get("/", auth, async (req, res) => {
     res.json({ message: "hello", success: true });
 });
 
-// console.log(getTasks);
-
-// if (auth) {
-
-// }
-
 app.listen(5000);

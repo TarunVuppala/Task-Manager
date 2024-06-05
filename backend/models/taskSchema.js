@@ -101,6 +101,10 @@ const taskSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    notified:{
+        type: Boolean,
+        default: false
+    },
     userRef: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users'
