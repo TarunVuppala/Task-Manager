@@ -1,5 +1,6 @@
 import express from 'express';
 const app = express();
+import moment from 'moment-timezone';
 import Tasks from '../models/taskSchema.js';
 import Users from '../models/userSchema.js';
 
@@ -26,7 +27,7 @@ app.post('/', async (req, res) => {
                 priority = "Low";
                 break;
         }
-        const createdDate = new Date(Date.now() + 5.5 * 60 * 60 * 1000);
+        const createdDate = moment().tz('Asia/Kolkata');
         
         const newTask = await Tasks.create({
             title,
@@ -39,8 +40,9 @@ app.post('/', async (req, res) => {
             userRef: req.session.userId
         });
         if(date){
-            const utc = new Date(date);
-            const ist = new Date(utc.getTime() + (5.5 * 60 * 60 * 1000));
+            console.log(date);
+            const ist=moment.tz(date,'Asia/Kolkata').toDate();
+            console.log(ist);
             newTask.reminder=ist;
             await newTask.save();
         }
