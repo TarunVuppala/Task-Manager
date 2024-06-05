@@ -35,7 +35,7 @@ const Navbar = ({ handleOpen }) => {
           Notes
         </Link>
       </div>
-      <blockquote>{quote}</blockquote>
+      <blockquote className='flex flex-col justify-center items-center text-center p-5'>{quote}</blockquote>
 
     </div>
   );

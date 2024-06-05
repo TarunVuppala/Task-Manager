@@ -37,7 +37,7 @@ function ProfileCard({ onLogout }) {
 
   return (
     <div className='w-full h-fit flex flex-row items-center rounded-full p-3 justify-between max-lg:flex-col'>
-      <div className='flex flex-row justify-center items-center gap-3'>
+      <div className='flex flex-row justify-center items-center gap-3 w-full'>
         <img src="/images/profile.jpg" alt="profile" className='rounded-full w-[50px] h-[50px]' />
         <div>Hi {user ? user.username : 'User'}!</div>
       </div>

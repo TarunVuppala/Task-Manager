@@ -58,7 +58,7 @@ function App() {
 
   return (
     <Router>
-      <div className='flex flex-row h-full dark:bg-[#0b0c0e]'>
+      <div className='flex flex-row h-screen dark:bg-[#0b0c0e]'>
         <Routes>
           <Route
             path='/'

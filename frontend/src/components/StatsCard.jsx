@@ -5,8 +5,8 @@ import { LineChart } from '@mui/x-charts/LineChart';
 
 const StatsCard = () => {
     return (
-        <div className='flex flex-col scale-75 h-full justify-between items-center '>
-            <div className='flex flex-col justify-center items-center'>
+        <div className='flex flex-col scale-75 h-full w-full justify-between items-center '>
+            <div className='flex flex-col justify-center items-center w-full'>
                 <div className='font-black text-2xl'>
                     Activity
                 </div>
@@ -34,7 +34,7 @@ const StatsCard = () => {
             </div>
 
             
-            <div className='flex flex-col justify-center items-center'>
+            <div className='flex flex-col justify-center items-center w-full'>
                 <div className='font-black text-2xl'>
                     Productivity
                 </div>
