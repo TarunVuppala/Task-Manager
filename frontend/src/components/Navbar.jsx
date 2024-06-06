@@ -1,19 +1,25 @@
-import React, { useState, useRef,useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = ({ handleOpen }) => {
   const [activeTab, setActiveTab] = useState("Task Board");
   const [quote, setQuote] = useState('');
-  const firstrender = useRef(true);
+  // const firstrender = useRef(true);
 
   useEffect(() => {
-    if (firstrender.current) {
+    // if (firstrender.current) {
+
+    const time = setInterval(() => {
       fetch('https://api.quotable.io/random')
         .then((res) => res.json())
         .then((data) => setQuote(data.content));
 
-      firstrender.current = false;
-    }
+    }, 10000);
+
+    return () => clearInterval(time);
+
+    // firstrender.current = false;
+    // }
   }
     , []);
 

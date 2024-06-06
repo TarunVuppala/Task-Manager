@@ -13,8 +13,7 @@ app.post('/',async(req,res)=>{
     const newUser=await User.create({
         username,email,password
     });
-    console.log(newUser);
-
+    // console.log(newUser);
     res.status(200).json({newUser,success:true})
 });
 

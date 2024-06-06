@@ -69,7 +69,7 @@ function App() {
             element={
               auth ? (
                 <div className='flex flex-row w-full dark:bg-[#0b0c0e] dark:text-[#e1e1e1] duration-1000'>
-                  <Sidebar onLogout={handleLogout} username={user.username} />
+                  <Sidebar onLogout={handleLogout} username={user?user.username:{}} />
                   <div className='p-10 w-full'>
                     <Navbar handleOpen={handleFormOpen} />
                     <TasksPage formOpen={formOpen} handleFormOpen={handleFormOpen} handleOpen={handleFormOpen} />
@@ -85,7 +85,7 @@ function App() {
             element={
               auth ? (
                 <div className='flex flex-row w-full dark:bg-[#0b0c0e] dark:text-[#e1e1e1] duration-1000 overflow-hidden'>
-                  <Sidebar onLogout={handleLogout} user={user.username} />
+                  <Sidebar onLogout={handleLogout} user={user?user.username:{}} />
                   <div className='p-10 w-full h-full'>
                     <Navbar handleOpen={handleNotesOpen} />
                     {notesOpen ? <NoteForm note={noteSelected} handleNotesOpen={handleNotesOpen} noteAddDel={noteAddDel} setNoteAddDel={setNoteAddDel} notesOpen={notesOpen}/> : <NotesPage noteAddDel={noteAddDel} setNoteAddDel={setNoteAddDel} handleNotesOpen={handleNotesOpen} setNoteSelected={setNoteSelected}/>}

@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -17,7 +17,7 @@ export const UserProvider = ({ children }) => {
         }
       } catch (error) {
         console.error('Error fetching user:', error);
-        setUser(null);
+        setUser({});
       }
     };
 
