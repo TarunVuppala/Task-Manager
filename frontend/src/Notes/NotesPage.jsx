@@ -66,15 +66,15 @@ function NotesPage({ setNoteSelected, handleNotesOpen, noteAddDel, setNoteAddDel
             <div className=" w-full">
                 <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 overflow-y-scroll w-full h-fit">
                     {filteredNotes.length === 0 ? "Add" : filteredNotes.map((note, index) => (
-                        <div key={index} className="rounded-[20px] w-full bg-[#ececec] hover:border-black border  dark:hover:border-[#fff] p-6 dark:bg-transparent dark:border dark:border-[#464646] h-[200px] overflow-hidden transition-all">
+                        <div key={index} className="rounded-[20px] w-full bg-[#ececec] hover:border-black border  dark:hover:border-[#fff] p-6 dark:bg-transparent dark:border dark:border-[#464646] h-[200px] overflow-hidden transition-all flex flex-col">
                             <label htmlFor={`input${index}`} className="block text-2xl font-bold text-gray-700 mb-4 overflow-hidden" onClick={() => {
                                 handleNotesOpen();
                                 setNoteSelected(note);
                             }}>
                                 {note.heading}
                             </label>
-                            <p className="text-xl mb-4 max-w-[60%]  text-wrap pr-10">{truncateText(note.note, 30)}</p>
-                            <button id={note._id} onClick={() => handleNoteDelete(note._id)} className="text-red-500">
+                            <p className="text-xl mb-4 text-wrap flex flex-col break-words">{truncateText(note.note, 50)}</p>
+                            <button id={note._id} onClick={() => handleNoteDelete(note._id)} className="text-red-500 bottom-0 left-0 flex">
                                 <i className="fa-solid fa-trash"></i>
                             </button>
                         </div>
