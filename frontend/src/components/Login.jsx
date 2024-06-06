@@ -63,9 +63,9 @@ function Login({ auth, handleLogin }) {
           placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border size-full border-black rounded-[20px] px-5 py-3"
+          className="border text-black size-full border-black rounded-[20px] px-5 py-3 dark:text-black"
         />
-        <button type="submit" className="bg-[#F04D23] mt-10 text-white font-bold rounded-[20px] py-3 px-10">
+        <button type="submit" className="bg-[#F04D23] mt-10 text-white font-black rounded-[20px] py-3 px-10">
           LOGIN
         </button>
       </form>
