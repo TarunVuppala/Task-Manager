@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useUser } from '../context/UserContext';
 
 
-function NoteForm({ handleNotesOpen,noteAddDel, setNoteAddDel}) {
+function NoteForm({ handleNotesOpen,noteAddDel, setNoteAddDel, note}) {
     const { user } = useUser();
-    const [heading, setHeading] = useState('');
-    const [description, setDescription] = useState('');
+    const [heading, setHeading] = useState(note.title?note.title:'');
+    const [description, setDescription] = useState(note.description?note.description:'');
     const [tag, setTag] = useState('');
 
   const handleTagChange = (event) => {

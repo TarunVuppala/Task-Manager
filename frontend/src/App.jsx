@@ -17,7 +17,7 @@ function App() {
   const { user, setUser } = useUser();
   const [auth, setAuth] = useState(false);
   const [noteAddDel, setNoteAddDel] = useState(0);
-  
+  const [noteSelected,setNoteSelected]=useState({});
 
   const handleFormOpen = () => {
     setFormOpen(!formOpen);
@@ -84,7 +84,7 @@ function App() {
                   <Sidebar onLogout={handleLogout} user={user.username} />
                   <div className='p-10 w-full h-full'>
                     <Navbar handleOpen={handleNotesOpen} />
-                    {notesOpen ? <NoteForm userId={user._id} handleNotesOpen={handleNotesOpen} noteAddDel={noteAddDel} setNoteAddDel={setNoteAddDel} /> : <NotesPage noteAddDel={noteAddDel} setNoteAddDel={setNoteAddDel} handleOpen={handleNotesOpen} />}
+                    {notesOpen ? <NoteForm note={noteSelected} handleNotesOpen={handleNotesOpen} noteAddDel={noteAddDel} setNoteAddDel={setNoteAddDel} /> : <NotesPage noteAddDel={noteAddDel} setNoteAddDel={setNoteAddDel} handleNotesOpen={handleNotesOpen} setNoteSelected={setNoteSelected}/>}
                   </div>
                 </div>
               ) : (
