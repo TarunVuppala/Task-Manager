@@ -24,7 +24,11 @@ function App() {
   };
 
   const handleNotesOpen = () => {
+    if(notesOpen){
+      setNoteSelected({})
+    }
     setNotesOpen(!notesOpen);
+
   };
 
   useEffect(() => {

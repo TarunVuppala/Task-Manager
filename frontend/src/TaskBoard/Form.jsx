@@ -20,16 +20,16 @@ const Form = ({handleFormOpen, handleTaskAddDel, task, formOpen}) => {
         });
     };
 
-    if(!formOpen){
-        setFormData({
-            title: '',
-            description: '',
-            tag: '',
-            date: '',
-            priority: '',
-            recurring: ''
-        });
-    }
+    // if(!formOpen){
+    //     setFormData({
+    //         title: '',
+    //         description: '',
+    //         tag: '',
+    //         date: '',
+    //         priority: '',
+    //         recurring: ''
+    //     });
+    // }
 
     const handleSubmit = async (e) => {
         e.preventDefault();

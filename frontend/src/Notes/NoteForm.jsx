@@ -4,8 +4,8 @@ import { useUser } from '../context/UserContext';
 
 function NoteForm({ handleNotesOpen,noteAddDel, setNoteAddDel, note,notesOpen}) {
     const { user } = useUser();
-    const [heading, setHeading] = useState(note.title?note.title:'');
-    const [description, setDescription] = useState(note.description?note.description:'');
+    const [heading, setHeading] = useState(note.heading?note.heading:'');
+    const [description, setDescription] = useState(note.note?note.note:'');
     const [tag, setTag] = useState(note.tag?note.tag:'');
 
   const handleTagChange = (event) => {
