@@ -66,7 +66,7 @@ function NotesPage({ handleOpen, noteAddDel, setNoteAddDel }) {
             <div className=" w-full">
                 <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 overflow-y-scroll w-full h-fit">
                 {filteredNotes.length === 0 ? "Add" : filteredNotes.map((note, index) => (
-                        <div key={index} className="rounded-[20px] w-full bg-[#ececec] hover:shadow-lg transition-all hover:scale-105 p-6 dark:bg-transparent dark:border dark:border-[#464646] h-[200px]">
+                        <div key={index} className="rounded-[20px] w-full bg-[#ececec] hover:shadow-lg transition-all p-6 dark:bg-transparent dark:border dark:border-[#464646] h-[200px]">
                             <label htmlFor={`input${index}`} className="block text-2xl font-bold text-gray-700 mb-4" onClick={handleOpen}>
                                 {note.heading}
                             </label>
