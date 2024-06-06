@@ -2,15 +2,21 @@ import React, { useState } from 'react';
 import { useUser } from '../context/UserContext';
 
 
-function NoteForm({ handleNotesOpen,noteAddDel, setNoteAddDel, note}) {
+function NoteForm({ handleNotesOpen,noteAddDel, setNoteAddDel, note,notesOpen}) {
     const { user } = useUser();
     const [heading, setHeading] = useState(note.title?note.title:'');
     const [description, setDescription] = useState(note.description?note.description:'');
-    const [tag, setTag] = useState('');
+    const [tag, setTag] = useState(note.tag?note.tag:'');
 
   const handleTagChange = (event) => {
     setTag(event.target.value);
   };
+
+  if(!notesOpen){
+    setHeading('');
+    setDescription('');
+    setTag('');
+  }
 
     const handleNotesForm = async (e) => {
         e.preventDefault();
@@ -31,6 +37,7 @@ function NoteForm({ handleNotesOpen,noteAddDel, setNoteAddDel, note}) {
                 setNoteAddDel(noteAddDel + 1);
                 setHeading('');
                 setDescription('');
+                setTag('');
                 handleNotesOpen();
             } else {
                 console.log(data.error);
