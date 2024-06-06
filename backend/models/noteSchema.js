@@ -15,7 +15,7 @@ const noteSchema=new mongoose.Schema({
     },
     userRef:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'User'
+        ref:'Users'
     }
 });
 

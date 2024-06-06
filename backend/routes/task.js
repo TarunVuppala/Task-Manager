@@ -13,7 +13,7 @@ app.get('/:id',async (req,res)=>{
 
 app.post('/', async (req, res) => {
     try {
-        const { title, description, tag, date, priority: rawPriority, frequency } = req.body;
+        const { title, description, tag, date, priority: rawPriority, recurring } = req.body;
 
         let priority = rawPriority || "Medium";
         switch (priority.toLowerCase()) {
