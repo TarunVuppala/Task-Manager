@@ -27,8 +27,7 @@ app.post('/', async (req, res) => {
                 priority = "Low";
                 break;
         }
-        const createdDate = moment().tz('Asia/Kolkata');
-        
+        const createdDate = moment().tz('Asia/Kolkata');        
         const newTask = await Tasks.create({
             title,
             description,
