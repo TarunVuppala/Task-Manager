@@ -153,7 +153,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
           >
             <CloseIcon />
           </button>
-          <h2 className="mb-2">{selectedDate.format('MMMM D, YYYY')}</h2>
+          <h2 className="mb-2">{selectedDate.format('D MMMM, YYYY')}</h2>
           <form method="POST" onSubmit={handleSave}>
             <label className="block mb-2">
               Event:
