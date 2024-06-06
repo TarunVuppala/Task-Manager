@@ -66,14 +66,14 @@ function NotesPage({ setNoteSelected, handleNotesOpen, noteAddDel, setNoteAddDel
             <div className=" w-full">
                 <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 overflow-y-scroll w-full h-fit">
                     {filteredNotes.length === 0 ? "Add" : filteredNotes.map((note, index) => (
-                        <div key={index} className="rounded-[20px] w-full bg-[#ececec] hover:shadow-lg transition-all hover:scale-105 p-6 dark:bg-transparent dark:border dark:border-[#464646] h-[200px]">
-                            <label htmlFor={`input${index}`} className="block text-2xl font-bold text-gray-700 mb-4" onClick={() => {
+                        <div key={index} className="rounded-[20px] w-full bg-[#ececec] hover:border-black border  dark:hover:border-[#fff] p-6 dark:bg-transparent dark:border dark:border-[#464646] h-[200px] overflow-hidden transition-all">
+                            <label htmlFor={`input${index}`} className="block text-2xl font-bold text-gray-700 mb-4 overflow-hidden" onClick={() => {
                                 handleNotesOpen();
                                 setNoteSelected(note);
                             }}>
                                 {note.heading}
                             </label>
-                            <p className="text-xl mb-4">{truncateText(note.note, 30)}</p>
+                            <p className="text-xl mb-4 max-w-[60%]  text-wrap pr-10">{truncateText(note.note, 30)}</p>
                             <button id={note._id} onClick={() => handleNoteDelete(note._id)} className="text-red-500">
                                 <i className="fa-solid fa-trash"></i>
                             </button>
