@@ -11,7 +11,8 @@ app.post('/:id', async (req, res) => {
 
     const event = await Events.create({
         title,
-        date:ist
+        date:ist,
+        userRef: user._id
     });
     user.eventsRef.push(event._id);
     await user.save();

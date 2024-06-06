@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import CloseIcon from '@mui/icons-material/Close';
-import { useUser } from '../context/UserContext';
+import {useUser} from '../context/UserContext';
 
-const Calendar = ({ selectedDate, setSelectedDate }) => {
+const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(dayjs());
+  const [selectedDate, setSelectedDate] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
   const [title, setTitle] = useState('');
-  const { user } = useUser();
+  const {user}=useUser();
 
   const today = dayjs();
 
@@ -28,12 +29,11 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
   const handleDateClick = (date) => {
     if (date.isBefore(today, 'day')) return;
     if (selectedDate && date.isSame(selectedDate, 'day')) {
-      // Comment out the line below to prevent the form from opening
       setFormVisible(!formVisible);
+
       return;
     } else {
       setSelectedDate(date);
-      // Comment out the line below to prevent the form from opening
       setFormVisible(true);
     }
   };
@@ -63,7 +63,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
         <div
           key={i}
           className={`flex items-center justify-center h-10 w-10 cursor-pointer ${isToday ? 'bg-orange-500 text-black rounded-full' : ''
-            } ${isSelected ? 'bg-blue-500 text-black border border-black rounded-full dark:text-white dark:border-white' : ''
+            } ${isSelected ? ' text-black border border-black rounded-full dark:text-white dark:border-white' : ''
             } ${isPast ? 'text-gray-400' : ''}`}
           onClick={() => handleDateClick(date)}
         >
@@ -91,26 +91,25 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
       title,
       date: selectedDate
     };
-    console.log(formData);
-    fetch(`http://localhost:5000/calendar/${user._id}`, {
+    fetch(`http://localhost:5000/calender/${user._id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(formData)
-      
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
           setFormVisible(false);
+          setSelectedDate(null);
           setTitle('');
         } else {
           console.error('Error:', data.message);
         }
-      });
-  };
+      })
 
+  }
   return (
     <div className="w-64 mx-auto mt-10">
       <div className="flex items-center justify-between mb-4">
@@ -119,10 +118,10 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
           <select
             value={currentDate.month()}
             onChange={handleMonthChange}
-            className="rounded w-fit text-center bg-transparent"
+            className="rounded w-fit text-center bg-transparent "
           >
             {monthNames.map((month, index) => (
-              <option key={month} value={index} className="dark:bg-black">
+              <option key={month} value={index} className='dark:bg-black'>
                 {month}
               </option>
             ))}
@@ -131,7 +130,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
             type="number"
             value={currentDate.year()}
             onChange={handleYearChange}
-            className="rounded w-fit text-center bg-transparent"
+            className="rounded w-fit text-center bg-transparent "
           />
         </div>
         <button onClick={handleNextMonth}>&gt;</button>
@@ -144,17 +143,17 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
         ))}
         {renderDays()}
       </div>
-      {/* Comment out the form rendering */}
-      {formVisible && selectedDate && (
+      {formVisible && (
         <div className="mt-9 p-4 border rounded absolute z-10 bg-white dark:bg-[#0b0c0e] dark:border-[#3a3a3a] transition-all duration-1000">
           <button
             className="absolute top-0 right-0 mt-2 mr-2 text-gray-500 hover:text-gray-800"
             onClick={() => setFormVisible(false)}
           >
-            <CloseIcon />
+            <CloseIcon></CloseIcon>
           </button>
-          <h2 className="mb-2">{selectedDate.format('D MMMM, YYYY')}</h2>
-          <form method="POST" onSubmit={handleSave}>
+          <h2 className="mb-2">{selectedDate.format('MMMM D, YYYY')}</h2>
+          
+          <form method='POST' onSubmit={handleSave}>
             <label className="block mb-2">
               Event:
               <input
