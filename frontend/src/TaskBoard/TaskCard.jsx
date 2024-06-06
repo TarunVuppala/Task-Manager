@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Email from '../components/Email';
 import CloseIcon from '@mui/icons-material/Close';
 
-const TaskCard = ({ task, handleDelete, completed, handleToggle, handleOpen }) => {
-  const [isChecked, setIsChecked] = useState(completed);
+const TaskCard = ({formOpen, task, handleDelete, handleToggle, handleFormOpen, setTaskSelected }) => {
+  const [isChecked, setIsChecked] = useState(task.completed);
 
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
@@ -20,7 +20,16 @@ const TaskCard = ({ task, handleDelete, completed, handleToggle, handleOpen }) =
         />
 
         <div className=''>
-          <h1 onClick={handleOpen} className={`${task.completed ? 'line-through' : ''} font-black capitalize`}>{task.title}</h1>
+          <h1 onClick={() => {
+            // if (formOpen) {
+            //   setTaskSelected(task);
+            // } else {
+            //   setTaskSelected(task);
+            //   handleFormOpen();
+            // }
+            setTaskSelected(task);
+            handleFormOpen();
+          }} className={`${task.completed ? 'line-through' : ''} font-black capitalize`}>{task.title}</h1>
           <div className='opacity-50 text-sm'>{task.frequency} @{task.date.split('T')[0].split('-').reverse().join('/')}</div>
         </div>
       </button>

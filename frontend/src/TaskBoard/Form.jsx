@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 
-const Form = ({handleFormOpen, handleTaskAddDel}) => {
+const Form = ({handleFormOpen, handleTaskAddDel, task, formOpen}) => {
     const [msg, setMsg] = useState('');
     const [formData, setFormData] = useState({
-        title: '',
-        description: '',
-        tag: '',
-        date: '',
-        priority: '',
-        frequency: ''
+        title: task.title?task.title:'',
+        description: task.description?task.description:'',
+        tag: task.tag?task.tag:'',
+        date: task.date?task.date:'',
+        priority: task.priority?task.priority:'',
+        recurring: task.recurring?task.recurring:''
     });
 
     const handleChange = (e) => {
@@ -19,6 +19,17 @@ const Form = ({handleFormOpen, handleTaskAddDel}) => {
             [name]: value
         });
     };
+
+    if(!formOpen){
+        setFormData({
+            title: '',
+            description: '',
+            tag: '',
+            date: '',
+            priority: '',
+            recurring: ''
+        });
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -44,7 +55,7 @@ const Form = ({handleFormOpen, handleTaskAddDel}) => {
                 tag: '',
                 date: '',
                 priority: '',
-                frequency: ''
+                recurring: ''
             });
             handleFormOpen();
             handleTaskAddDel(1);
@@ -62,7 +73,7 @@ const Form = ({handleFormOpen, handleTaskAddDel}) => {
             tag: '',
             date: '',
             priority: '',
-            frequency: ''
+            recurring: ''
         });
     };
 
@@ -129,13 +140,13 @@ const Form = ({handleFormOpen, handleTaskAddDel}) => {
                     </select>
 
                     <select
-                        id="frequency"
-                        name="frequency"
-                        value={formData.frequency}
+                        id="recurring"
+                        name="recurring"
+                        value={formData.recurring}
                         onChange={handleChange}
                         className='border rounded-[20px] w-full border-[#1E1E1E] text-[#1E1E1E] py-4 flex justify-center items-center bg-transparent text-center font-black dark:bg-[#161616] dark:text-white dark:border-[#383838]'
                     >
-                        <option value="">Repeat Frequency</option>
+                        <option value="">Repeat recurring</option>
                         <option value="daily">Daily</option>
                         <option value="weekly">Weekly</option>
                         <option value="monthly">Monthly</option>

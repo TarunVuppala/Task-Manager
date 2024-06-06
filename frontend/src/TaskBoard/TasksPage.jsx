@@ -1,15 +1,21 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Form from './Form';
 import TaskCard from './TaskCard';
 import { useUser } from '../context/UserContext';
 
-const TasksPage = ({ formOpen, handleFormOpen, handleOpen}) => {
+const TasksPage = ({ formOpen, handleFormOpen }) => {
     const { user, setUser } = useUser();
     const [taskAdded, setTaskAdded] = useState(0);
     const [tasks, setTasks] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [toggle, setToggle] = useState(false);
+    const [taskSelected, setTaskSelected] = useState({});
 
+    useEffect(() => {
+        if(!formOpen){
+            setTaskSelected({});
+        }
+    }, [formOpen]);
 
     useEffect(() => {
         fetch(`http://localhost:5000/task/${user._id}`)
@@ -91,7 +97,9 @@ const TasksPage = ({ formOpen, handleFormOpen, handleOpen}) => {
                             {filteredTasks.length === 0 ? "Add a Task" : filteredTasks.map((task) => (
                                 <div key={task._id} className=''>
                                     <TaskCard
-                                        handleOpen={handleFormOpen}
+                                    formOpen={formOpen}
+                                        setTaskSelected={setTaskSelected}
+                                        handleFormOpen={handleFormOpen}
                                         handleToggle={handleToggle}
                                         handleDelete={handleDelete}
                                         task={task}
@@ -103,7 +111,7 @@ const TasksPage = ({ formOpen, handleFormOpen, handleOpen}) => {
                 </div>
                 {formOpen && (
                     <div className='right-0 top-0 flex flex-row justify-center items-center absolute'>
-                        <Form handleFormOpen={handleFormOpen} handleTaskAddDel={handleTaskAddDel} />
+                        <Form formOpen={formOpen} task={taskSelected} handleFormOpen={handleFormOpen} handleTaskAddDel={handleTaskAddDel} />
                     </div>
                 )}
             </div>

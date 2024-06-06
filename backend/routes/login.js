@@ -3,10 +3,10 @@ import Users from '../models/userSchema.js';
 const app = express();
 
 app.get('/',async(req,res)=>{
-    console.log(`${req.session.userId} this is user id`);
+    // console.log(`${req.session.userId} this is user id`);
     const user=await Users.findOne({_id:req.session.userId});
-    console.log(`${user}`);
-    console.log('this is user');
+    // console.log(`${user}`);
+    // console.log('this is user');
     res.status(200).json({ user, success: true });
 })
 
@@ -22,7 +22,7 @@ app.post("/", async (req, res) => {
         return;
     }
     req.session.userId=user._id;
-    console.log(`${req.session.userId} this is user id`);
+    // console.log(`${req.session.userId} this is user id`);
     res.status(200).json({ user, success: true });
 });
 
