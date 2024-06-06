@@ -36,7 +36,7 @@ app.post('/', async (req, res) => {
             date: createdDate,
             priority,
             completed: false,
-            recurring: frequency,
+            recurring,
             userRef: req.session.userId
         });
         if(date){
