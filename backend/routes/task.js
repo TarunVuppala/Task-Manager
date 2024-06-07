@@ -96,7 +96,6 @@ app.put('/:id', async (req, res) => {
 });
 
 app.put('/update/:id', async (req,res)=>{
-    console.log(req.params);
     const id = req.params.id;
     const { title, description, tag, date, priority, recurring } = req.body;
     const task = await Tasks.findById(id);
