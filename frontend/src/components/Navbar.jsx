@@ -14,7 +14,7 @@ const Navbar = ({ handleOpen }) => {
         .then((res) => res.json())
         .then((data) => setQuote(data.content));
 
-    }, 10000);
+    }, 20000);
 
     return () => clearInterval(time);
 
