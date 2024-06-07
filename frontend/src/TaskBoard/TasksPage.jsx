@@ -53,17 +53,6 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
         setTaskAdded(taskAdded + a);
     };
 
-    const fetchUser = async () => {
-        const response = await fetch('http://localhost:5000/login');
-        const data = await response.json();
-        if (data.success) {
-            setUser(data.user);
-        } else {
-            setUser(null);
-        }
-    };
-
-
     const handleDelete = (id) => {
         fetch(`http://localhost:5000/task/${id}`, {
             method: 'DELETE',
@@ -133,7 +122,7 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
                 </div>
                 {formOpen && (
                     <div className='right-0 top-0 flex flex-row justify-center items-center absolute'>
-                        <Form formOpen={formOpen} task={taskSelected} handleFormOpen={handleFormOpen} handleTaskAddDel={handleTaskAddDel} />
+                        <Form toggle={toggle} setToggle={setToggle} formOpen={formOpen} task={taskSelected} handleFormOpen={handleFormOpen} handleTaskAddDel={handleTaskAddDel} />
                     </div>
                 )}
             </div>

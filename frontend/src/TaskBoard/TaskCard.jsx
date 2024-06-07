@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Email from '../components/Email';
 import CloseIcon from '@mui/icons-material/Close';
 
-const TaskCard = ({formOpen, task, handleDelete, handleToggle, handleFormOpen, setTaskSelected }) => {
+const TaskCard = ({task, handleDelete, handleToggle, handleFormOpen, setTaskSelected }) => {
   const [isChecked, setIsChecked] = useState(task.completed);
 
   const handleCheckboxChange = (event) => {

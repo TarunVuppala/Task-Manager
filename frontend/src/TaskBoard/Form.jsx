@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 
-const Form = ({handleFormOpen, handleTaskAddDel, task, formOpen}) => {
+const Form = ({ handleFormOpen, handleTaskAddDel, task, toggle, setToggle }) => {
+    const updateTask = useRef();
+    if (task._id) {
+        // console.log(task);
+        updateTask.current = true;
+    }
     const [msg, setMsg] = useState('');
     const [formData, setFormData] = useState({
-        title: task.title?task.title:'',
-        description: task.description?task.description:'',
-        tag: task.tag?task.tag:'',
-        date: task.date?task.date:'',
-        priority: task.priority?task.priority:'',
-        recurring: task.recurring?task.recurring:''
+        title: task.title ? task.title : '',
+        description: task.description ? task.description : '',
+        tag: task.tag ? task.tag : '',
+        date: task.date ? task.date : '',
+        priority: task.priority ? task.priority : '',
+        recurring: task.recurring ? task.recurring : ''
     });
 
     const handleChange = (e) => {
@@ -19,17 +24,6 @@ const Form = ({handleFormOpen, handleTaskAddDel, task, formOpen}) => {
             [name]: value
         });
     };
-
-    // if(!formOpen){
-    //     setFormData({
-    //         title: '',
-    //         description: '',
-    //         tag: '',
-    //         date: '',
-    //         priority: '',
-    //         recurring: ''
-    //     });
-    // }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -77,8 +71,38 @@ const Form = ({handleFormOpen, handleTaskAddDel, task, formOpen}) => {
         });
     };
 
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(`http://localhost:5000/task/update/${task._id}`, {
+                method: 'PUT',
+                headers: {  
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData),
+                credentials: 'include'
+            });
+            console.log('Form submitted:', formData);
+            setFormData({
+                title: '',
+                description: '',
+                tag: '',
+                date: '',
+                priority: '',
+                recurring: ''
+            });
+            handleFormOpen();
+            setToggle(!toggle);
+
+        }
+        catch (error) {
+            console.error('Error:', error);
+            setMsg(error.message);
+        }
+    }
+
     return (
-        <form onSubmit={handleSubmit} method='POST' className='flex flex-col p-10 h-screen gap-[21px] bg-white shadow-xl dark:bg-[#161616] dark:text-white'>
+        <form onSubmit={updateTask ? handleUpdate : handleSubmit} method='POST' className='flex flex-col p-10 h-screen gap-[21px] bg-white shadow-xl dark:bg-[#161616] dark:text-white'>
             <button className="flex border rounded-full w-fit border-[#0b0c0e] dark:border-[#1E1E1E]" onClick={handleDiscard}><CloseIcon></CloseIcon></button>
             <p className='text-[#F04D23]'>{msg}</p>
             <input

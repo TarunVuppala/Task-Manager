@@ -89,8 +89,23 @@ app.delete('/:id', async (req, res) => {
 
 app.put('/:id', async (req, res) => {
     const id = req.params.id;
+    if(!id) return
     const task = await Tasks.findById(id);
     task.completed = !task.completed;
+    await task.save();
+    res.status(200).json({ message: 'Task updated successfully', success: true });
+});
+
+app.put('/update/:id', async (req,res)=>{
+    const id = req.params.id;
+    const { title, description, tag, date, priority, recurring } = req.body;
+    const task = await Tasks.findById(id);
+    task.title = title;
+    task.description = description;
+    task.tag = tag;
+    task.date = date;
+    task.priority = priority;
+    task.recurring = recurring;
     await task.save();
     res.status(200).json({ message: 'Task updated successfully', success: true });
 })
