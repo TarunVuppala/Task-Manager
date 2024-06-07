@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 
 const Form = ({ handleFormOpen, handleTaskAddDel, task, toggle, setToggle }) => {
-    const updateTask = useRef();
+    const updateTask = useRef(false);
     if (task._id) {
         // console.log(task);
         updateTask.current = true;
@@ -93,7 +93,6 @@ const Form = ({ handleFormOpen, handleTaskAddDel, task, toggle, setToggle }) => 
             });
             handleFormOpen();
             setToggle(!toggle);
-
         }
         catch (error) {
             console.error('Error:', error);
@@ -102,7 +101,7 @@ const Form = ({ handleFormOpen, handleTaskAddDel, task, toggle, setToggle }) => 
     }
 
     return (
-        <form onSubmit={updateTask ? handleUpdate : handleSubmit} method='POST' className='flex flex-col p-10 h-screen gap-[21px] bg-white shadow-xl dark:bg-[#161616] dark:text-white'>
+        <form onSubmit={updateTask.current ? handleUpdate : handleSubmit} method='POST' className='flex flex-col p-10 h-screen gap-[21px] bg-white shadow-xl dark:bg-[#161616] dark:text-white'>
             <button className="flex border rounded-full w-fit border-[#0b0c0e] dark:border-[#1E1E1E]" onClick={handleDiscard}><CloseIcon></CloseIcon></button>
             <p className='text-[#F04D23]'>{msg}</p>
             <input

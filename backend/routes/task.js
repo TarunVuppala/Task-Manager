@@ -10,7 +10,6 @@ import send from '../reminder/emailService.js'
 
 app.get('/:id', async (req, res) => {
     const { id } = req.params;
-    if(!id) return
     const user = await Users.findOne({ _id: id });
     const tasks = await Tasks.find({ userRef: user._id });
     res.status(200).json({ tasks, success: true });
@@ -97,6 +96,7 @@ app.put('/:id', async (req, res) => {
 });
 
 app.put('/update/:id', async (req,res)=>{
+    console.log(req.params);
     const id = req.params.id;
     const { title, description, tag, date, priority, recurring } = req.body;
     const task = await Tasks.findById(id);
