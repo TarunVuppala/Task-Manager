@@ -2,7 +2,6 @@ import express from 'express';
 import mongoose from 'mongoose';
 import session from 'express-session';
 import cors from 'cors';
-import cron from 'node-cron';
 
 import login from './routes/login.js';
 import signup from './routes/signup.js';
@@ -12,9 +11,6 @@ import note from './routes/note.js';
 import email from './/routes/email.js';
 import calender from './routes/calender.js';
 import auth from './middleware/auth.js';
-
-import { getTasks } from './reminder/getTasks.js'
-import send from './reminder/emailService.js'
 
 const app = express();
 
@@ -49,24 +45,7 @@ app.use('/email', email);
 app.use('/calender', calender);
 
 app.get("/", auth, async (req, res) => {
-    // getTasks()
-    //     .then((tasks) => {
-    //         tasks.forEach((task) => {
-    //             const reminder = new Date(task.reminder);
-    //             const cronExpression = `${reminder.getMinutes()} ${reminder.getHours()} ${reminder.getDate()} ${reminder.getMonth() + 1} *`;
-
-    //             const mails = cron.schedule(cronExpression, async () => {
-    //                 await send(task);
-    //             }, {
-    //                 timezone: 'Asia/Kolkata'
-    //             });
-
-    //             mails.start();
-    //         });
-    //     })
     console.log("hello");
-    getTasks();
-
     res.json({ message: "hello", success: true });
 });
 

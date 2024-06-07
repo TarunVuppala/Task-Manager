@@ -1,36 +1,41 @@
 import nodemailer from 'nodemailer';
 import { getUserData } from './getTasks.js';
 
-async function emailService(email,task) {
+async function emailService(email, task) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false,
         auth: {
             user: 'tarun.jgs@gmail.com',
             pass: 'vnsa lwrh rfgl ywsg'
         }
-    })
+    });
 
     const mailOptions = {
         from: {
             name: 'ListIt',
             address: 'tarun.jgs@gmail.com',
         },
-        to: email,
+        to: email || 'tarun.vuppala26@gmail.com',
         subject: 'Hi! This is a reminder to complete your task',
-        text: `Make sure to complete your tasks. ${task.name}`,
+        text: `Make sure to complete this task: ${task.title}.`,
     };
-    await transporter.sendMail(mailOptions);
-    console.log('sent');
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log('Email sent successfully');
+    } catch (error) {
+        console.error('Error sending email:', error);
+    }
 }
+
 // emailService(getUserData.email,task);
 
-const send=async (task)=>{
-    console.log(task+'task');
+const send = async (task) => {
+    // console.log(task);
     const user = await getUserData();
-    await emailService(user.user.email,task);
+    // if(!user.user) return
+    await emailService(user.user.email, task);
 }
 
+// send({name:'task'})
 export default send;

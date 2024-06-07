@@ -1,12 +1,17 @@
 import express from 'express';
+import cron from 'node-cron';
 const app = express();
 import moment from 'moment-timezone';
 import Tasks from '../models/taskSchema.js';
 import Users from '../models/userSchema.js';
 
-app.get('/:id',async (req,res)=>{
-    const {id}=req.params;
-    const user=await Users.findOne({_id:id});
+import send from '../reminder/emailService.js'
+
+
+app.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    if(!id) return
+    const user = await Users.findOne({ _id: id });
     const tasks = await Tasks.find({ userRef: user._id });
     res.status(200).json({ tasks, success: true });
 })
@@ -27,28 +32,40 @@ app.post('/', async (req, res) => {
                 priority = "Low";
                 break;
         }
-        const createdDate = moment().tz('Asia/Kolkata');        
+        const createdDate = moment().tz('Asia/Kolkata');
         const newTask = await Tasks.create({
             title,
             description,
-            tag:tag?tag:"General",
+            tag: tag ? tag : "General",
             date: createdDate,
             priority,
             completed: false,
             recurring,
             userRef: req.session.userId
         });
-        if(date){
+        if (date) {
             console.log(date);
-            const ist=moment.tz(date,'Asia/Kolkata').toDate();
+            const ist = moment.tz(date, 'Asia/Kolkata').toDate();
             console.log(ist);
-            newTask.reminder=ist;
+            newTask.reminder = ist;
             await newTask.save();
         }
 
         const user = await Users.findOne({ _id: req.session.userId });
         user.tasksRef.push(newTask._id);
         await user.save();
+        const reminder=newTask.reminder;
+
+        const cronExpression = `${reminder.getMinutes()} ${reminder.getHours()} ${reminder.getDate()} ${reminder.getMonth() + 1} *`;
+        console.log(cronExpression);
+
+        const mails = cron.schedule(cronExpression, async () => {
+            await send(newTask);
+        }, {
+            timezone: 'Asia/Kolkata'
+        });
+
+        mails.start();
 
         res.status(200).json({ message: 'Task created successfully', task: newTask });
     } catch (error) {
@@ -58,24 +75,24 @@ app.post('/', async (req, res) => {
 });
 
 app.delete('/:id', async (req, res) => {
-    const id=req.params.id;
+    const id = req.params.id;
     console.log(id);
-    const deletedTask=await Tasks.findByIdAndDelete(id);
+    const deletedTask = await Tasks.findByIdAndDelete(id);
     if (!deletedTask) {
         return res.status(404).json({ message: 'Task not found' });
     }
-    const user = await Users.findOne({_id:deletedTask.userRef});
+    const user = await Users.findOne({ _id: deletedTask.userRef });
     user.tasksRef.pull(id);
     await user.save();
     res.status(200).json({ message: 'Task deleted successfully', success: true });
 });
 
-app.put('/:id',async (req,res)=>{
-    const id=req.params.id;
-    const task=await Tasks.findById(id);
-    task.completed=!task.completed;
+app.put('/:id', async (req, res) => {
+    const id = req.params.id;
+    const task = await Tasks.findById(id);
+    task.completed = !task.completed;
     await task.save();
-    res.status(200).json({message:'Task updated successfully',success:true});
+    res.status(200).json({ message: 'Task updated successfully', success: true });
 })
 
 export default app;
