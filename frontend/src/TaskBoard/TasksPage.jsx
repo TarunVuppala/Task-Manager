@@ -12,16 +12,41 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
     const [taskSelected, setTaskSelected] = useState({});
 
     useEffect(() => {
-        if(!formOpen){
+        if (!formOpen) {
             setTaskSelected({});
         }
     }, [formOpen]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/task/${user._id}`)
-            .then(response => response.json())
-            .then(data => setTasks(data.tasks))
-            .catch(error => console.error('Error fetching tasks:', error));
+        const fetchUser = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/login');
+                const data = await response.json();
+                if (data.success) {
+                    setUser(data.user);
+                } else {
+                    setUser(null);
+                }
+            } catch (error) {
+                console.error('Error fetching user:', error);
+            }
+        };
+
+        const fetchTasks = async (userId) => {
+            try {
+                const response = await fetch(`http://localhost:5000/task/${userId}`);
+                const data = await response.json();
+                setTasks(data.tasks);
+            } catch (error) {
+                console.error('Error fetching tasks:', error);
+            }
+        };
+
+        if (!user) {
+            fetchUser();
+        } else {
+            fetchTasks(user._id);
+        }
     }, [taskAdded, user, toggle]);
 
     const handleTaskAddDel = (a) => {
@@ -38,9 +63,6 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
         }
     };
 
-    if (!user) {
-        fetchUser();
-    }
 
     const handleDelete = (id) => {
         fetch(`http://localhost:5000/task/${id}`, {
@@ -97,7 +119,7 @@ const TasksPage = ({ formOpen, handleFormOpen }) => {
                             {filteredTasks.length === 0 ? "Add a Task" : filteredTasks.map((task) => (
                                 <div key={task._id} className=''>
                                     <TaskCard
-                                    formOpen={formOpen}
+                                        formOpen={formOpen}
                                         setTaskSelected={setTaskSelected}
                                         handleFormOpen={handleFormOpen}
                                         handleToggle={handleToggle}
