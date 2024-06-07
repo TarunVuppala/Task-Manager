@@ -14,9 +14,9 @@ app.post('/:id', async (req, res) => {
     const id = req.params.id;
     
     const { heading, description,tag } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     const user = await Users.findById(id);
-    console.log(user);
+    // console.log(user);
     const newNote = await Notes.create({
         heading,
         note:description,

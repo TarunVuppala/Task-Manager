@@ -45,7 +45,7 @@ app.use('/email', email);
 app.use('/calender', calender);
 
 app.get("/", auth, async (req, res) => {
-    console.log("hello");
+    // console.log("hello");
     res.json({ message: "hello", success: true });
 });
 

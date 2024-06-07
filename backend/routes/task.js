@@ -57,7 +57,7 @@ app.post('/', async (req, res) => {
         const reminder=newTask.reminder;
 
         const cronExpression = `${reminder.getMinutes()} ${reminder.getHours()} ${reminder.getDate()} ${reminder.getMonth() + 1} *`;
-        console.log(cronExpression);
+        // console.log(cronExpression);
 
         const mails = cron.schedule(cronExpression, async () => {
             await send(newTask);
@@ -76,7 +76,7 @@ app.post('/', async (req, res) => {
 
 app.delete('/:id', async (req, res) => {
     const id = req.params.id;
-    console.log(id);
+    // console.log(id);
     const deletedTask = await Tasks.findByIdAndDelete(id);
     if (!deletedTask) {
         return res.status(404).json({ message: 'Task not found' });
