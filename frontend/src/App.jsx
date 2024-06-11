@@ -82,6 +82,7 @@ function App() {
           />
           <Route
             path='/notes'
+            
             element={
               auth ? (
                 <div className='flex flex-row w-full dark:bg-[#0b0c0e] dark:text-[#e1e1e1] duration-1000 overflow-hidden'>
