@@ -38,6 +38,18 @@ app.delete('/:id',async (req,res)=>{
     user.notesRef.pull(id);
     await user.save();
     res.status(200).json({ message: 'Note deleted successfully', success: true });
+});
+
+app.put('/:id',async(req,res)=>{
+    const id=req.params.id;
+    const { heading, description,tag } = req.body;
+    const note=await Notes.findById(id);
+    note.heading=heading;
+    note.note=description;
+    note.tag=tag;
+
+    await note.save();
+    res.status(200).json({message:'Note Updated!',success:true});
 })
 
 export default app;

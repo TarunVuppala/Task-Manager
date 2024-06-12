@@ -82,7 +82,7 @@ const Form = ({ handleFormOpen, handleTaskAddDel, task, toggle, setToggle }) => 
                 body: JSON.stringify(formData),
                 credentials: 'include'
             });
-            console.log('Form submitted:', formData);
+            // console.log('Form submitted:', formData);
             setFormData({
                 title: '',
                 description: '',
@@ -178,9 +178,9 @@ const Form = ({ handleFormOpen, handleTaskAddDel, task, toggle, setToggle }) => 
                 </div>
 
                 <button type="submit" className='py-4 rounded-[20px] w-full bg-[#F04D23] font-black text-white'>
-                    SAVE CHANGES
+                    {updateTask.current?'Update Task':'SAVE CHANGES'}
                 </button>
-                <button type="button" className='py-4 border rounded-[20px] w-full border-[#F04D23] font-black'>
+                <button type="button"  onClick={handleDiscard} className='py-4 border rounded-[20px] w-full border-[#F04D23] font-black'>
                     DISCARD
                 </button>
             </div>
