@@ -19,7 +19,7 @@ mongoose.connect('mongodb+srv://tarunvuppala26:tarun26@cluster0.sobucbc.mongodb.
         console.log("Connected to MongoDB");
     })
     .catch((err) => {
-        console.log("Failed to connect to MongoDB", err.message);
+        console.log("Failed to connect to MongoDB", err);
     });
 
 app.use(cors({

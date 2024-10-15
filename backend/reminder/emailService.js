@@ -15,7 +15,7 @@ async function emailService(email, task) {
             name: 'ListIt',
             address: 'tarun.jgs@gmail.com',
         },
-        to: email || 'tarun.vuppala26@gmail.com',
+        to: email,
         subject: 'Hi! This is a reminder to complete your task',
         text: `Make sure to complete this task: ${task.title}.`,
     };
